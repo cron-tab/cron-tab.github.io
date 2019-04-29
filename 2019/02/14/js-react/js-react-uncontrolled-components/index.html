@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>리엑트 Uncontrolled Components | crontab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Controlled components 와 Uncontrolled components대부분의 경우 controlled components로 forms를 구현 합니다. 하지만 uncontrolled components 방식으로 구현할 수 있는데 차이점은 아래와 같습니다.  controlled components:  form data를 React Compone">
+<meta name="keywords" content="React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="리엑트 Uncontrolled Components">
+<meta property="og:url" content="https://cron-tab.github.io/2019/02/14/js-react/js-react-uncontrolled-components/index.html">
+<meta property="og:site_name" content="crontab">
+<meta property="og:description" content="Controlled components 와 Uncontrolled components대부분의 경우 controlled components로 forms를 구현 합니다. 하지만 uncontrolled components 방식으로 구현할 수 있는데 차이점은 아래와 같습니다.  controlled components:  form data를 React Compone">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-29T08:02:35.156Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="리엑트 Uncontrolled Components">
+<meta name="twitter:description" content="Controlled components 와 Uncontrolled components대부분의 경우 controlled components로 forms를 구현 합니다. 하지만 uncontrolled components 방식으로 구현할 수 있는데 차이점은 아래와 같습니다.  controlled components:  form data를 React Compone">
+  
+    <link rel="alternate" href="/atom.xml" title="crontab" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">crontab</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">crontab&#39;s blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cron-tab.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="posts-js-react/js-react-uncontrolled-components" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/14/js-react/js-react-uncontrolled-components/" class="article-date">
+  <time datetime="2019-02-14T05:46:00.000Z" itemprop="datePublished">2019-02-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      리엑트 Uncontrolled Components
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Controlled-components-와-Uncontrolled-components"><a href="#Controlled-components-와-Uncontrolled-components" class="headerlink" title="Controlled components 와 Uncontrolled components"></a>Controlled components 와 Uncontrolled components</h3><p>대부분의 경우 controlled components로 forms를 구현 합니다.</p>
+<p>하지만 uncontrolled components 방식으로 구현할 수 있는데 차이점은 아래와 같습니다.</p>
+<ul>
+<li><p>controlled components:  form data를 React Component에 의해 처리</p>
+</li>
+<li><p>uncontrolled components :  form data를 DOM에 의해 처리</p>
+</li>
+</ul>
+<h3 id="Uncontrolled-components-작성"><a href="#Uncontrolled-components-작성" class="headerlink" title="Uncontrolled components 작성"></a>Uncontrolled components 작성</h3><p>uncontrelled components를 작성하기 위해서는 모든 state update에 대한 이벤트 핸들러를 작성하는 대신 ref 를 사용해서 DOM에 있는 form values를 가져오면 됩니다.</p>
+<p>uncontrolled components를 작성하면 DOM 개발 방식을 유지할 수 있기 때문에 React와 non-React 코드를 같이 작성할 때 사용하면 유용합니다.</p>
+<h4 id="defaultValue-defaultChecked"><a href="#defaultValue-defaultChecked" class="headerlink" title="defaultValue , defaultChecked"></a>defaultValue , defaultChecked</h4><p>React rendering lifecycle에서 form elements의 value attribute는 DOM안의 값을 대체합니다.</p>
+<p>uncontrolled components에서 defaultValue attribute 를 통해 React에서 초기값 설정을 할 수 있습니다. </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NameForm</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.handleSubmit = <span class="keyword">this</span>.handleSubmit.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.input = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleSubmit(event) &#123;</span><br><span class="line">    alert(<span class="string">'A name was submitted: '</span> + <span class="keyword">this</span>.input.current.value);</span><br><span class="line">    event.preventDefault();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;form onSubmit=&#123;<span class="keyword">this</span>.handleSubmit&#125;&gt;</span><br><span class="line">        &lt;input type=<span class="string">"text"</span> ref=&#123;<span class="keyword">this</span>.input&#125; defaultValue=<span class="string">"Bob"</span> /&gt;  </span><br><span class="line">        &lt;input type=<span class="string">"checkbox"</span> defaultChecked /&gt;</span><br><span class="line">        &lt;input type=<span class="string">"radio"</span> defaultChecked /&gt; </span><br><span class="line">       </span><br><span class="line">        &lt;input type=<span class="string">"submit"</span> value=<span class="string">"Submit"</span> /&gt;</span><br><span class="line">      &lt;<span class="regexp">/form&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="lt-input-type-quot-file-quot-gt"><a href="#lt-input-type-quot-file-quot-gt" class="headerlink" title="&lt;input type=&quot;file&quot; /&gt;"></a><code>&lt;input type=&quot;file&quot; /&gt;</code></h3><p>리엑트에서 <code>&lt;input type=&quot;file&quot; /&gt;</code> 은 언제나 uncontrolled component 입니다. input의 value는 사용자에 의해 할당되기 때문입니다. </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileInput</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.handleSubmit = <span class="keyword">this</span>.handleSubmit.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.fileInput = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line">  handleSubmit(event) &#123;</span><br><span class="line">    event.preventDefault();</span><br><span class="line">    alert(</span><br><span class="line">      <span class="string">`Selected file - <span class="subst">$&#123;</span></span></span><br><span class="line"><span class="string"><span class="subst">        <span class="keyword">this</span>.fileInput.current.files[<span class="number">0</span>].name</span></span></span><br><span class="line"><span class="string"><span class="subst">      &#125;</span>`</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;form onSubmit=&#123;<span class="keyword">this</span>.handleSubmit&#125;&gt;</span><br><span class="line">        &lt;label&gt;</span><br><span class="line">          Upload file:</span><br><span class="line">          &lt;input type=<span class="string">"file"</span> ref=&#123;<span class="keyword">this</span>.fileInput&#125; /&gt;</span><br><span class="line">        &lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">        &lt;br /</span>&gt;</span><br><span class="line">        &lt;button type=<span class="string">"submit"</span>&gt;Submit&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;FileInput /&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="요소별-값-정리"><a href="#요소별-값-정리" class="headerlink" title="요소별 값 정리"></a>요소별 값 정리</h2><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Value property</th>
+<th>Change callback</th>
+<th>New value in the callback</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;input type=&quot;text&quot; /&gt;</code></td>
+<td><code>value=&quot;string&quot;</code></td>
+<td><code>onChange</code></td>
+<td><code>event.target.value</code></td>
+</tr>
+<tr>
+<td><code>&lt;input type=&quot;checkbox&quot; /&gt;</code></td>
+<td><code>checked={boolean}</code></td>
+<td><code>onChange</code></td>
+<td><code>event.target.checked</code></td>
+</tr>
+<tr>
+<td><code>&lt;input type=&quot;radio&quot; /&gt;</code></td>
+<td><code>checked={boolean}</code></td>
+<td><code>onChange</code></td>
+<td><code>event.target.checked</code></td>
+</tr>
+<tr>
+<td><code>&lt;textarea /&gt;</code></td>
+<td><code>value=&quot;string&quot;</code></td>
+<td><code>onChange</code></td>
+<td><code>event.target.value</code></td>
+</tr>
+<tr>
+<td><code>&lt;select /&gt;</code></td>
+<td><code>value=&quot;option value&quot;</code></td>
+<td><code>onChange</code></td>
+<td><code>event.target.value</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="resource"><a href="#resource" class="headerlink" title="resource"></a>resource</h2><ul>
+<li><a href="https://reactjs.org/docs/uncontrolled-components.html" target="_blank" rel="noopener">https://reactjs.org/docs/uncontrolled-components.html</a></li>
+<li><a href="https://goshakkk.name/controlled-vs-uncontrolled-inputs-react" target="_blank" rel="noopener">https://goshakkk.name/controlled-vs-uncontrolled-inputs-react</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2019/02/14/js-react/js-react-uncontrolled-components/" data-id="cjv23xmen003cprra2ovksa74" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/12/css/css-center/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CSS 셀렉트박스 커스텀
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/01/30/js-basic/js-environment/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">자바스크립트 환경</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ionic/">Ionic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Util/">Util</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Architecture/" style="font-size: 12.86px;">Architecture</a> <a href="/tags/CSS/" style="font-size: 12.86px;">CSS</a> <a href="/tags/CrossBrowsing/" style="font-size: 17.14px;">CrossBrowsing</a> <a href="/tags/DB/" style="font-size: 14.29px;">DB</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/Ionic/" style="font-size: 15.71px;">Ionic</a> <a href="/tags/Javascript/" style="font-size: 12.86px;">Javascript</a> <a href="/tags/JavascriptBasic/" style="font-size: 18.57px;">JavascriptBasic</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Util/" style="font-size: 12.86px;">Util</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/27/js-react/js-react-popup/">리엑트 컴포넌트에서 ajax 호출 방법</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/12/css/css-center/">CSS 셀렉트박스 커스텀</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/14/js-react/js-react-uncontrolled-components/">리엑트 Uncontrolled Components</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/js-basic/js-environment/">자바스크립트 환경</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/30/js-get-string-byte/">자바스크립트 문자열 바이트 계산</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 crontab<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

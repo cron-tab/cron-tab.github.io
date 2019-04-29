@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>자바스크립트 함수 | crontab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Parameter와 Argument parameter는 함수를 정의할 대 사용.  123function foo(param1, param2) &amp;#123;  ...&amp;#125;  Argument 는 함수를 호출할 때 사용.  1foo(3, 7); 함수 정의 방법 2가지 함수 선언 (Function Declarations) 123function functionNa">
+<meta name="keywords" content="JavascriptBasic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="자바스크립트 함수">
+<meta property="og:url" content="https://cron-tab.github.io/2017/11/15/js-basic/js-function/index.html">
+<meta property="og:site_name" content="crontab">
+<meta property="og:description" content="Parameter와 Argument parameter는 함수를 정의할 대 사용.  123function foo(param1, param2) &amp;#123;  ...&amp;#125;  Argument 는 함수를 호출할 때 사용.  1foo(3, 7); 함수 정의 방법 2가지 함수 선언 (Function Declarations) 123function functionNa">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-29T08:02:35.151Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="자바스크립트 함수">
+<meta name="twitter:description" content="Parameter와 Argument parameter는 함수를 정의할 대 사용.  123function foo(param1, param2) &amp;#123;  ...&amp;#125;  Argument 는 함수를 호출할 때 사용.  1foo(3, 7); 함수 정의 방법 2가지 함수 선언 (Function Declarations) 123function functionNa">
+  
+    <link rel="alternate" href="/atom.xml" title="crontab" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">crontab</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">crontab&#39;s blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cron-tab.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-js-basic/js-function" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/15/js-basic/js-function/" class="article-date">
+  <time datetime="2017-11-15T06:20:37.000Z" itemprop="datePublished">2017-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      자바스크립트 함수
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Parameter와-Argument"><a href="#Parameter와-Argument" class="headerlink" title="Parameter와 Argument"></a>Parameter와 Argument</h2><ul>
+<li>parameter는 함수를 정의할 대 사용.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">param1, param2</span>) </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Argument 는 함수를 호출할 때 사용.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo(<span class="number">3</span>, <span class="number">7</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="함수-정의-방법-2가지"><a href="#함수-정의-방법-2가지" class="headerlink" title="함수 정의 방법 2가지"></a>함수 정의 방법 2가지</h2><ul>
+<li><p>함수 선언 (Function Declarations)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">functionName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>함수 표현식 (Function Expression)<br>함수 표현식에서의 함수는 익명함수로 간주됨 ( 람다 함수라고 부르기도 함 )<br>반드시 호출 하기전에 할당해야 함<br>​<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> functionName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h2 id="함수-호이스팅-hoisting"><a href="#함수-호이스팅-hoisting" class="headerlink" title="함수 호이스팅(hoisting)"></a>함수 호이스팅(hoisting)</h2><ul>
+<li><p>함수 선언부를 함수 호출보다 먼저 읽고 실행<br>​<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sayHi();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">'Hi'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>함수 표현식에서는 에러 발생</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sayHi(); <span class="comment">// 에러 발생</span></span><br><span class="line"><span class="keyword">var</span> sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="string">'Hi'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>절대 해서는 안되는 방식<br>함수 선언은 호이스팅이 되기 때문에 브라우저마다 처리되는 방식이 다름  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(condition)&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Hi'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Yo'</span>);  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>함수 표현식을 할당을 통한 방식은 안전함</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// condition에 따라 함수 표현식 할당</span></span><br><span class="line"><span class="keyword">var</span> sayHi;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(condition)&#123;</span><br><span class="line">  sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Hi'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Yo'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="재귀"><a href="#재귀" class="headerlink" title="재귀"></a>재귀</h2><p>arguments.callee는 현재 실행중인 함수를 가리키는 포인터<br>재귀함수를 사용할 때 항상 자신을 호출하는 이름대신 arguments.callee를 써야 안전함<br>실행 중 호출하는 함수가 지워지거나 변경 되었을 때를 예방</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> num * <span class="built_in">arguments</span>.callee(num<span class="number">-1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 스트릭 모드에서는 arguments.callee 값에 접근할 수 없어 에러가 발생</span></span><br><span class="line"><span class="comment">// 함수 표현식으로 사용해야 함</span></span><br><span class="line"><span class="keyword">var</span> factorialExpression = (<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> num * <span class="built_in">arguments</span>.callee(num<span class="number">-1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="클로저"><a href="#클로저" class="headerlink" title="클로저"></a>클로저</h2><ul>
+<li>다른 함수의 스코프에 있는 변수에 접근 가능한 함수</li>
+<li>함수 호출시 실행 컨텍스트와 스코프 체인이 생성</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/15/js-basic/js-function/" data-id="cjv23xme10029prraozf819i9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/15/js-basic/js-prototype/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          자바스크립트 프로토타입
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/15/js-scroll-disable/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">자바스크립트로 스크롤 비활성화 시키기</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ionic/">Ionic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Util/">Util</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Architecture/" style="font-size: 12.86px;">Architecture</a> <a href="/tags/CSS/" style="font-size: 12.86px;">CSS</a> <a href="/tags/CrossBrowsing/" style="font-size: 17.14px;">CrossBrowsing</a> <a href="/tags/DB/" style="font-size: 14.29px;">DB</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/Ionic/" style="font-size: 15.71px;">Ionic</a> <a href="/tags/Javascript/" style="font-size: 12.86px;">Javascript</a> <a href="/tags/JavascriptBasic/" style="font-size: 18.57px;">JavascriptBasic</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Util/" style="font-size: 12.86px;">Util</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/27/js-react/js-react-popup/">리엑트 컴포넌트에서 ajax 호출 방법</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/12/css/css-center/">CSS 셀렉트박스 커스텀</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/14/js-react/js-react-uncontrolled-components/">리엑트 Uncontrolled Components</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/js-basic/js-environment/">자바스크립트 환경</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/30/js-get-string-byte/">자바스크립트 문자열 바이트 계산</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 crontab<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>AWS Lambda개발 - Serverless Framework | crontab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="AWS Lambda를 개발할 때 CLI로 개발할 수 있는 Serverless, APEX 같은 툴로 개발을 하게됩니다.Serverless는 AWS, Google, MS, IBM등 주요 서버리스 서비스들을 다 제공하기 때문에추후 확장성 면에서 좋을 것으로 예상되어 Serverless 사용법을 알아보려고 합니다.   serverless 설치1$ npm i -g">
+<meta name="keywords" content="Architecture">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS Lambda개발 - Serverless Framework">
+<meta property="og:url" content="https://cron-tab.github.io/2018/01/05/Architecture/infra-severless-aws/index.html">
+<meta property="og:site_name" content="crontab">
+<meta property="og:description" content="AWS Lambda를 개발할 때 CLI로 개발할 수 있는 Serverless, APEX 같은 툴로 개발을 하게됩니다.Serverless는 AWS, Google, MS, IBM등 주요 서버리스 서비스들을 다 제공하기 때문에추후 확장성 면에서 좋을 것으로 예상되어 Serverless 사용법을 알아보려고 합니다.   serverless 설치1$ npm i -g">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-29T08:02:35.145Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AWS Lambda개발 - Serverless Framework">
+<meta name="twitter:description" content="AWS Lambda를 개발할 때 CLI로 개발할 수 있는 Serverless, APEX 같은 툴로 개발을 하게됩니다.Serverless는 AWS, Google, MS, IBM등 주요 서버리스 서비스들을 다 제공하기 때문에추후 확장성 면에서 좋을 것으로 예상되어 Serverless 사용법을 알아보려고 합니다.   serverless 설치1$ npm i -g">
+  
+    <link rel="alternate" href="/atom.xml" title="crontab" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">crontab</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">crontab&#39;s blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cron-tab.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Architecture/infra-severless-aws" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/05/Architecture/infra-severless-aws/" class="article-date">
+  <time datetime="2018-01-05T09:09:32.000Z" itemprop="datePublished">2018-01-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AWS Lambda개발 - Serverless Framework
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>AWS Lambda를 개발할 때 CLI로 개발할 수 있는 <a href="https://serverless.com" target="_blank" rel="noopener">Serverless</a>, <a href="http://apex.run" target="_blank" rel="noopener">APEX</a> 같은 툴로 개발을 하게됩니다.<br>Serverless는 AWS, Google, MS, IBM등 주요 서버리스 서비스들을 다 제공하기 때문에<br>추후 확장성 면에서 좋을 것으로 예상되어 Serverless 사용법을 알아보려고 합니다.  </p>
+<h3 id="serverless-설치"><a href="#serverless-설치" class="headerlink" title="serverless 설치"></a>serverless 설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i -g serverless</span><br></pre></td></tr></table></figure>
+<h3 id="aws-credentials-설정"><a href="#aws-credentials-설정" class="headerlink" title="aws credentials 설정"></a>aws credentials 설정</h3><ul>
+<li><a href="https://console.aws.amazon.com/console" target="_blank" rel="noopener">AWS Console</a>에서 IAM에 들어 갑니다.</li>
+<li><p>Users - Add user 클릭</p>
+<ol>
+<li><p>Details<br>– User name에 serverless-cli 입력<br>– Access type에서 Programmatic access체크<br>– Next: Permissions 클릭</p>
+</li>
+<li><p>Permissions<br>– Attach exisiting policies directly 클릭<br>– AdministratorAccess 체크<br>– Next: Review 클릭</p>
+</li>
+<li><p>Review<br>– Create user 클릭 </p>
+</li>
+<li><p>Complete<br>– Access key ID와 Secret access key 확인</p>
+</li>
+</ol>
+</li>
+<li><p>Access Ky와 Secret access key 정보를 가지고 serverless의 credentials 설정 명령을 실행합니다. </p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sls config credentials --provider aws --key xxxxx --secret xxxx</span><br></pre></td></tr></table></figure>
+<h3 id="AWS-Node-js-Template-생성"><a href="#AWS-Node-js-Template-생성" class="headerlink" title="AWS Node.js Template 생성"></a>AWS Node.js Template 생성</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sls create --template aws-nodejs --path lambda-test --name lambda-test</span><br></pre></td></tr></table></figure>
+<p>위 명령을 실행하면 아래롸 같이 2개의 파일이 생성됩니다. </p>
+<p>|-handler.js<br>|-serverless.yml</p>
+<h2 id="serverless-yml-파일-수정"><a href="#serverless-yml-파일-수정" class="headerlink" title="serverless.yml 파일 수정"></a>serverless.yml 파일 수정</h2><p>AWS에 배포하기 위해서 serverless.yml 파일을 아래와 같이 수정 합니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">service: lambda-test <span class="comment"># 서비스이름</span></span><br><span class="line"></span><br><span class="line">provider:</span><br><span class="line">  name: aws</span><br><span class="line">  runtime: nodejs6.10</span><br><span class="line">  stage: dev</span><br><span class="line">  region: ap-northeast-2 <span class="comment"># 서울 rigion</span></span><br><span class="line">  environment: <span class="comment"># 전체 함수에서 사용할 수 있는 환경변수</span></span><br><span class="line">    variable1: value1</span><br><span class="line"></span><br><span class="line"><span class="built_in">functions</span>:</span><br><span class="line">  hello:</span><br><span class="line">    handler: handler.hello</span><br><span class="line">    events: <span class="comment"># API Gateway 생성을 위한 설정</span></span><br><span class="line">      - http:</span><br><span class="line">          path: lambda-test</span><br><span class="line">          method: get</span><br><span class="line">          cors: <span class="literal">true</span></span><br><span class="line">    environment: <span class="comment"># 해당 함수에서 사용할 수 있는 환경변수</span></span><br><span class="line">        variable2: value1</span><br><span class="line"></span><br><span class="line">resources:</span><br><span class="line">  Resources:</span><br><span class="line">    NewResource:</span><br><span class="line">      Type: AWS::S3::Bucket</span><br><span class="line">      Properties: <span class="comment"># $&#123;self:service&#125;와 같이 변수로 사용가능</span></span><br><span class="line">        BucketName: <span class="variable">$&#123;self:service&#125;</span>-<span class="variable">$&#123;self:provider.stage&#125;</span>-upload</span><br></pre></td></tr></table></figure></p>
+<h2 id="get-parameter를-받기-위해-hander-js-파일-수정"><a href="#get-parameter를-받기-위해-hander-js-파일-수정" class="headerlink" title="get parameter를 받기 위해 hander.js 파일 수정"></a>get parameter를 받기 위해 hander.js 파일 수정</h2><p>get parameter는 event객체의 queryStringParameters에 있습니다. </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> param = event.queryStringParameters;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">const</span> response = &#123;</span><br><span class="line">   statusCode: <span class="number">200</span>,</span><br><span class="line">   body: <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">     message: <span class="string">'Your name is '</span> + param.name</span><br><span class="line">   &#125;),</span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"> callback(<span class="literal">null</span>, response);</span><br></pre></td></tr></table></figure>
+<h3 id="Local에서-Lambda-실행"><a href="#Local에서-Lambda-실행" class="headerlink" title="Local에서 Lambda 실행"></a>Local에서 Lambda 실행</h3><p>생성된 함수를 AWS에 배포하기 전에 로컬에서 실행 시킬 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sls invoke <span class="built_in">local</span> -f hello</span><br></pre></td></tr></table></figure>
+<p>파라미터를 전달하기 위해서는 –path 옵션으로 json파일 경로를 지정해주는 방법과<br>–data 옵션으로 전달하는 방법이 있습니다. </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sls invoke <span class="built_in">local</span> -f hello --path data.json </span><br><span class="line">$ sls invoke <span class="built_in">local</span> -f hello --data <span class="string">'&#123;"queryStringParameters":&#123;"name":"test"&#125;&#125;'</span></span><br></pre></td></tr></table></figure>
+<p>실행하면 아래 결과를 확인할 수 있습니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"statusCode"</span>: 200,</span><br><span class="line">    <span class="string">"body"</span>: <span class="string">"&#123;\"message\":\"Your name is test\"&#125;"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Local에서-Emulator-실행"><a href="#Local에서-Emulator-실행" class="headerlink" title="Local에서 Emulator 실행"></a>Local에서 Emulator 실행</h3><p>로컬에서 에뮬레이터를 실행 할 수 있습니다.<br><a href="http://localhost:4000/lambda-test" target="_blank" rel="noopener">http://localhost:4000/lambda-test</a><br>파이어베이스와 다르게 live-reload가 되지않아 조금 불편합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sls run</span><br></pre></td></tr></table></figure>
+<h2 id="배포-명령-실행"><a href="#배포-명령-실행" class="headerlink" title="배포 명령 실행"></a>배포 명령 실행</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sls deploy</span><br></pre></td></tr></table></figure>
+<p>배포 완료 후 아래와 같은 정보가 나오게 되며 endpoints에 있는 주소로 접근하면 됩니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line">endpoints:</span><br><span class="line">  GET - https://7otlb5sfi5.execute-api.ap-northeast-2.amazonaws.com/dev/lambda-test</span><br><span class="line"><span class="built_in">functions</span>:</span><br><span class="line">  hello: lambda-test-dev-hello</span><br></pre></td></tr></table></figure></p>
+<h2 id="삭제"><a href="#삭제" class="headerlink" title="삭제"></a>삭제</h2><p>Serverless로 배포한 모든 리소스를 삭제하기 위해서는 AWS console - CloudFormation에 들어갑니다.<br>Stack Name이 lambda-test-dev를 선택한 후 Action에서 Delete Stack을 클릭하면 관련 리소스들을 삭제합니다. </p>
+<h2 id="참고사항"><a href="#참고사항" class="headerlink" title="참고사항"></a>참고사항</h2><ul>
+<li>S3버킷에는 총 2개의 버킷이 생성됩니다.<br>(severless framework이 쓰는 버킷 1, serverless.yml파일의 resource에서 설정한 버킷 1)</li>
+<li>Serverless를 통해 배포를 하면 Lambda, API Gateway, S3, CloudFormation을 사용하게 됩니다.   </li>
+</ul>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><ul>
+<li><a href="https://www.youtube.com/playlist?list=PLzvRQMJ9HDiT5b4OsmIBiMbsPjfp4kfg3" target="_blank" rel="noopener">https://www.youtube.com/playlist?list=PLzvRQMJ9HDiT5b4OsmIBiMbsPjfp4kfg3</a></li>
+<li><a href="https://github.com/serverless/serverless-client-s3" target="_blank" rel="noopener">https://github.com/serverless/serverless-client-s3</a></li>
+<li><a href="https://blog.outsider.ne.kr/1243" target="_blank" rel="noopener">https://blog.outsider.ne.kr/1243</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/01/05/Architecture/infra-severless-aws/" data-id="cjv23xmda0011prra6r2gu8hh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Architecture/">Architecture</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/09/ide-intellij-open-current-path-from-terminal/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          터미널에서 현재 경로로 IntelliJ 실행하는 방법
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/08/js-ionic/ionic-cache-busting/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">아이오닉 캐시 버스팅 설정</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ionic/">Ionic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Util/">Util</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Architecture/" style="font-size: 12.86px;">Architecture</a> <a href="/tags/CSS/" style="font-size: 12.86px;">CSS</a> <a href="/tags/CrossBrowsing/" style="font-size: 17.14px;">CrossBrowsing</a> <a href="/tags/DB/" style="font-size: 14.29px;">DB</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/Ionic/" style="font-size: 15.71px;">Ionic</a> <a href="/tags/Javascript/" style="font-size: 12.86px;">Javascript</a> <a href="/tags/JavascriptBasic/" style="font-size: 18.57px;">JavascriptBasic</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Util/" style="font-size: 12.86px;">Util</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/27/js-react/js-react-popup/">리엑트 컴포넌트에서 ajax 호출 방법</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/12/css/css-center/">CSS 셀렉트박스 커스텀</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/14/js-react/js-react-uncontrolled-components/">리엑트 Uncontrolled Components</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/js-basic/js-environment/">자바스크립트 환경</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/30/js-get-string-byte/">자바스크립트 문자열 바이트 계산</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 crontab<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

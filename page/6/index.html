@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>crontab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="crontab">
+<meta property="og:url" content="https://cron-tab.github.io/page/6/index.html">
+<meta property="og:site_name" content="crontab">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="crontab">
+  
+    <link rel="alternate" href="/atom.xml" title="crontab" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">crontab</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">crontab&#39;s blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cron-tab.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-js-react/js-react-touchevent" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/13/js-react/js-react-touchevent/" class="article-date">
+  <time datetime="2017-11-13T08:51:09.000Z" itemprop="datePublished">2017-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/13/js-react/js-react-touchevent/">리엑트 Touch Event 사용방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="React에서-Touch-Event-사용방법"><a href="#React에서-Touch-Event-사용방법" class="headerlink" title="React에서 Touch Event 사용방법"></a>React에서 Touch Event 사용방법</h2><p>이벤트 등록과 제거를 componentDidMount()과 componentWillUnmount()에서 해줘야 합니다.<br>SPA이기 때문에 이벤트 제거를 잘하지 않으면 어플리케이션 전체에 영향을 미치기 때문에 주의 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReactEvent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props);		</span><br><span class="line">        <span class="keyword">this</span>.setEventTouch = <span class="keyword">this</span>.setEventTouch.bind(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    componentDidMount() &#123;</span><br><span class="line">        <span class="built_in">document</span>.addEventListener(<span class="string">'touchstart'</span>, <span class="keyword">this</span>.setEventTouch);</span><br><span class="line">        <span class="built_in">document</span>.addEventListener(<span class="string">'touchmove'</span>, <span class="keyword">this</span>.setEventTouch);</span><br><span class="line">        <span class="built_in">document</span>.addEventListener(<span class="string">'touchend'</span>, <span class="keyword">this</span>.setEventTouch);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    componentWillUnmount()&#123;</span><br><span class="line">        <span class="built_in">document</span>.removeEventListener(<span class="string">'touchstart'</span>, <span class="keyword">this</span>.setEventTouch);</span><br><span class="line">        <span class="built_in">document</span>.removeEventListener(<span class="string">'touchmove'</span>, <span class="keyword">this</span>.setEventTouch);</span><br><span class="line">        <span class="built_in">document</span>.removeEventListener(<span class="string">'touchend'</span>, <span class="keyword">this</span>.setEventTouch);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    setEventTouch(e = &#123;&#125;) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (e.type)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'touchstart'</span>:</span><br><span class="line">            	<span class="keyword">this</span>.isDrag              = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">this</span>.touchStartPositionX = e.changedTouches[<span class="number">0</span>].clientX;</span><br><span class="line">                <span class="keyword">this</span>.touchStartPositionY = e.changedTouches[<span class="number">0</span>].clientY;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'touchmove'</span>:</span><br><span class="line">                <span class="keyword">this</span>.isDrag = <span class="literal">true</span>;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'touchend'</span>:</span><br><span class="line">                <span class="keyword">this</span>.touchEndPositionX = e.changedTouches[<span class="number">0</span>].clientX;</span><br><span class="line">                <span class="keyword">this</span>.touchEndPositionY = e.changedTouches[<span class="number">0</span>].clientY;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>React Event Test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> ReactEvent;</span><br></pre></td></tr></table></figure>
+<h3 id="Touch-event-종류"><a href="#Touch-event-종류" class="headerlink" title="Touch event 종류"></a>Touch event 종류</h3><h4 id="touchstart"><a href="#touchstart" class="headerlink" title="touchstart"></a>touchstart</h4><p>터치 표면에 터치 포인터가 놓여지면 이벤트 전송</p>
+<h4 id="touchend"><a href="#touchend" class="headerlink" title="touchend"></a>touchend</h4><p>터치 포인터가 제거 되었을 때 이벤트 전송 </p>
+<h4 id="touchmove"><a href="#touchmove" class="headerlink" title="touchmove"></a>touchmove</h4><p>표면을 따라 터치 포인트를 이동할 때 이벤트 전송</p>
+<p>Touchmove 이벤트 전송 속도는 브라우저에 따라 다르며 사용자 하드웨어 성능에 따라 다를 수도 있음</p>
+<h4 id="touchcancel"><a href="#touchcancel" class="headerlink" title="touchcancel"></a>touchcancel</h4><p>터치 포인트가 어떤 식으로든 중단되면 전송</p>
+<h2 id="Passive-event"><a href="#Passive-event" class="headerlink" title="Passive event"></a>Passive event</h2><p>Passive event 는  특별히 모바일에서 scroll 성능 향상을 위한 새로운 웹표준 입니다. </p>
+<p>기존 스크롤 이벤트는 canceled 를 할 수 없습니다. 그래서  passive 설정을 하지 못합니다. </p>
+<p>그러나 handler 안에서 expensive work 를 방지해야 합니다. </p>
+<h4 id="scroll-jank"><a href="#scroll-jank" class="headerlink" title="scroll jank"></a>scroll jank</h4><p>페이지가 스크롤링 되기 전에 항상 리스너가 끝나기를 기다리는 지연이을 가리키는 말</p>
+<p>passive event listener 는  addEventListener 의 options 파라미터에서 리스너가 스크롤을 절대 취소하지 않는다는 것을 나타내는 플래그를 설정할 수 있도록 하여 이 문제를 해결합니다. </p>
+<h1 id="addEventListener"><a href="#addEventListener" class="headerlink" title="addEventListener"></a>addEventListener</h1><h4 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">target.addEventListener(type, listener[, options]);</span><br><span class="line">target.addEventListener(type, listener[, useCapture]);</span><br></pre></td></tr></table></figure>
+<h4 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h4><ul>
+<li><p>type</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank" rel="noopener">Event type</a> 지정</p>
+</li>
+<li><p>listener</p>
+<p>지정된 Event type이 발생했을 때 알림을 받을 callback 함수</p>
+</li>
+<li><p>options</p>
+<ul>
+<li><p>capture: 이벤트 캡쳐링 적용 여부. 크롬 49부터 지원</p>
+</li>
+<li><p>once: 이벤트를 한번만 호출하고 해제되는 옵션. 크롬 55부터 지원</p>
+</li>
+<li>passive: 스크롤 성능 향상을 위한 옵션으로 true일 경우, 스크롤을 위해 블록되는 것을 방지한다. 이 경우, preventDefault를 사용할 수 없다. 크롬 51부터 지원</li>
+</ul>
+</li>
+<li><p>useCapture</p>
+</li>
+</ul>
+<h3 id="Usage-notes"><a href="#Usage-notes" class="headerlink" title="Usage notes"></a>Usage notes</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'touchstart'</span>, handler, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Chrome 49 부터 EventListenerOptions 지원</span></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"touchstart"</span>, handler, &#123;</span><br><span class="line">  capture: <span class="literal">false</span>, <span class="comment">// Chrome 49</span></span><br><span class="line">  once: <span class="literal">false</span>, <span class="comment">// Chrome 55</span></span><br><span class="line">  passive: <span class="literal">false</span> <span class="comment">// Chrome 51</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="addEventListener-하위-브라우저-지원-방법"><a href="#addEventListener-하위-브라우저-지원-방법" class="headerlink" title="addEventListener 하위 브라우저 지원 방법"></a>addEventListener 하위 브라우저 지원 방법</h3><p>Chrome 54+ 부터 EventListenerOptions의 passive 속성이 특별한 상황일 경우에는 기본값이 true로 설정된다.</p>
+<p>document또는 body에 이벤트 리스너를 추가할때, touchstart, touchmove와 같이 스크롤이 블록되는 이벤트인 경우, passive의 기본 속성값은 true가 된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(</span><br><span class="line">  <span class="string">"touchmove"</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">  &#125;,</span><br><span class="line">  isPassive()</span><br><span class="line">    ? &#123;</span><br><span class="line">        capture: <span class="literal">false</span>,</span><br><span class="line">        passive: <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    : <span class="literal">false</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPassive</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> supportsPassiveOption = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    addEventListener(</span><br><span class="line">      <span class="string">"test"</span>,</span><br><span class="line">      <span class="literal">null</span>,</span><br><span class="line">      <span class="built_in">Object</span>.defineProperty(&#123;&#125;, <span class="string">"passive"</span>, &#123;</span><br><span class="line">        get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          supportsPassiveOption = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    );</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line">  <span class="keyword">return</span> supportsPassiveOption;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent</a></li>
+<li><a href="https://developers.google.com/web/updates/2016/06/passive-event-listeners" target="_blank" rel="noopener">https://developers.google.com/web/updates/2016/06/passive-event-listeners</a></li>
+<li><a href="http://sculove.github.io/blog/2016/12/29/addEventListener-passive/" target="_blank" rel="noopener">http://sculove.github.io/blog/2016/12/29/addEventListener-passive/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/13/js-react/js-react-touchevent/" data-id="cjv23xmem003bprra7kdhp2he" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Architecture/node-inisis-payment" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/13/Architecture/node-inisis-payment/" class="article-date">
+  <time datetime="2017-11-13T00:13:56.000Z" itemprop="datePublished">2017-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/13/Architecture/node-inisis-payment/">이니시스 모바일 결제 연동</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="PG사를-통한-결제-연동"><a href="#PG사를-통한-결제-연동" class="headerlink" title="PG사를 통한 결제 연동"></a>PG사를 통한 결제 연동</h2><p>자사 서비스에 결제를 붙이기 위해서는 PG사와 계약 후 진행해야 합니다. </p>
+<p>각 카드사별로 계약을 한 후 연동이 어려울 뿐만 아니라 일정 볼륨이 되지 않으면 카드사에서 개별 계약이 되지 않기 때문에 PG를 통해 결제를 연동하는 방법이 좋습니다. </p>
+<p>우리나라 PG사는 이니시스, LG U+, KCP 등이 있는데 그중에서 이니시스 모바일 결제 모듈 <a href="https://www.inicis.com/download_more" target="_blank" rel="noopener">INIpay(Mobile)</a>  연동 구성을 정리하겠습니다.</p>
+<h3 id="결제-연동-시-사용되는-인프라-구성"><a href="#결제-연동-시-사용되는-인프라-구성" class="headerlink" title="결제 연동 시 사용되는 인프라 구성"></a>결제 연동 시 사용되는 인프라 구성</h3><ul>
+<li>WEB Server: Node 6</li>
+<li>API Server: Spring 4</li>
+<li>DB: MariaDB</li>
+<li>Infra: AWS</li>
+</ul>
+<h2 id="결제-프로세스-정리"><a href="#결제-프로세스-정리" class="headerlink" title="결제 프로세스 정리"></a>결제 프로세스 정리</h2><p>자사 결제 페이지 부터 결제 프로세스의 시작으로 보면 됩니다. </p>
+<p>자사 결제 관련 정보(상품명, 가격, 수량 등)을 DB에 저장 후 이니시스 결제 페이지로 redirect가 되는 구조입니다.</p>
+<p>자세한 내용은 아래에서 정리합니다.</p>
+<h3 id="1-자사-서비스-결제-화면"><a href="#1-자사-서비스-결제-화면" class="headerlink" title="1. 자사 서비스 결제 화면"></a>1. 자사 서비스 결제 화면</h3><p><img src="/img/node/node-inisis1.png"></p>
+<ol>
+<li>자사 서비스의 주문페이지 요청</li>
+<li>주문 페이지를 사용자 화면에 노출</li>
+<li>주문 정보(상품명, 가격, 수량 등)을 DB에 저장</li>
+<li>이니시스 결제 페이지로 redirect</li>
+</ol>
+<h3 id="2-이니시스-결제-화면"><a href="#2-이니시스-결제-화면" class="headerlink" title="2. 이니시스 결제 화면"></a>2. 이니시스 결제 화면</h3><p><img src="/img/node/node-inisis3.png"></p>
+<p>여기서 부터는 이니시스 페이지가 보여집니다. </p>
+<p>이니시스 페이지에서 약관동의 후 결제할 카드를 선택합니다. </p>
+<p>그러면 선택한 카드사 결제페이지에서 결제완료 후 자사 결제 완료 화면으로 redirect 되며 결제가 완료됩니다. </p>
+<p><img src="/img/node/node-inisis2.png"></p>
+<p>시스템 구성도에서는 위와 같은 플로우로 움직입니다. </p>
+<h3 id="이니시스-결제-시-일어나는-network-패킷"><a href="#이니시스-결제-시-일어나는-network-패킷" class="headerlink" title="이니시스 결제 시 일어나는 network 패킷"></a>이니시스 결제 시 일어나는 network 패킷</h3><p><img src="/img/node/node-inisis-network.png"></p>
+<p>위의 그림은 이니시스 서버에서 사용자 결제가 끝난후 WebServer로 Callback을 주는데 까지의 내용입니다.</p>
+<p>이니시스에서 마지막으로 응답을 주는 check.php에서 WebServer로 결제 관련 내용을 전달합니다.</p>
+<p>P_TID, P_REG_URL 등의 정보를 자사 callback 으로 전달합니다. </p>
+<p>파라미터의 상세 내용은 이니시스 문서를 참고하시면 됩니다.</p>
+<h3 id="check-php-응답-내용"><a href="#check-php-응답-내용" class="headerlink" title="check.php 응답 내용"></a>check.php 응답 내용</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">returnAuth</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> form = <span class="built_in">document</span>.getElementById(<span class="string">"return_form"</span>);</span><br><span class="line">    form.action = <span class="string">"http://localhost:8080/order/callback"</span>;</span><br><span class="line">    form.submit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>처음 결제 연동을 할 때 자사 서비스와 PG사와 통신 부분이 잘 들어오지 않습니다. </p>
+<p>그러나 해당 프로세스를 이해하고 나면 HTTP 통신으로 다 끝나기 때문에 크게 어렵지 않습니다. </p>
+<ul>
+<li>PC 결제는 INIpay(WebStandard) 모듈을 연동되며  크게 다르지 않습니다. </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/13/Architecture/node-inisis-payment/" data-id="cjv23xmdd0014prras4vd54qu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Architecture/">Architecture</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-crossbrowsing/pc-ie-compatible" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/10/crossbrowsing/pc-ie-compatible/" class="article-date">
+  <time datetime="2017-11-10T01:41:45.000Z" itemprop="datePublished">2017-11-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/10/crossbrowsing/pc-ie-compatible/">IE 호환성 보기 제거</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="HEAD에-아래와-같이-선언"><a href="#HEAD에-아래와-같이-선언" class="headerlink" title="HEAD에 아래와 같이 선언"></a>HEAD에 아래와 같이 선언</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">”X-UA-Compatible”</span> <span class="attr">content</span>=<span class="string">”IE</span>=<span class="string">edge”</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Microsoft-Edge-CV-목록에서-사이트-제거-요청"><a href="#Microsoft-Edge-CV-목록에서-사이트-제거-요청" class="headerlink" title="Microsoft Edge CV 목록에서 사이트 제거 요청"></a>Microsoft Edge CV 목록에서 사이트 제거 요청</h2><p>아래내용을 작성하여 메일 발송 iepo@microsoft.com</p>
+<ul>
+<li>소유자 이름</li>
+<li>직책</li>
+<li>메일 주소</li>
+<li>전화 번호</li>
+<li>회사 이름</li>
+<li>주소</li>
+<li>웹 사이트 주소</li>
+<li>대상 플랫폼(데스크톱, 휴대폰, Xbox)</li>
+</ul>
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><ul>
+<li><a href="https://msdn.microsoft.com/library/gg622935(v=vs.85).aspx" target="_blank" rel="noopener">https://msdn.microsoft.com/library/gg622935(v=vs.85).aspx</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/10/crossbrowsing/pc-ie-compatible/" data-id="cjv23xmdj001dprraohp0c155" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-http-crossdomain-preflighted" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/09/http-crossdomain-preflighted/" class="article-date">
+  <time datetime="2017-11-09T08:46:27.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/09/http-crossdomain-preflighted/">크로스도메인(Crossdomain)에서 브라우저 CORS 정책과 Simple Request, Preflighted Request 정리</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>브라우저는 보안상의 이유로 script안에서 crossdomain에 대한 HTTP 요청을 제한한다<br>XMLHttpRequest를 사용하면 crossdomain 요청을 하지 못했지만 개발자들의 요청에 의해 W3C에서 Cross-Origin Resource Sharing(CORS)를 권고한다.</p>
+<p>CORS에서 요청은 Simple Request, Preflight request 2가지 방법있으며 아래에 자세한 설명이 되어있다.</p>
+<h2 id="CORS에서-사용가능한-Header정보"><a href="#CORS에서-사용가능한-Header정보" class="headerlink" title="CORS에서 사용가능한 Header정보"></a>CORS에서 사용가능한 Header정보</h2><h3 id="사용-가능한-methods"><a href="#사용-가능한-methods" class="headerlink" title="사용 가능한 methods"></a>사용 가능한 methods</h3><ul>
+<li>GET</li>
+<li>HEAD</li>
+<li>POST</li>
+</ul>
+<h3 id="사용가능-headers"><a href="#사용가능-headers" class="headerlink" title="사용가능 headers"></a>사용가능 headers</h3><ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Content-Type</li>
+</ul>
+<h3 id="Content-Type에서-사용가능한-값"><a href="#Content-Type에서-사용가능한-값" class="headerlink" title="Content-Type에서 사용가능한 값"></a>Content-Type에서 사용가능한 값</h3><ul>
+<li>application/x-www-form-urlencoded</li>
+<li>multipart/form-data</li>
+<li>text/plain</li>
+</ul>
+<h2 id="Simple-requests"><a href="#Simple-requests" class="headerlink" title="Simple requests"></a>Simple requests</h2><p><img src="/img/front-crossdomain-simple.png"><br>사용가능한 methods, header, content-type요청은 바로 통신가능함</p>
+<h3 id="Crossdomain-요청-예제"><a href="#Crossdomain-요청-예제" class="headerlink" title="Crossdomain 요청 예제"></a>Crossdomain 요청 예제</h3><p>서버 응답이 아래와 같으면 모든 cross-domain 접근 허용<br>Access-Control-Allow-Origin: *</p>
+<p>서버 응답이 아래와 같으면 모든 <a href="http://foo.example에서만" target="_blank" rel="noopener">http://foo.example에서만</a> 접근 허용<br>Access-Control-Allow-Origin: <a href="http://foo.example" target="_blank" rel="noopener">http://foo.example</a></p>
+<h2 id="Preflighted-requests"><a href="#Preflighted-requests" class="headerlink" title="Preflighted requests"></a>Preflighted requests</h2><p>사용가능한 methods, header, content-type이외의 요청은 Preflighted requests로 진행.<br>Preflighted requests 요청은 OPTIONS method로 사용할 methods, headers 요청 후 서버에서 허락하면 실제 통신 가능.</p>
+<p>Preflighted requests 예제</p>
+<p><img src="/img/front-crossdomain-preflighted1.png"><br><img src="/img/front-crossdomain-preflighted2.png"></p>
+<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS</a></p>
+</li>
+<li><p><a href="https://www.w3.org/Security/wiki/Same_Origin_Policy" target="_blank" rel="noopener">https://www.w3.org/Security/wiki/Same_Origin_Policy</a></p>
+</li>
+<li><p><a href="https://www.sistrix.com/ask-sistrix/onpage-optimisation/what-is-the-difference-between-a-url-domain-subdomain-hostname-etc/" target="_blank" rel="noopener">https://www.sistrix.com/ask-sistrix/onpage-optimisation/what-is-the-difference-between-a-url-domain-subdomain-hostname-etc/</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/09/http-crossdomain-preflighted/" data-id="cjv23xmc60005prra2cfkyzjk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-crossbrowsing/pc-ie9-304" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/09/crossbrowsing/pc-ie9-304/" class="article-date">
+  <time datetime="2017-11-09T08:40:21.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/09/crossbrowsing/pc-ie9-304/">IE9 에서 304 Not Modified가 응답되는 이유(Conditional Request, Unconditional Request)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>웹브라우저는 2가지 타입의 요청을 한다. ( Conditional Request , Unconditional Request )<br>Unconditional Request는 요청하는 자원이 로컬에 캐시가 되어있지 않을 때 생기는 요청이다.<br>이경우 서버는 200 OK 로 응답한다.<br>웹브라우저가 Unconditional Request 후에 또 요청을 하게 된다면 캐시 파일이 최신인지를 판단하여 실제 네트워크에서 요청이 가지 않고 캐시된 자원을 사용한다.<br>캐시된 파일이 만료가 되었으면( max-age, Expires 판단) 웹브라우저는 conditional request를 한다.<br>클라이언트는 이전에 캐싱 된 응답이 여전히 유효하고 재사용되어야하는지 여부를 판별하기 위해 서버에 conditional request를 한다.<br>Conditional Request는 If-Modified-Since 및 / 또는 If-None-Match 헤더가 포함되어 있고 이 헤더는 브라우저에 캐시버전을 서버에게 알려준다.<br>서버는 본문이없는 HTTP / 304 Not Modified 헤더를 반환하여 클라이언트의 복사본이 여전히 최신 상태임을 나타내거나 새 버전의 리소스로 HTTP / 200 OK 응답을 반환하여 갱신한다.<br>IE가 캐시된 항목을 conditional request 하는 이유<br>Cache-Control, Expires를 보고 캐시된 자원이 더이상 최신이 아닐 때</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a href="http://www.dashbay.com/2011/05/internet-explorer-caches-ajax/" target="_blank" rel="noopener">http://www.dashbay.com/2011/05/internet-explorer-caches-ajax/</a><br><a href="https://blogs.msdn.microsoft.com/ieinternals/2010/07/08/understanding-conditional-requests-and-refresh/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/ieinternals/2010/07/08/understanding-conditional-requests-and-refresh/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/09/crossbrowsing/pc-ie9-304/" data-id="cjv23xmdk001eprra89dz0vua" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-crossbrowsing/mobile-safari-bug" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/09/crossbrowsing/mobile-safari-bug/" class="article-date">
+  <time datetime="2017-11-09T08:26:15.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/09/crossbrowsing/mobile-safari-bug/">아이폰 사파리 버그/이슈 정리</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="아이폰-사파리에서-scroll-이벤트-버그"><a href="#아이폰-사파리에서-scroll-이벤트-버그" class="headerlink" title="아이폰 사파리에서 scroll 이벤트 버그"></a>아이폰 사파리에서 scroll 이벤트 버그</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	<span class="comment">// do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>위의 코드는 사용자가 스크롤을 할때마다 발생되어야 하지만 iOS UIWebViews에서는 스크롤이 끝난다음 호출이 된다. </li>
+<li>WKWebViews 에서는 발생하지 않기 때문에 WKWebViews로 변경하면 해결할 수 있다.</li>
+</ul>
+<h4 id="References"><a href="#References" class="headerlink" title="References"></a>References</h4><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Events/scroll" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/Events/scroll</a></li>
+</ul>
+<h1 id="아이폰-사파리에서-클릭-이벤트가-되지-않을-경우"><a href="#아이폰-사파리에서-클릭-이벤트가-되지-않을-경우" class="headerlink" title="아이폰 사파리에서 클릭 이벤트가 되지 않을 경우"></a>아이폰 사파리에서 클릭 이벤트가 되지 않을 경우</h1><p>아이폰 사파리에서는 a link, input을 제외하고 클릭 이벤트에 대해 event delegation을 지원하지 않는다.</p>
+<p>아래 글을 읽어 보면 메모리 관리 문제가 있어 일부러 막은것으로 추정된다.</p>
+<p>그래서 클릭 이벤트 동작을 시키기 위해서 &lt;a href=‘#’&gt;&lt;/a&gt; 감싸 우회하면 동작을 한다.</p>
+<h4 id="References-1"><a href="#References-1" class="headerlink" title="References"></a>References</h4><ul>
+<li><a href="http://www.quirksmode.org/blog/archives/2010/09/click_event_del.html" target="_blank" rel="noopener">http://www.quirksmode.org/blog/archives/2010/09/click_event_del.html</a></li>
+</ul>
+<h1 id="touch시-화면-깜빡임-없애는-방법"><a href="#touch시-화면-깜빡임-없애는-방법" class="headerlink" title="touch시 화면 깜빡임 없애는 방법"></a>touch시 화면 깜빡임 없애는 방법</h1><p>css에 아래 내용을 추가해 주면 됩니다.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">-webkit-tap-highlight-color</span>: <span class="selector-tag">transparent</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="References-2"><a href="#References-2" class="headerlink" title="References"></a>References</h3><ul>
+<li><a href="https://stackoverflow.com/questions/3516173/ipad-safari-how-to-disable-the-quick-blinking-effect-when-a-link-has-been-hit" target="_blank" rel="noopener">https://stackoverflow.com/questions/3516173/ipad-safari-how-to-disable-the-quick-blinking-effect-when-a-link-has-been-hit</a></li>
+</ul>
+<h1 id="iPhone-XS-에서-키보드가-올라온-후-스크롤-이상-현상-해결-방법"><a href="#iPhone-XS-에서-키보드가-올라온-후-스크롤-이상-현상-해결-방법" class="headerlink" title="iPhone XS 에서 키보드가 올라온 후 스크롤 이상 현상 해결 방법"></a>iPhone XS 에서 키보드가 올라온 후 스크롤 이상 현상 해결 방법</h1><p>input에 터치 후 키보드가 올라오고 난 후 사라지면 스크롤이 키보드가 올라오기전 상태로 돌아가지 않는 버그가 있습니다.</p>
+<p>해당 버그는 아래와 같이 회피해야 할거 같습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line">handleInputFocus = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.isIOS)&#123;</span><br><span class="line">      <span class="keyword">this</span>.scrollY = <span class="built_in">window</span>.pageYOffset || <span class="built_in">document</span>.documentElement.scrollTop;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleInputBlur = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.isIOS)&#123;</span><br><span class="line">      <span class="built_in">window</span>.scroll(<span class="number">0</span>, <span class="keyword">this</span>.scrollY)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  ...</span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;textarea onFocus=&#123;<span class="keyword">this</span>.handleInputFocus&#125; onBlur=&#123;<span class="keyword">this</span>.handleInputBlur&#125;&gt;<span class="xml"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span></span><br><span class="line">		)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="References-3"><a href="#References-3" class="headerlink" title="References"></a>References</h3><ul>
+<li><a href="https://blog.opendigerati.com/the-eccentric-ways-of-ios-safari-with-the-keyboard-b5aa3f34228d" target="_blank" rel="noopener">https://blog.opendigerati.com/the-eccentric-ways-of-ios-safari-with-the-keyboard-b5aa3f34228d</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/09/crossbrowsing/mobile-safari-bug/" data-id="cjv23xmdh0019prravftov988" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-crossbrowsing/mobile-android" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/09/crossbrowsing/mobile-android/" class="article-date">
+  <time datetime="2017-11-09T08:21:39.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/09/crossbrowsing/mobile-android/">안드로이드 브라우저와 웹뷰는 같은가?</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="구글-I-O-2012-fireside-chat"><a href="#구글-I-O-2012-fireside-chat" class="headerlink" title="구글 I/O 2012 fireside chat"></a>구글 I/O 2012 fireside chat</h2><blockquote>
+<p>Q: With Chrome on Android what happens to the original Android browser and WebView?</p>
+<p>A: ICS-&gt;JB upgrade will not pre-install Chrome. <strong>WebView will be converted to Chromium based code</strong>. Android and Chrome engineers are working together.</p>
+<p>Q: Will WebView get updated?</p>
+<p>A: <strong>WebView and Chrome browser will be the same</strong> when the OS is upgraded. Every 6 weeks Chrome will be updated but WebView will not. Just to be careful not to break anything.</p>
+<p> Android 4.4+ KitKat ships without browser app. OEMs have to license Chrome or build their own</p>
+</blockquote>
+<p>구글 I/O 2012 fireside chat 에서 위와 같은 내용이 있었습니다.</p>
+<p>웹뷰는 Chrominum 기반으로 변환된다는 내용입니다. </p>
+<p>결론적으로 안드로이드 4.4는 브라우저와 웹뷰가 동일하게 렌더링 된다고 보면 될거 같습니다. </p>
+<p>그러나 삼성 핸드폰은 자체 sbrower를 탑재하기 때문에 sbrowser 특성을 고려하여 개발해야 합니다.</p>
+<p>제조사들이 4.4 부터 크롬 라이센스를 사야하거나 자체 개발한 브라우저를 탑재해야 할거 같습니다.</p>
+<p>삼성은 SBrowser가 있는거고 제조사별 알 수 없는 버그들이 양산되는 상황입니다…</p>
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>안드로이드 stock 브라우저(크롬 아님)와 웹뷰 렌더링 결과는 같은걸로 생각하고 개발하면 됩니다. </p>
+<p>(제조사 브라우저에 따라 예외 사항이 생길 수 있음)</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="http://www.slideshare.net/BinChen3/webkitchromium-and-browser-on-android" target="_blank" rel="noopener">http://www.slideshare.net/BinChen3/webkitchromium-and-browser-on-android</a></li>
+<li><a href="http://www.slideshare.net/busaco/web-browser-architecture?next_slideshow=3" target="_blank" rel="noopener">http://www.slideshare.net/busaco/web-browser-architecture?next_slideshow=3</a></li>
+<li><a href="http://www.unwiredview.com/2013/11/21/android-4-4-kitkat-ships-without-browser-app-oems-have-to-license-chrome-or-build-their-own/" target="_blank" rel="noopener">http://www.unwiredview.com/2013/11/21/android-4-4-kitkat-ships-without-browser-app-oems-have-to-license-chrome-or-build-their-own/</a></li>
+<li><a href="http://www.zdnet.com/article/google-io-2012-android-fireside-chat/" target="_blank" rel="noopener">http://www.zdnet.com/article/google-io-2012-android-fireside-chat/</a></li>
+<li><a href="http://localhost:4000/2017/11/09/crossbrowsing/mobile-sbrowser-bug/" target="_blank" rel="noopener">http://localhost:4000/2017/11/09/crossbrowsing/mobile-sbrowser-bug/</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Android_(operating_system" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Android_(operating_system</a>)</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/09/crossbrowsing/mobile-android/" data-id="cjv23xmdf0016prra1qyewcoh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-crossbrowsing/mobile-sbrowser-bug" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/09/crossbrowsing/mobile-sbrowser-bug/" class="article-date">
+  <time datetime="2017-11-09T08:21:39.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/09/crossbrowsing/mobile-sbrowser-bug/">삼성 sbrowser 버그 정리</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="삼성-핸드폰에서만-글자간격이-맞지-않는-이유"><a href="#삼성-핸드폰에서만-글자간격이-맞지-않는-이유" class="headerlink" title="삼성 핸드폰에서만 글자간격이 맞지 않는 이유"></a>삼성 핸드폰에서만 글자간격이 맞지 않는 이유</h2><p>삼성은 자체 브라우저인 sbrower를 사용한다.</p>
+<p>그래서 크롬에서 개발한 웹페이지가 삼성 단말에서 깨져 보이는 경우가 있는데</p>
+<p>그건 line-height를 각 요소마다 지정해주면 막을 수 있다.</p>
+<p>엘지는 크롬에서 개발한 것과 동일하게 보여준다.</p>
+<p>엘지는 자체 브라우저가 아닌 크롬을 사용하기 때문인거 같다.</p>
+<h2 id="갤럭시-노트4-셀렉트박스-버그"><a href="#갤럭시-노트4-셀렉트박스-버그" class="headerlink" title="갤럭시 노트4 셀렉트박스 버그"></a>갤럭시 노트4 셀렉트박스 버그</h2><p>노트4 sbrower 네이티브 셀렉트 박스 UI는 아래와 같다.<br>유독 노트4 sbrowser에서 셀렉트박스가 정상 작동하지 않는다.<br>사용자가 셀렉트박스 항목을 선택하면 셀렉트 박스가 사라져야하는데 사라지지 않는다.</p>
+<p>크롬 디버그로 잡아서 강제로 reload, history.back(), focus, click등의 이벤트를 줘도 사라지지 않았다.<br>네이버도 에러 처리를 따로 하지 않은듯 하다.</p>
+<p>노트4 유저가 많다면 셀렉트박스 UI를 사용하지 않던지, DIV로 만들어서 사용해야 한다.</p>
+<p><img src="/img/sbrowserbug.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/09/crossbrowsing/mobile-sbrowser-bug/" data-id="cjv23xmdi001aprrav7rofai9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-basic/js-event-binding" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/07/js-basic/js-event-binding/" class="article-date">
+  <time datetime="2017-11-07T05:24:08.000Z" itemprop="datePublished">2017-11-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/07/js-basic/js-event-binding/">자바스크립트 이벤트 바인딩</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="이벤트-바인딩-Event-Binding"><a href="#이벤트-바인딩-Event-Binding" class="headerlink" title="이벤트 바인딩(Event Binding)"></a>이벤트 바인딩(Event Binding)</h1><h2 id="1-HTML-Event-Handler"><a href="#1-HTML-Event-Handler" class="headerlink" title="1. HTML Event Handler"></a>1. HTML Event Handler</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=<span class="string">"onClickFunction"</span>&gt;Click!<span class="xml"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="2-Dom-Event-Handler"><a href="#2-Dom-Event-Handler" class="headerlink" title="2. Dom Event Handler"></a>2. Dom Event Handler</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).onclick = onClickBtn;</span><br></pre></td></tr></table></figure>
+<h2 id="3-EventListener"><a href="#3-EventListener" class="headerlink" title="3. EventListener"></a>3. EventListener</h2><ul>
+<li>IE8이하에서는 addEventListener대신 attachEvent 메서드를 사용해야 한다.<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).addEventListener(<span class="string">'click'</span>, onClickBtn, <span class="literal">false</span>);</span><br><span class="line">~</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="이벤트-흐름-Event-Flow"><a href="#이벤트-흐름-Event-Flow" class="headerlink" title="이벤트 흐름(Event Flow)"></a>이벤트 흐름(Event Flow)</h1><h2 id="이벤트-버블링-event-bubbling"><a href="#이벤트-버블링-event-bubbling" class="headerlink" title="이벤트 버블링(event bubbling)"></a>이벤트 버블링(event bubbling)</h2><ul>
+<li>이벤트가 안쪽 노드에서 바깥쪽으로 전파</li>
+<li>HTML, DOM Event Handler를 사용할 경우 이벤트 버블링만 사용한다.</li>
+</ul>
+<h2 id="이벤트-캡처링-event-capturing"><a href="#이벤트-캡처링-event-capturing" class="headerlink" title="이벤트 캡처링(event capturing)"></a>이벤트 캡처링(event capturing)</h2><ul>
+<li>이벤트가 바깥쪽 노드에서 안쪽으로 전파</li>
+<li>EventListener를 사용할 경우 마지막 매개변수를 사용하여 이벤트 흐름을 정할 수 있다.<br> true: 이벤트 캡처 , false: 이벤트 버블링(디폴트값)</li>
+</ul>
+<h1 id="이벤트-위임-Event-Delegation"><a href="#이벤트-위임-Event-Delegation" class="headerlink" title="이벤트 위임(Event Delegation)"></a>이벤트 위임(Event Delegation)</h1><ul>
+<li>이벤트 리스너를 많이 추가하면 메모리를 많이 소모하게 되어 전체 성능이 저하된다.</li>
+<li>이벤트는 부모 요소에 영향을 미치기 때문에 부모 element에 이벤트를 바인딩 후 event.taraget을 통해 어떤 element에서 발생했는지 판단할 수 있다.</li>
+<li>동적으로 element가 생성되더라도 부모 element에 이벤트가 위임되어 있으면 동일한 기능이 수행된다.</li>
+<li>코드가 간결해지고 유지보수에 좋다.</li>
+</ul>
+<h1 id="기본-동작-변경"><a href="#기본-동작-변경" class="headerlink" title="기본 동작 변경"></a>기본 동작 변경</h1><h2 id="preventDefault"><a href="#preventDefault" class="headerlink" title="preventDefault()"></a>preventDefault()</h2><ul>
+<li>\<a href="/login">  같은 테그들의 기본동작을 중단한다.</a></li>
+</ul>
+<h2 id="stopPropagation"><a href="#stopPropagation" class="headerlink" title="stopPropagation()"></a>stopPropagation()</h2><ul>
+<li>부모 요소에 이벤트 리스너가 있을경우 버블링 중단을 통해 상위 이벤트 실행을 막을 수 있다.</li>
+</ul>
+<h2 id="return-false"><a href="#return-false" class="headerlink" title="return false"></a>return false</h2><ul>
+<li>element의 기본동작과 이벤트 버블링, 캡처링 모두 중단된다.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/07/js-basic/js-event-binding/" data-id="cjv23xmdx0021prra270bktmo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Architecture/infra-firebase" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/17/Architecture/infra-firebase/" class="article-date">
+  <time datetime="2017-10-17T08:09:15.000Z" itemprop="datePublished">2017-10-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/17/Architecture/infra-firebase/">파이어베이스 Cloud Functions 설정방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="파이어베이스"><a href="#파이어베이스" class="headerlink" title="파이어베이스"></a>파이어베이스</h1><p>파이어베이스는 구글에서 만든 클라우드 인프라 입니다.<br>그 중에서 Serverless 서비스인 Cloud Functions를 사용하는 방법을 알아 보겠습니다. </p>
+<h2 id="파이어베이스-firebase-tools-설치"><a href="#파이어베이스-firebase-tools-설치" class="headerlink" title="파이어베이스 firebase-tools 설치"></a>파이어베이스 firebase-tools 설치</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g firebase-tools</span><br></pre></td></tr></table></figure>
+<h2 id="파이어베이스-로그인"><a href="#파이어베이스-로그인" class="headerlink" title="파이어베이스 로그인"></a>파이어베이스 로그인</h2><p>설치 후 firebase login을 실행하면 브라우저가 실행됩니다.<br>파이어페이스를 사용할 계정으로 로그인 하시면 됩니다.<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ firebase login</span><br></pre></td></tr></table></figure></p>
+<h2 id="파이어베이스-Cloud-Functions-프로젝트-생성"><a href="#파이어베이스-Cloud-Functions-프로젝트-생성" class="headerlink" title="파이어베이스 Cloud Functions 프로젝트 생성"></a>파이어베이스 Cloud Functions 프로젝트 생성</h2><p>firebase init을 실행 후 안내에 따라 필요한 서비스들을 설치합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ firebase init</span><br><span class="line"></span><br><span class="line">     🔥🔥🔥🔥🔥🔥🔥🔥 🔥🔥🔥🔥 🔥🔥🔥🔥🔥🔥🔥🔥  🔥🔥🔥🔥🔥🔥🔥🔥 🔥🔥🔥🔥🔥🔥🔥🔥     🔥🔥🔥     🔥🔥🔥🔥🔥🔥  🔥🔥🔥🔥🔥🔥🔥🔥</span><br><span class="line">     🔥🔥        🔥🔥  🔥🔥     🔥🔥 🔥🔥       🔥🔥     🔥🔥  🔥🔥   🔥🔥  🔥🔥       🔥🔥</span><br><span class="line">     🔥🔥🔥🔥🔥🔥    🔥🔥  🔥🔥🔥🔥🔥🔥🔥🔥  🔥🔥🔥🔥🔥🔥   🔥🔥🔥🔥🔥🔥🔥🔥  🔥🔥🔥🔥🔥🔥🔥🔥🔥  🔥🔥🔥🔥🔥🔥  🔥🔥🔥🔥🔥🔥</span><br><span class="line">     🔥🔥        🔥🔥  🔥🔥    🔥🔥  🔥🔥       🔥🔥     🔥🔥 🔥🔥     🔥🔥       🔥🔥 🔥🔥</span><br><span class="line">     🔥🔥       🔥🔥🔥🔥 🔥🔥     🔥🔥 🔥🔥🔥🔥🔥🔥🔥🔥 🔥🔥🔥🔥🔥🔥🔥🔥  🔥🔥     🔥🔥  🔥🔥🔥🔥🔥🔥  🔥🔥🔥🔥🔥🔥🔥🔥</span><br><span class="line"></span><br><span class="line">You<span class="string">'re about to initialize a Firebase project in this directory:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  .../test</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">? Which Firebase CLI features do you want to setup for this folder? Press Space to select features, then Enter to confirm your choices. (Press &lt;space&gt; to select)</span></span><br><span class="line"><span class="string">❯◯ Database: Deploy Firebase Realtime Database Rules</span></span><br><span class="line"><span class="string"> ◯ Firestore: Deploy rules and create indexes for Firestore</span></span><br><span class="line"><span class="string"> ◯ Functions: Configure and deploy Cloud Functions</span></span><br><span class="line"><span class="string"> ◯ Hosting: Configure and deploy Firebase Hosting sites</span></span><br><span class="line"><span class="string"> ◯ Storage: Deploy Cloud Storage security rules</span></span><br></pre></td></tr></table></figure>
+<h2 id="파이어베이스-배포"><a href="#파이어베이스-배포" class="headerlink" title="파이어베이스 배포"></a>파이어베이스 배포</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ firebase deploy --only <span class="built_in">functions</span> <span class="comment"># functions만 배포 </span></span><br><span class="line">$ firebase deploy --only <span class="built_in">functions</span>:addMessage <span class="comment"># functions중 개별 함수 배포</span></span><br></pre></td></tr></table></figure>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><ul>
+<li><a href="https://console.firebase.google.com" target="_blank" rel="noopener">https://console.firebase.google.com</a></li>
+<li><a href="https://firebase.google.com/docs/functions/" target="_blank" rel="noopener">Document</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/10/17/Architecture/infra-firebase/" data-id="cjv23xmdc0012prra11ykmh4d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Architecture/">Architecture</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ionic/">Ionic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Util/">Util</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Architecture/" style="font-size: 12.86px;">Architecture</a> <a href="/tags/CSS/" style="font-size: 12.86px;">CSS</a> <a href="/tags/CrossBrowsing/" style="font-size: 17.14px;">CrossBrowsing</a> <a href="/tags/DB/" style="font-size: 14.29px;">DB</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/Ionic/" style="font-size: 15.71px;">Ionic</a> <a href="/tags/Javascript/" style="font-size: 12.86px;">Javascript</a> <a href="/tags/JavascriptBasic/" style="font-size: 18.57px;">JavascriptBasic</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Util/" style="font-size: 12.86px;">Util</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/27/js-react/js-react-popup/">리엑트 컴포넌트에서 ajax 호출 방법</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/12/css/css-center/">CSS 셀렉트박스 커스텀</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/14/js-react/js-react-uncontrolled-components/">리엑트 Uncontrolled Components</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/js-basic/js-environment/">자바스크립트 환경</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/30/js-get-string-byte/">자바스크립트 문자열 바이트 계산</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 crontab<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

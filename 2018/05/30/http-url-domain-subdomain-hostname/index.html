@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>URL, 호스트, 도메인 개념 정리 | crontab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="URL(Uniform Resource Locator)URI의 하위 개념이며 컴퓨터 네트워크 상의 자원을 모두 나타낼 수 있습니다.  scheme:[//[user:password@]host[:port]][/]path[?query][#fragment]   URL은 제일 앞에 자원에 접근할 방법을 정의해 둔 프로토콜 이름을 적는다. gopher, telnet,">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="URL, 호스트, 도메인 개념 정리">
+<meta property="og:url" content="https://cron-tab.github.io/2018/05/30/http-url-domain-subdomain-hostname/index.html">
+<meta property="og:site_name" content="crontab">
+<meta property="og:description" content="URL(Uniform Resource Locator)URI의 하위 개념이며 컴퓨터 네트워크 상의 자원을 모두 나타낼 수 있습니다.  scheme:[//[user:password@]host[:port]][/]path[?query][#fragment]   URL은 제일 앞에 자원에 접근할 방법을 정의해 둔 프로토콜 이름을 적는다. gopher, telnet,">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-29T08:02:35.150Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="URL, 호스트, 도메인 개념 정리">
+<meta name="twitter:description" content="URL(Uniform Resource Locator)URI의 하위 개념이며 컴퓨터 네트워크 상의 자원을 모두 나타낼 수 있습니다.  scheme:[//[user:password@]host[:port]][/]path[?query][#fragment]   URL은 제일 앞에 자원에 접근할 방법을 정의해 둔 프로토콜 이름을 적는다. gopher, telnet,">
+  
+    <link rel="alternate" href="/atom.xml" title="crontab" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">crontab</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">crontab&#39;s blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cron-tab.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="posts-http-url-domain-subdomain-hostname" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/30/http-url-domain-subdomain-hostname/" class="article-date">
+  <time datetime="2018-05-30T09:17:08.000Z" itemprop="datePublished">2018-05-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      URL, 호스트, 도메인 개념 정리
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="URL-Uniform-Resource-Locator"><a href="#URL-Uniform-Resource-Locator" class="headerlink" title="URL(Uniform Resource Locator)"></a>URL(Uniform Resource Locator)</h2><p>URI의 하위 개념이며 컴퓨터 네트워크 상의 자원을 모두 나타낼 수 있습니다.</p>
+<blockquote>
+<p>scheme:[//[user:password@]host[:port]][/]path[?query][#fragment]</p>
+</blockquote>
+<ul>
+<li>URL은 제일 앞에 자원에 접근할 방법을 정의해 둔 프로토콜 이름을 적는다. gopher, telnet, ftp, http, usenet 등이다.</li>
+<li>프로토콜 이름 다음에는 프로토콜 이름을 구분하는 구분자인 “:”을 적는다.</li>
+<li>만약 IP 혹은 Domain name 정보가 필요한 프로토콜이라면 “:” 다음에 “//“를 적는다.</li>
+<li>프로토콜명 구분자인 “:” 혹은 “//“ 다음에는 프로토콜 마다 특화된 정보를 넣는다.</li>
+</ul>
+<p> 예1) <a href="http://www.somehost.com/a.gif" target="_blank" rel="noopener">http://www.somehost.com/a.gif</a> - IP 혹은 Domain name 정보가 필요한 형태 ( www.somehost.com에 있는 a.gif를 가리키고 있음 )<br> 예2) ftp://id:pass@192.168.1.234/a.gif - IP 혹은 Domain name 정보가 필요한 형태 ( 192.168.1.234에 있는 a.gif를 가리키고 있음 )<br> 예3) mailto:somebody@mail.somehost.com - IP정보가 필요없는 프로토콜 ( mailto 프로토콜은 단지 메일을 받는 사람의 주소를 나타냄 )</p>
+<h2 id="HTTP-URL-분석"><a href="#HTTP-URL-분석" class="headerlink" title="HTTP URL 분석"></a>HTTP URL 분석</h2><blockquote>
+<p><a href="http://www.example.com:8080/test?search=iphone" target="_blank" rel="noopener">http://www.example.com:8080/test?search=iphone</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>프로토콜(Protocol)</strong></td>
+<td style="text-align:center">http://</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>호스트(Host/Hostname)</strong></td>
+<td style="text-align:center">www.example.com:8080</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>서브도메인(Subdomain)</strong></td>
+<td style="text-align:center">www.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>도메인(Domain/Domain Name)</strong></td>
+<td style="text-align:center">example.com</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>패스(Path)</strong></td>
+<td style="text-align:center">/test</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>파라미터(Parameter)</strong></td>
+<td style="text-align:center">search</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>파라미터 값(Parameter Value)</strong></td>
+<td style="text-align:center">iphone</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><ul>
+<li><a href="https://www.sistrix.com/ask-sistrix/onpage-optimisation/what-is-the-difference-between-a-url-domain-subdomain-hostname-etc/" target="_blank" rel="noopener">https://www.sistrix.com/ask-sistrix/onpage-optimisation/what-is-the-difference-between-a-url-domain-subdomain-hostname-etc/</a></li>
+<li><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.23" target="_blank" rel="noopener">https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.23</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host</a></li>
+<li><a href="https://ko.wikipedia.org/wiki/URL" target="_blank" rel="noopener">https://ko.wikipedia.org/wiki/URL</a> </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/05/30/http-url-domain-subdomain-hostname/" data-id="cjv23xmc80009prrahiqz3o51" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/31/http-cors-credentials/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CORS에서 Credentials(인증서) 통신방법
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/29/js-react/js-react-postcss/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">리엑트 postcss에서 sass 문법 설정 방법</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ionic/">Ionic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Util/">Util</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Architecture/" style="font-size: 12.86px;">Architecture</a> <a href="/tags/CSS/" style="font-size: 12.86px;">CSS</a> <a href="/tags/CrossBrowsing/" style="font-size: 17.14px;">CrossBrowsing</a> <a href="/tags/DB/" style="font-size: 14.29px;">DB</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/Ionic/" style="font-size: 15.71px;">Ionic</a> <a href="/tags/Javascript/" style="font-size: 12.86px;">Javascript</a> <a href="/tags/JavascriptBasic/" style="font-size: 18.57px;">JavascriptBasic</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Util/" style="font-size: 12.86px;">Util</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/27/js-react/js-react-popup/">리엑트 컴포넌트에서 ajax 호출 방법</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/12/css/css-center/">CSS 셀렉트박스 커스텀</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/14/js-react/js-react-uncontrolled-components/">리엑트 Uncontrolled Components</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/js-basic/js-environment/">자바스크립트 환경</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/30/js-get-string-byte/">자바스크립트 문자열 바이트 계산</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 crontab<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

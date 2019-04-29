@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>crontab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="crontab">
+<meta property="og:url" content="https://cron-tab.github.io/index.html">
+<meta property="og:site_name" content="crontab">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="crontab">
+  
+    <link rel="alternate" href="/atom.xml" title="crontab" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">crontab</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">crontab&#39;s blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cron-tab.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="posts-js-react/js-react-popup" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/27/js-react/js-react-popup/" class="article-date">
+  <time datetime="2019-03-27T05:46:00.000Z" itemprop="datePublished">2019-03-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/27/js-react/js-react-popup/">리엑트 컴포넌트에서 ajax 호출 방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>리엑트에서 모달을 생성해야 하는 경우가 생기는데, </p>
+<p>아래 코드로 안드로이드 4.x ,  iOS 버전별 이상없이 사용할 수 있었습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./index.scss'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Modal</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span> (props) &#123;</span><br><span class="line">		<span class="keyword">super</span>(props)</span><br><span class="line">		<span class="keyword">this</span>.scrollY = <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    <span class="keyword">this</span>.setScrollFixed()</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	componentWillUnmount() &#123;</span><br><span class="line">    <span class="keyword">this</span>.setScroll()</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	setScrollFixed = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.scrollY = <span class="built_in">window</span>.pageYOffset || <span class="built_in">document</span>.documentElement.scrollTop;</span><br><span class="line">    <span class="built_in">window</span>.document.body.style.height = <span class="string">'auto'</span></span><br><span class="line">    <span class="built_in">window</span>.document.body.style.overflow = <span class="string">'hidden'</span></span><br><span class="line">    <span class="built_in">window</span>.document.body.style.position = <span class="string">'fixed'</span></span><br><span class="line">    <span class="built_in">window</span>.document.body.style.top = <span class="string">`-<span class="subst">$&#123;<span class="keyword">this</span>.scrollY&#125;</span>px`</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setScroll = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>.document.body.style.height = <span class="string">'100%'</span></span><br><span class="line">    <span class="built_in">window</span>.document.body.style.overflow = <span class="string">''</span></span><br><span class="line">    <span class="built_in">window</span>.document.body.style.position = <span class="string">''</span></span><br><span class="line">    <span class="built_in">window</span>.scrollTo(<span class="number">0</span>, <span class="keyword">this</span>.scrollY)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">	render () &#123;</span><br><span class="line"></span><br><span class="line">	  <span class="keyword">const</span> &#123; onClickDim, children &#125; = <span class="keyword">this</span>.props</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;React.Fragment&gt;</span><br><span class="line">        &lt;div className=&#123;<span class="string">`dim`</span>&#125; onClick=&#123;onClickDim&#125;&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        &lt;div className=&#123;<span class="string">`modal`</span>&#125;&gt;</span><br><span class="line">          &#123;children&#125;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>React.Fragment&gt;</span><br><span class="line">    )</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Modal</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.modal</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#b3000000</span>;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0px</span> <span class="number">24px</span>;</span><br><span class="line">  <span class="attribute">overflow-y</span>: scroll;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">250px</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: -<span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.dim</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background-color</span>:<span class="number">#000000</span>;</span><br><span class="line">  <span class="attribute">opacity</span>:<span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2019/03/27/js-react/js-react-popup/" data-id="cjv23xmef0030prra08ctazuk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css/css-center" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/12/css/css-center/" class="article-date">
+  <time datetime="2019-03-12T09:55:59.000Z" itemprop="datePublished">2019-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/12/css/css-center/">CSS 셀렉트박스 커스텀</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="셀렉트박스-커스텀"><a href="#셀렉트박스-커스텀" class="headerlink" title="셀렉트박스 커스텀"></a>셀렉트박스 커스텀</h2><p>안드로이드 4.x stock 브라우저에서는 flex 사용 불가로 인해 아래와 같이 구현해야 합니다. </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"selectbox"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"selctbox__text"</span>&gt;</span></span><br><span class="line">		셀렉트박스 텍스트</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.selectbox</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">56px</span>;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#e6e6e6</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">16px</span>;</span><br><span class="line"></span><br><span class="line">    &amp;__text &#123;</span><br><span class="line">        <span class="selector-tag">line-height</span>: 56<span class="selector-tag">px</span>;</span><br><span class="line">        <span class="selector-tag">width</span>: 90%;</span><br><span class="line">        <span class="selector-tag">white-space</span>: <span class="selector-tag">nowrap</span>;</span><br><span class="line">        <span class="selector-tag">overflow</span>: <span class="selector-tag">hidden</span>; </span><br><span class="line">        <span class="selector-tag">text-overflow</span>: <span class="selector-tag">ellipsis</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &amp;<span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">        <span class="attribute">content</span>: <span class="built_in">url</span>(<span class="string">"../images/arrow_list_02.svg"</span>);</span><br><span class="line">        <span class="attribute">display</span>: inline-block;</span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line">        <span class="attribute">right</span>: <span class="number">16px</span>;</span><br><span class="line">        <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">        <span class="attribute">margin-top</span>: -<span class="number">10px</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">16px</span>;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">16px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2019/03/12/css/css-center/" data-id="cjv23xmdm001iprravmviwexp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-js-react/js-react-uncontrolled-components" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/14/js-react/js-react-uncontrolled-components/" class="article-date">
+  <time datetime="2019-02-14T05:46:00.000Z" itemprop="datePublished">2019-02-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/14/js-react/js-react-uncontrolled-components/">리엑트 Uncontrolled Components</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Controlled-components-와-Uncontrolled-components"><a href="#Controlled-components-와-Uncontrolled-components" class="headerlink" title="Controlled components 와 Uncontrolled components"></a>Controlled components 와 Uncontrolled components</h3><p>대부분의 경우 controlled components로 forms를 구현 합니다.</p>
+<p>하지만 uncontrolled components 방식으로 구현할 수 있는데 차이점은 아래와 같습니다.</p>
+<ul>
+<li><p>controlled components:  form data를 React Component에 의해 처리</p>
+</li>
+<li><p>uncontrolled components :  form data를 DOM에 의해 처리</p>
+</li>
+</ul>
+<h3 id="Uncontrolled-components-작성"><a href="#Uncontrolled-components-작성" class="headerlink" title="Uncontrolled components 작성"></a>Uncontrolled components 작성</h3><p>uncontrelled components를 작성하기 위해서는 모든 state update에 대한 이벤트 핸들러를 작성하는 대신 ref 를 사용해서 DOM에 있는 form values를 가져오면 됩니다.</p>
+<p>uncontrolled components를 작성하면 DOM 개발 방식을 유지할 수 있기 때문에 React와 non-React 코드를 같이 작성할 때 사용하면 유용합니다.</p>
+<h4 id="defaultValue-defaultChecked"><a href="#defaultValue-defaultChecked" class="headerlink" title="defaultValue , defaultChecked"></a>defaultValue , defaultChecked</h4><p>React rendering lifecycle에서 form elements의 value attribute는 DOM안의 값을 대체합니다.</p>
+<p>uncontrolled components에서 defaultValue attribute 를 통해 React에서 초기값 설정을 할 수 있습니다. </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NameForm</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.handleSubmit = <span class="keyword">this</span>.handleSubmit.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.input = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleSubmit(event) &#123;</span><br><span class="line">    alert(<span class="string">'A name was submitted: '</span> + <span class="keyword">this</span>.input.current.value);</span><br><span class="line">    event.preventDefault();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;form onSubmit=&#123;<span class="keyword">this</span>.handleSubmit&#125;&gt;</span><br><span class="line">        &lt;input type=<span class="string">"text"</span> ref=&#123;<span class="keyword">this</span>.input&#125; defaultValue=<span class="string">"Bob"</span> /&gt;  </span><br><span class="line">        &lt;input type=<span class="string">"checkbox"</span> defaultChecked /&gt;</span><br><span class="line">        &lt;input type=<span class="string">"radio"</span> defaultChecked /&gt; </span><br><span class="line">       </span><br><span class="line">        &lt;input type=<span class="string">"submit"</span> value=<span class="string">"Submit"</span> /&gt;</span><br><span class="line">      &lt;<span class="regexp">/form&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="lt-input-type-quot-file-quot-gt"><a href="#lt-input-type-quot-file-quot-gt" class="headerlink" title="&lt;input type=&quot;file&quot; /&gt;"></a><code>&lt;input type=&quot;file&quot; /&gt;</code></h3><p>리엑트에서 <code>&lt;input type=&quot;file&quot; /&gt;</code> 은 언제나 uncontrolled component 입니다. input의 value는 사용자에 의해 할당되기 때문입니다. </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileInput</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.handleSubmit = <span class="keyword">this</span>.handleSubmit.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.fileInput = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line">  handleSubmit(event) &#123;</span><br><span class="line">    event.preventDefault();</span><br><span class="line">    alert(</span><br><span class="line">      <span class="string">`Selected file - <span class="subst">$&#123;</span></span></span><br><span class="line"><span class="string"><span class="subst">        <span class="keyword">this</span>.fileInput.current.files[<span class="number">0</span>].name</span></span></span><br><span class="line"><span class="string"><span class="subst">      &#125;</span>`</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;form onSubmit=&#123;<span class="keyword">this</span>.handleSubmit&#125;&gt;</span><br><span class="line">        &lt;label&gt;</span><br><span class="line">          Upload file:</span><br><span class="line">          &lt;input type=<span class="string">"file"</span> ref=&#123;<span class="keyword">this</span>.fileInput&#125; /&gt;</span><br><span class="line">        &lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">        &lt;br /</span>&gt;</span><br><span class="line">        &lt;button type=<span class="string">"submit"</span>&gt;Submit&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;FileInput /&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="요소별-값-정리"><a href="#요소별-값-정리" class="headerlink" title="요소별 값 정리"></a>요소별 값 정리</h2><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Value property</th>
+<th>Change callback</th>
+<th>New value in the callback</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;input type=&quot;text&quot; /&gt;</code></td>
+<td><code>value=&quot;string&quot;</code></td>
+<td><code>onChange</code></td>
+<td><code>event.target.value</code></td>
+</tr>
+<tr>
+<td><code>&lt;input type=&quot;checkbox&quot; /&gt;</code></td>
+<td><code>checked={boolean}</code></td>
+<td><code>onChange</code></td>
+<td><code>event.target.checked</code></td>
+</tr>
+<tr>
+<td><code>&lt;input type=&quot;radio&quot; /&gt;</code></td>
+<td><code>checked={boolean}</code></td>
+<td><code>onChange</code></td>
+<td><code>event.target.checked</code></td>
+</tr>
+<tr>
+<td><code>&lt;textarea /&gt;</code></td>
+<td><code>value=&quot;string&quot;</code></td>
+<td><code>onChange</code></td>
+<td><code>event.target.value</code></td>
+</tr>
+<tr>
+<td><code>&lt;select /&gt;</code></td>
+<td><code>value=&quot;option value&quot;</code></td>
+<td><code>onChange</code></td>
+<td><code>event.target.value</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="resource"><a href="#resource" class="headerlink" title="resource"></a>resource</h2><ul>
+<li><a href="https://reactjs.org/docs/uncontrolled-components.html" target="_blank" rel="noopener">https://reactjs.org/docs/uncontrolled-components.html</a></li>
+<li><a href="https://goshakkk.name/controlled-vs-uncontrolled-inputs-react" target="_blank" rel="noopener">https://goshakkk.name/controlled-vs-uncontrolled-inputs-react</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2019/02/14/js-react/js-react-uncontrolled-components/" data-id="cjv23xmen003cprra2ovksa74" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-basic/js-environment" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/30/js-basic/js-environment/" class="article-date">
+  <time datetime="2019-01-30T04:39:39.000Z" itemprop="datePublished">2019-01-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/30/js-basic/js-environment/">자바스크립트 환경</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="환경-변수-관리-Environments-Managing-Variables"><a href="#환경-변수-관리-Environments-Managing-Variables" class="headerlink" title="환경 : 변수 관리 Environments: Managing Variables"></a>환경 : 변수 관리 Environments: Managing Variables</h2><ul>
+<li>변수는 프로그램 실행이 자신의 스코프에 진입하면 존재</li>
+<li>변수는 저장 공간이 필요하며 변수를 저장하기 위한 자바스크립트에서 제공하는 데이터 구조를 <strong>환경 (Envrionments)</strong> </li>
+<li>환경은 <em>스코프를 벗어난 뒤</em> 에도 존재 하므로 스택이 아닌 <strong>힙</strong> 에 저장</li>
+</ul>
+<h2 id="2가지-변수-전달-방법"><a href="#2가지-변수-전달-방법" class="headerlink" title="2가지 변수 전달 방법"></a>2가지 변수 전달 방법</h2><h4 id="동적-크기-함수-호출-Dynamic-dimension-invoking-functions"><a href="#동적-크기-함수-호출-Dynamic-dimension-invoking-functions" class="headerlink" title="동적 크기 : 함수 호출 (Dynamic dimension: invoking functions)"></a>동적 크기 : 함수 호출 (Dynamic dimension: invoking functions)</h4><ul>
+<li></li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="http://speakingjs.com/es5/ch16.htm" target="_blank" rel="noopener">http://speakingjs.com/es5/ch16.htm</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2019/01/30/js-basic/js-environment/" data-id="cjv23xmdv001xprra6nt08vf5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-js-get-string-byte" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/30/js-get-string-byte/" class="article-date">
+  <time datetime="2018-11-30T06:59:59.000Z" itemprop="datePublished">2018-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/30/js-get-string-byte/">자바스크립트 문자열 바이트 계산</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getByte = <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> l = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;str.length; i++) l += (str.charCodeAt(i) &gt; <span class="number">128</span>) ? <span class="number">2</span> : <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getTruncatedStr = <span class="function"><span class="keyword">function</span>(<span class="params">str, len</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> l = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;str.length; i++) &#123;</span><br><span class="line">    l += (str.charCodeAt(i) &gt; <span class="number">128</span>) ? <span class="number">2</span> : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; len) <span class="keyword">return</span> str.substring(<span class="number">0</span>,i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://programmingsummaries.tistory.com/239" target="_blank" rel="noopener">https://programmingsummaries.tistory.com/239</a></li>
+<li><a href="http://zzznara2.tistory.com/458" target="_blank" rel="noopener">http://zzznara2.tistory.com/458</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/11/30/js-get-string-byte/" data-id="cjv23xmca000aprragzovned4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-git" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/19/git/" class="article-date">
+  <time datetime="2018-11-19T07:45:26.000Z" itemprop="datePublished">2018-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/19/git/">git 사용법 정리</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="You-have-not-concluded-your-merge-MERGE-HEAD-exists-Please-commit-your-changes-before-you-can-merge"><a href="#You-have-not-concluded-your-merge-MERGE-HEAD-exists-Please-commit-your-changes-before-you-can-merge" class="headerlink" title="You have not concluded your merge (MERGE_HEAD exists). Please, commit your changes before you can merge."></a>You have not concluded your merge (MERGE_HEAD exists). Please, commit your changes before you can merge.</h2><p>위 에러 메시지가 발생을 하면 아래 명령어를 실행하고 다시 pull 을 받고 작업하면 됩니다. </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --abort</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/11/19/git/" data-id="cjv23xmc10002prra8gabdsae" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-js-react/js-react-meta-viewport" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/23/js-react/js-react-meta-viewport/" class="article-date">
+  <time datetime="2018-10-23T09:51:59.000Z" itemprop="datePublished">2018-10-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/23/js-react/js-react-meta-viewport/">리엑트에서 meta viewport 컴포넌트에서 설정</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="constructor-안에-아래-내용을-추가해-주면-됩니다"><a href="#constructor-안에-아래-내용을-추가해-주면-됩니다" class="headerlink" title="constructor 안에 아래 내용을 추가해 주면 됩니다."></a>constructor 안에 아래 내용을 추가해 주면 됩니다.</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> meta = <span class="built_in">document</span>.createElement(<span class="string">'meta'</span>);</span><br><span class="line">meta.name = <span class="string">"viewport"</span>;</span><br><span class="line">meta.content = <span class="string">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].appendChild(meta);</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Index</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> meta = <span class="built_in">document</span>.createElement(<span class="string">'meta'</span>);</span><br><span class="line">    meta.name = <span class="string">"viewport"</span>;</span><br><span class="line">    meta.content = <span class="string">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"</span>;</span><br><span class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].appendChild(meta);</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  render () &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;META&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Index;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/10/23/js-react/js-react-meta-viewport/" data-id="cjv23xmee002zprraxa4uhvzq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-util-iterm" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/23/util-iterm/" class="article-date">
+  <time datetime="2018-10-23T09:47:09.000Z" itemprop="datePublished">2018-10-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/23/util-iterm/">iterm zsh 설치방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="iTerm2-설치"><a href="#iTerm2-설치" class="headerlink" title="iTerm2 설치"></a>iTerm2 설치</h2><p><a href="https://www.iterm2.com/downloads.html" target="_blank" rel="noopener">https://www.iterm2.com/downloads.html</a> 에서 다운로드 후 설치합니다. </p>
+<h2 id="zsh-설치"><a href="#zsh-설치" class="headerlink" title="zsh 설치"></a>zsh 설치</h2><p>bash 말고  zsh을 사용하기 위해 설치를 합니다. </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install zsh zsh-completions</span><br><span class="line">curl -L http://install.ohmyz.sh | sh</span><br><span class="line">chsh -s `<span class="built_in">which</span> zsh`</span><br></pre></td></tr></table></figure>
+<h4 id="chsh-usr-local-bin-zsh-non-standard-shell-오류-발생할-경우"><a href="#chsh-usr-local-bin-zsh-non-standard-shell-오류-발생할-경우" class="headerlink" title="chsh: /usr/local/bin/zsh: non-standard shell 오류 발생할 경우"></a>chsh: /usr/local/bin/zsh: non-standard shell 오류 발생할 경우</h4><p>맨 아래에 <code>which zsh</code>했을때의 결과를 추가 후 저장</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/shells</span><br></pre></td></tr></table></figure>
+<h4 id="현재-shell-확인"><a href="#현재-shell-확인" class="headerlink" title="현재 shell 확인"></a>현재 shell 확인</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span></span><br></pre></td></tr></table></figure>
+<h2 id="zsh-설정-백업"><a href="#zsh-설정-백업" class="headerlink" title="zsh 설정 백업"></a>zsh 설정 백업</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv .zshrc ~/OneDrive/settings <span class="comment"># 원본 이동</span></span><br><span class="line">ln -s ~/OneDrive/settings/.zshrc ~/ <span class="comment"># 심볼릭 링크 생성</span></span><br></pre></td></tr></table></figure>
+<h3 id="zsh-syntax-highlighting-설치하기"><a href="#zsh-syntax-highlighting-설치하기" class="headerlink" title="zsh-syntax-highlighting 설치하기"></a>zsh-syntax-highlighting 설치하기</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"source <span class="variable">$&#123;(q-)PWD&#125;</span>/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"</span> &gt;&gt; <span class="variable">$&#123;ZDOTDIR:-$HOME&#125;</span>/.zshrc</span><br></pre></td></tr></table></figure>
+<h2 id="Agnoster-테마-설치하기"><a href="#Agnoster-테마-설치하기" class="headerlink" title="Agnoster 테마 설치하기"></a>Agnoster 테마 설치하기</h2><p>.zshrc 파일을 연 후 아래 코드를 변경해 준다</p>
+<p>ZSH_THEME=”agnoster”</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure>
+<h2 id="username-hostname-없애는-방법"><a href="#username-hostname-없애는-방법" class="headerlink" title="username@hostname 없애는 방법"></a>username@hostname 없애는 방법</h2><p>.zshrc 파일을 연 후 마지막 줄에 추가</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">prompt_context</span></span> () &#123; &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://www.iterm2.com" target="_blank" rel="noopener">https://www.iterm2.com</a></li>
+<li><a href="https://wayhome25.github.io/etc/2017/05/18/zsh-backup" target="_blank" rel="noopener">https://wayhome25.github.io/etc/2017/05/18/zsh-backup</a></li>
+<li><a href="https://beomi.github.io/2017/07/07/Beautify-ZSH/" target="_blank" rel="noopener">https://beomi.github.io/2017/07/07/Beautify-ZSH/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/10/23/util-iterm/" data-id="cjv23xmcl000tprra5555ra0g" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Util/">Util</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-util-serve" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/23/util-serve/" class="article-date">
+  <time datetime="2018-10-23T09:47:09.000Z" itemprop="datePublished">2018-10-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/23/util-serve/">현재 디렉토리에서 스태틱 웹서버 띄우는 방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="serve-설치"><a href="#serve-설치" class="headerlink" title="serve 설치"></a>serve 설치</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add global serve</span><br></pre></td></tr></table></figure>
+<h2 id="static-폴더에서-serve-실행"><a href="#static-폴더에서-serve-실행" class="headerlink" title="static 폴더에서 serve 실행"></a>static 폴더에서 serve 실행</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serve [-s] [directory]</span><br></pre></td></tr></table></figure>
+<p>-s 옵션은 spa 형식일때 사용하면 됩니다. </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/10/23/util-serve/" data-id="cjv23xmcm000vprraenxxrutk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Util/">Util</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-db/db-mongodb" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/10/db/db-mongodb/" class="article-date">
+  <time datetime="2018-09-10T06:45:04.000Z" itemprop="datePublished">2018-09-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/10/db/db-mongodb/">Mongo DB</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://velopert.com/436" target="_blank" rel="noopener">https://velopert.com/436</a></li>
+<li><a href="https://www.mongodb.com/compare/mongodb-mysql" target="_blank" rel="noopener">https://www.mongodb.com/compare/mongodb-mysql</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/09/10/db/db-mongodb/" data-id="cjv23xmdt001vprraasagjald" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DB/">DB</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ionic/">Ionic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Util/">Util</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Architecture/" style="font-size: 12.86px;">Architecture</a> <a href="/tags/CSS/" style="font-size: 12.86px;">CSS</a> <a href="/tags/CrossBrowsing/" style="font-size: 17.14px;">CrossBrowsing</a> <a href="/tags/DB/" style="font-size: 14.29px;">DB</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/Ionic/" style="font-size: 15.71px;">Ionic</a> <a href="/tags/Javascript/" style="font-size: 12.86px;">Javascript</a> <a href="/tags/JavascriptBasic/" style="font-size: 18.57px;">JavascriptBasic</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Util/" style="font-size: 12.86px;">Util</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/27/js-react/js-react-popup/">리엑트 컴포넌트에서 ajax 호출 방법</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/12/css/css-center/">CSS 셀렉트박스 커스텀</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/14/js-react/js-react-uncontrolled-components/">리엑트 Uncontrolled Components</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/js-basic/js-environment/">자바스크립트 환경</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/30/js-get-string-byte/">자바스크립트 문자열 바이트 계산</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 crontab<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

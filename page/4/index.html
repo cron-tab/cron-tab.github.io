@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>crontab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="crontab">
+<meta property="og:url" content="https://cron-tab.github.io/page/4/index.html">
+<meta property="og:site_name" content="crontab">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="crontab">
+  
+    <link rel="alternate" href="/atom.xml" title="crontab" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">crontab</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">crontab&#39;s blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cron-tab.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="posts-js-react/js-react-tailwind" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/16/js-react/js-react-tailwind/" class="article-date">
+  <time datetime="2018-03-16T04:50:37.000Z" itemprop="datePublished">2018-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/16/js-react/js-react-tailwind/">리엑트/뷰 프로젝트에서 테일윈드 CSS 적용하기 (React/Vue + Tailwind CSS)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>UI 프레임워크 몇 가지를 써봤는데 결국 커스텀하는 부분에서 어려움을 많이 겪었습니다.<br>그러던 가운데 Tailwind CSS를 알게 되어 써보니 미리 정의되어 있는 클래스 이름만 사용하면 되기 때문에 괜찮은 접근 방법이었습니다.</p>
+<h1 id="React-Tailwind-CSS-설정"><a href="#React-Tailwind-CSS-설정" class="headerlink" title="React + Tailwind CSS 설정"></a>React + Tailwind CSS 설정</h1><h2 id="React-프로젝트-생성"><a href="#React-프로젝트-생성" class="headerlink" title="React 프로젝트 생성"></a>React 프로젝트 생성</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ create-react-app <span class="variable">$&#123;PROJECT_NAME&#125;</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="variable">$&#123;PROJECT_NAME&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Tailwind-CSS-패키지-설치"><a href="#Tailwind-CSS-패키지-설치" class="headerlink" title="Tailwind CSS 패키지 설치"></a>Tailwind CSS 패키지 설치</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn add --dev tailwindcss autoprefixer postcss-cli</span><br></pre></td></tr></table></figure>
+<h2 id="tailwind-config-js-생성"><a href="#tailwind-config-js-생성" class="headerlink" title="/tailwind.config.js 생성"></a>/tailwind.config.js 생성</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node_modules/.bin/tailwind init tailwind.config.js</span><br></pre></td></tr></table></figure>
+<h2 id="postcss-config-js-생성-및-설정코드-작성"><a href="#postcss-config-js-생성-및-설정코드-작성" class="headerlink" title="/postcss.config.js 생성 및 설정코드 작성"></a>/postcss.config.js 생성 및 설정코드 작성</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi postcss.config.js</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tailwindcss = <span class="built_in">require</span>(<span class="string">'tailwindcss'</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">        tailwindcss(<span class="string">'./tailwind.config.js'</span>),</span><br><span class="line">        <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>),</span><br><span class="line">    ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="src-styles-index-css-파일-및-tailwind-설정"><a href="#src-styles-index-css-파일-및-tailwind-설정" class="headerlink" title="/src/styles/index.css 파일 및 tailwind 설정"></a>/src/styles/index.css 파일 및 tailwind 설정</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">tailwind</span> preflight;</span><br><span class="line">@<span class="keyword">tailwind</span> utilities;</span><br><span class="line"><span class="comment">/* Your custom CSS here */</span></span><br></pre></td></tr></table></figure>
+<h2 id="src-index-js-파일-수정"><a href="#src-index-js-파일-수정" class="headerlink" title="/src/index.js 파일 수정"></a>/src/index.js 파일 수정</h2><p>index.js 파일에 import ‘./index.css’ 추가합니다.</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./index.css'</span> <span class="comment">// 추가</span></span><br><span class="line"><span class="keyword">import</span> RouterIndex <span class="keyword">from</span> <span class="string">'./routers'</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./stores'</span></span><br><span class="line"><span class="keyword">import</span> registerServiceWorker <span class="keyword">from</span> <span class="string">'./registerServiceWorker'</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Provider store=&#123; store &#125;&gt;</span><br><span class="line">        &lt;RouterIndex /&gt;</span><br><span class="line">    &lt;<span class="regexp">/Provider&gt;,</span></span><br><span class="line"><span class="regexp">    document.getElementById('root')</span></span><br><span class="line"><span class="regexp">)</span></span><br><span class="line"><span class="regexp">registerServiceWorker()</span></span><br></pre></td></tr></table></figure>
+<h3 id="package-json-scripts-항목-수정"><a href="#package-json-scripts-항목-수정" class="headerlink" title="/package.json - scripts 항목 수정"></a>/package.json - scripts 항목 수정</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">...</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">        <span class="string">"build:css"</span>: <span class="string">"postcss src/styles/index.css -o src/index.css"</span>,</span><br><span class="line">        <span class="string">"watch:css"</span>: <span class="string">"postcss src/styles/index.css -o src/index.css -w"</span>,</span><br><span class="line">        <span class="string">"start"</span>: <span class="string">"npm run watch:css &amp; node scripts/start.js"</span>,</span><br><span class="line">        <span class="string">"build"</span>: <span class="string">"npm run build:css &amp;&amp; node scripts/build.js"</span>,</span><br><span class="line">        <span class="string">"test"</span>: <span class="string">"react-scripts test --env=jsdom"</span>,</span><br><span class="line">        <span class="string">"eject"</span>: <span class="string">"react-scripts eject"</span></span><br><span class="line">    &#125;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Vue-Tailwind-CSS-설정"><a href="#Vue-Tailwind-CSS-설정" class="headerlink" title="Vue + Tailwind CSS 설정"></a>Vue + Tailwind CSS 설정</h1><h2 id="Vue-프로젝트-생성"><a href="#Vue-프로젝트-생성" class="headerlink" title="Vue 프로젝트 생성"></a>Vue 프로젝트 생성</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vue init webpack <span class="variable">$&#123;PROJECT_NAME&#125;</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="variable">$&#123;PROJECT_NAME&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Tailwind-CSS-패키지-설치-1"><a href="#Tailwind-CSS-패키지-설치-1" class="headerlink" title="Tailwind CSS 패키지 설치"></a>Tailwind CSS 패키지 설치</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install tailwindcss --save-dev</span><br></pre></td></tr></table></figure>
+<h2 id="tailwind-config-js-생성-1"><a href="#tailwind-config-js-생성-1" class="headerlink" title="/tailwind.config.js 생성"></a>/tailwind.config.js 생성</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node_modules/.bin/tailwind init tailwind.config.js</span><br></pre></td></tr></table></figure>
+<h2 id="postcssrc-js-생성-및-설정코드-작성"><a href="#postcssrc-js-생성-및-설정코드-작성" class="headerlink" title="/.postcssrc.js 생성 및 설정코드 작성"></a>/.postcssrc.js 생성 및 설정코드 작성</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi .postcssrc.js</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="string">"plugins"</span>: [</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">'postcss-import'</span>)(),</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">'tailwindcss'</span>)(<span class="string">'./tailwind-config.js'</span>),</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)(),</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="src-assets-styles-main-css-파일-생성-및-tailwind-설정"><a href="#src-assets-styles-main-css-파일-생성-및-tailwind-설정" class="headerlink" title="/src/assets/styles/main.css 파일 생성 및 tailwind 설정"></a>/src/assets/styles/main.css 파일 생성 및 tailwind 설정</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">tailwind</span> preflight;</span><br><span class="line">@<span class="keyword">tailwind</span> utilities;</span><br><span class="line"><span class="comment">/* Your custom CSS here */</span></span><br></pre></td></tr></table></figure>
+<h2 id="src-App-vue-파일-수정"><a href="#src-App-vue-파일-수정" class="headerlink" title="/src/App.vue 파일 수정"></a>/src/App.vue 파일 수정</h2><p>App.vue 파일에 import ‘@/assets/styles/main.css’ 추가합니다.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;img src=<span class="string">"./assets/logo.png"</span>&gt;</span><br><span class="line">    &lt;router-view/&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'@/assets/styles/main.css'</span> <span class="comment">//추가</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'app'</span></span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;style&gt;</span></span><br><span class="line"><span class="regexp">#app &#123;</span></span><br><span class="line"><span class="regexp">  font-family: 'Avenir', Helvetica, Arial, sans-serif;</span></span><br><span class="line"><span class="regexp">  -webkit-font-smoothing: antialiased;</span></span><br><span class="line"><span class="regexp">  -moz-osx-font-smoothing: grayscale;</span></span><br><span class="line"><span class="regexp">  text-align: center;</span></span><br><span class="line"><span class="regexp">  color: #2c3e50;</span></span><br><span class="line"><span class="regexp">  margin-top: 60px;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><ul>
+<li><a href="https://tailwindcss.com/docs/what-is-tailwind" target="_blank" rel="noopener">https://tailwindcss.com/docs/what-is-tailwind</a></li>
+<li><a href="https://medium.com/@mikeeeeeeey/create-react-app-tailwind-css-feat-postcss-631d9e33ba8c" target="_blank" rel="noopener">https://medium.com/@mikeeeeeeey/create-react-app-tailwind-css-feat-postcss-631d9e33ba8c</a></li>
+<li><a href="https://www.jerriepelser.com/blog/using-tailwindcss-with-vuejs/" target="_blank" rel="noopener">https://www.jerriepelser.com/blog/using-tailwindcss-with-vuejs/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/03/16/js-react/js-react-tailwind/" data-id="cjv23xmek0038prrahp409m1i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-js-vue/js-vue" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/07/js-vue/js-vue/" class="article-date">
+  <time datetime="2018-02-07T05:00:53.000Z" itemprop="datePublished">2018-02-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/07/js-vue/js-vue/">Vue.js + vue-router 프로젝트 세팅</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>일반적으로 SPA 개발을 하기위해 라우터는 필수 입니다.<br>vue-cli에서 vue-router까지 같이 구성할 수 있기 때문에 편하게 작업할 수 있습니다. </p>
+<p>우선 vue cli를 사용하기 위해서 아래와 같이 관련 패키지를 설치합니다. </p>
+<h2 id="vue-cli-설치"><a href="#vue-cli-설치" class="headerlink" title="vue-cli 설치"></a>vue-cli 설치</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yarn global add @vue/cli</span><br><span class="line">$ yarn global add @vue/cli-init</span><br></pre></td></tr></table></figure>
+<h2 id="vue-init-webpack-프로젝트-구성"><a href="#vue-init-webpack-프로젝트-구성" class="headerlink" title="vue init webpack 프로젝트 구성"></a>vue init webpack 프로젝트 구성</h2><p>Install vue-router? 항목에서 Yes를 선택하면 vue-router 프로젝트 세팅이 완료됩니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$ vue init webpack <span class="variable">$&#123;PROJECT_NAME&#125;</span></span><br><span class="line"></span><br><span class="line">? Project name <span class="variable">$&#123;PROJECT_NAME&#125;</span></span><br><span class="line">? Project description A Vue.js project</span><br><span class="line">? Author hun &lt;xxx@xxxx.com&gt;</span><br><span class="line">? Vue build standalone</span><br><span class="line">? Install vue-router? Yes</span><br><span class="line">? Use ESLint to lint your code? Yes</span><br><span class="line">? Pick an ESLint preset Standard</span><br><span class="line">? Set up unit tests Yes</span><br><span class="line">? Pick a <span class="built_in">test</span> runner jest</span><br><span class="line">? Setup e2e tests with Nightwatch? Yes</span><br><span class="line">? Should we run `npm install` <span class="keyword">for</span> you after the project has been created? (recommended) yarn</span><br><span class="line"></span><br><span class="line">   vue-cli · Generated <span class="string">"client"</span>.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Installing project dependencies ...</span></span><br><span class="line"><span class="comment"># ========================</span></span><br><span class="line"></span><br><span class="line">yarn install v1.3.2</span><br><span class="line">info No lockfile found.</span><br><span class="line">[1/5] 🔍  Validating package.json...</span><br><span class="line">[2/5] 🔍  Resolving packages...</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/02/07/js-vue/js-vue/" data-id="cjv23xmeq003jprraoe3gta6p" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-node-web-scraping-with-puppeteer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/25/node-web-scraping-with-puppeteer/" class="article-date">
+  <time datetime="2018-01-25T01:42:53.000Z" itemprop="datePublished">2018-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/25/node-web-scraping-with-puppeteer/">node-web-scraping-with-puppeteer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>노드JS로 웹 크롤링 하는 방법을 알아보겠습니다.<br>웹 크롤링을 하기 위해서 Chrome Headless를 사용합니다.<br>Puppeteer라는 Chrome Headless 사용하기 위한 노드JS Library를 사용하겠습니다.</p>
+<h3 id="Puppeteer-설치"><a href="#Puppeteer-설치" class="headerlink" title="Puppeteer 설치"></a>Puppeteer 설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i --save puppeteer</span><br></pre></td></tr></table></figure>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><ul>
+<li><a href="https://medium.com/@e_mad_ehsan/getting-started-with-puppeteer-and-chrome-headless-for-web-scrapping-6bf5979dee3e" target="_blank" rel="noopener">https://medium.com/@e_mad_ehsan/getting-started-with-puppeteer-and-chrome-headless-for-web-scrapping-6bf5979dee3e</a></li>
+<li><a href="https://github.com/GoogleChrome/puppeteer" target="_blank" rel="noopener">https://github.com/GoogleChrome/puppeteer</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/01/25/node-web-scraping-with-puppeteer/" data-id="cjv23xmcg000jprra9i49u1wr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-db/db-mariadb-installation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/16/db/db-mariadb-installation/" class="article-date">
+  <time datetime="2018-01-16T01:28:19.000Z" itemprop="datePublished">2018-01-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/16/db/db-mariadb-installation/">CentOS7에서 MariaDB 설치 방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MariaDB-설치"><a href="#MariaDB-설치" class="headerlink" title="MariaDB 설치"></a>MariaDB 설치</h2><p>yum을 통해 MariaDB를 설치합니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install mariadb-server</span><br></pre></td></tr></table></figure></p>
+<p>설치가 끝난 후 MariaDB 데몬을 실행합니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start mariadb</span><br></pre></td></tr></table></figure></p>
+<p>OS 부팅시 MariaDB가 자동 실행되도록 설정합니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl <span class="built_in">enable</span> mariadb</span><br></pre></td></tr></table></figure></p>
+<p>보안 스크립트를 실행하여 관련 설정을 합니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mysql_secure_installation</span><br></pre></td></tr></table></figure></p>
+<p>MaridDB에 접속 후 유저를 추가합니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root -p</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MariaDB&gt; CREATE USER <span class="string">'myuser'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'mypass'</span>;</span><br><span class="line">MariaDB&gt; CREATE USER <span class="string">'myuser'</span>@<span class="string">'localhost'</span> IDENTIFIED BY <span class="string">'mypass'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MariaDB&gt; GRANT ALL ON *.* TO <span class="string">'myuser'</span>@<span class="string">'localhost'</span>;</span><br><span class="line">MariaDB&gt; GRANT ALL ON *.* TO <span class="string">'myuser'</span>@<span class="string">'%'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MariaDB&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+<h2 id="MAC-Brew-설치"><a href="#MAC-Brew-설치" class="headerlink" title="MAC Brew 설치"></a>MAC Brew 설치</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ brew install mariadb</span><br><span class="line"></span><br><span class="line">$ mysql.server start</span><br><span class="line"></span><br><span class="line">$ brew services start mariadb</span><br><span class="line"></span><br><span class="line">$ mysql -u root</span><br></pre></td></tr></table></figure>
+<h3 id="기존-mysql-삭제"><a href="#기존-mysql-삭제" class="headerlink" title="기존 mysql 삭제"></a>기존 mysql 삭제</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ brew services stop mysql</span><br><span class="line"></span><br><span class="line">$ rm -rf /usr/<span class="built_in">local</span>/var/mysql</span><br><span class="line"></span><br><span class="line">$ brew uninstall mysql</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/01/16/db/db-mariadb-installation/" data-id="cjv23xmdq001pprra5hcrsznq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DB/">DB</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ide-intellij-open-current-path-from-terminal" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/09/ide-intellij-open-current-path-from-terminal/" class="article-date">
+  <time datetime="2018-01-09T05:51:04.000Z" itemprop="datePublished">2018-01-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/09/ide-intellij-open-current-path-from-terminal/">터미널에서 현재 경로로 IntelliJ 실행하는 방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>터미널에서 git clone 후 해당경로로 IntelliJ를 열고 싶은 경우가 많이 있습니다.<br>VS Code에서는 플러그인 형식으로 존재를 하는데 IntelliJ는 없습니다.<br>그래서 원하는 경로로 IntelliJ를 실행할 수 있도록 스크립트를 만들었습니다.  </p>
+<h2 id="IntelliJ-경로-확인"><a href="#IntelliJ-경로-확인" class="headerlink" title="IntelliJ 경로 확인"></a>IntelliJ 경로 확인</h2><p>아래 경로로 IntelliJ가 실행되면 정상적인 경로입니다.<br>OS, 버전에 따라 경로가 다를 수 있습니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea</span><br></pre></td></tr></table></figure></p>
+<h2 id="스크립트-생성"><a href="#스크립트-생성" class="headerlink" title="스크립트 생성"></a>스크립트 생성</h2><p>현재 디렉토리로 인텔리제이를 실행 시키기 위한 스크립트 생성합니다.<br>아래 스크립트는 i로 인텔리제이를 실핼 시키기 위해 만들었습니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'open -a /Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea $1'</span> &gt; intellij</span><br></pre></td></tr></table></figure></p>
+<h2 id="실행-권한부여"><a href="#실행-권한부여" class="headerlink" title="실행 권한부여"></a>실행 권한부여</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chmod 770 intellij</span><br></pre></td></tr></table></figure>
+<h2 id="usr-local-bin-경로로-이동"><a href="#usr-local-bin-경로로-이동" class="headerlink" title="/usr/local/bin 경로로 이동"></a>/usr/local/bin 경로로 이동</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mv intellij /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+<h2 id="터미널에서-IntelliJ-실행"><a href="#터미널에서-IntelliJ-실행" class="headerlink" title="터미널에서 IntelliJ 실행"></a>터미널에서 IntelliJ 실행</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/facebook/react.git</span><br><span class="line">$ intellij react</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/01/09/ide-intellij-open-current-path-from-terminal/" data-id="cjv23xmcc000dprraqdvft926" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Architecture/infra-severless-aws" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/05/Architecture/infra-severless-aws/" class="article-date">
+  <time datetime="2018-01-05T09:09:32.000Z" itemprop="datePublished">2018-01-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/05/Architecture/infra-severless-aws/">AWS Lambda개발 - Serverless Framework</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>AWS Lambda를 개발할 때 CLI로 개발할 수 있는 <a href="https://serverless.com" target="_blank" rel="noopener">Serverless</a>, <a href="http://apex.run" target="_blank" rel="noopener">APEX</a> 같은 툴로 개발을 하게됩니다.<br>Serverless는 AWS, Google, MS, IBM등 주요 서버리스 서비스들을 다 제공하기 때문에<br>추후 확장성 면에서 좋을 것으로 예상되어 Serverless 사용법을 알아보려고 합니다.  </p>
+<h3 id="serverless-설치"><a href="#serverless-설치" class="headerlink" title="serverless 설치"></a>serverless 설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i -g serverless</span><br></pre></td></tr></table></figure>
+<h3 id="aws-credentials-설정"><a href="#aws-credentials-설정" class="headerlink" title="aws credentials 설정"></a>aws credentials 설정</h3><ul>
+<li><a href="https://console.aws.amazon.com/console" target="_blank" rel="noopener">AWS Console</a>에서 IAM에 들어 갑니다.</li>
+<li><p>Users - Add user 클릭</p>
+<ol>
+<li><p>Details<br>– User name에 serverless-cli 입력<br>– Access type에서 Programmatic access체크<br>– Next: Permissions 클릭</p>
+</li>
+<li><p>Permissions<br>– Attach exisiting policies directly 클릭<br>– AdministratorAccess 체크<br>– Next: Review 클릭</p>
+</li>
+<li><p>Review<br>– Create user 클릭 </p>
+</li>
+<li><p>Complete<br>– Access key ID와 Secret access key 확인</p>
+</li>
+</ol>
+</li>
+<li><p>Access Ky와 Secret access key 정보를 가지고 serverless의 credentials 설정 명령을 실행합니다. </p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sls config credentials --provider aws --key xxxxx --secret xxxx</span><br></pre></td></tr></table></figure>
+<h3 id="AWS-Node-js-Template-생성"><a href="#AWS-Node-js-Template-생성" class="headerlink" title="AWS Node.js Template 생성"></a>AWS Node.js Template 생성</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sls create --template aws-nodejs --path lambda-test --name lambda-test</span><br></pre></td></tr></table></figure>
+<p>위 명령을 실행하면 아래롸 같이 2개의 파일이 생성됩니다. </p>
+<p>|-handler.js<br>|-serverless.yml</p>
+<h2 id="serverless-yml-파일-수정"><a href="#serverless-yml-파일-수정" class="headerlink" title="serverless.yml 파일 수정"></a>serverless.yml 파일 수정</h2><p>AWS에 배포하기 위해서 serverless.yml 파일을 아래와 같이 수정 합니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">service: lambda-test <span class="comment"># 서비스이름</span></span><br><span class="line"></span><br><span class="line">provider:</span><br><span class="line">  name: aws</span><br><span class="line">  runtime: nodejs6.10</span><br><span class="line">  stage: dev</span><br><span class="line">  region: ap-northeast-2 <span class="comment"># 서울 rigion</span></span><br><span class="line">  environment: <span class="comment"># 전체 함수에서 사용할 수 있는 환경변수</span></span><br><span class="line">    variable1: value1</span><br><span class="line"></span><br><span class="line"><span class="built_in">functions</span>:</span><br><span class="line">  hello:</span><br><span class="line">    handler: handler.hello</span><br><span class="line">    events: <span class="comment"># API Gateway 생성을 위한 설정</span></span><br><span class="line">      - http:</span><br><span class="line">          path: lambda-test</span><br><span class="line">          method: get</span><br><span class="line">          cors: <span class="literal">true</span></span><br><span class="line">    environment: <span class="comment"># 해당 함수에서 사용할 수 있는 환경변수</span></span><br><span class="line">        variable2: value1</span><br><span class="line"></span><br><span class="line">resources:</span><br><span class="line">  Resources:</span><br><span class="line">    NewResource:</span><br><span class="line">      Type: AWS::S3::Bucket</span><br><span class="line">      Properties: <span class="comment"># $&#123;self:service&#125;와 같이 변수로 사용가능</span></span><br><span class="line">        BucketName: <span class="variable">$&#123;self:service&#125;</span>-<span class="variable">$&#123;self:provider.stage&#125;</span>-upload</span><br></pre></td></tr></table></figure></p>
+<h2 id="get-parameter를-받기-위해-hander-js-파일-수정"><a href="#get-parameter를-받기-위해-hander-js-파일-수정" class="headerlink" title="get parameter를 받기 위해 hander.js 파일 수정"></a>get parameter를 받기 위해 hander.js 파일 수정</h2><p>get parameter는 event객체의 queryStringParameters에 있습니다. </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> param = event.queryStringParameters;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">const</span> response = &#123;</span><br><span class="line">   statusCode: <span class="number">200</span>,</span><br><span class="line">   body: <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">     message: <span class="string">'Your name is '</span> + param.name</span><br><span class="line">   &#125;),</span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"> callback(<span class="literal">null</span>, response);</span><br></pre></td></tr></table></figure>
+<h3 id="Local에서-Lambda-실행"><a href="#Local에서-Lambda-실행" class="headerlink" title="Local에서 Lambda 실행"></a>Local에서 Lambda 실행</h3><p>생성된 함수를 AWS에 배포하기 전에 로컬에서 실행 시킬 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sls invoke <span class="built_in">local</span> -f hello</span><br></pre></td></tr></table></figure>
+<p>파라미터를 전달하기 위해서는 –path 옵션으로 json파일 경로를 지정해주는 방법과<br>–data 옵션으로 전달하는 방법이 있습니다. </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sls invoke <span class="built_in">local</span> -f hello --path data.json </span><br><span class="line">$ sls invoke <span class="built_in">local</span> -f hello --data <span class="string">'&#123;"queryStringParameters":&#123;"name":"test"&#125;&#125;'</span></span><br></pre></td></tr></table></figure>
+<p>실행하면 아래 결과를 확인할 수 있습니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"statusCode"</span>: 200,</span><br><span class="line">    <span class="string">"body"</span>: <span class="string">"&#123;\"message\":\"Your name is test\"&#125;"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Local에서-Emulator-실행"><a href="#Local에서-Emulator-실행" class="headerlink" title="Local에서 Emulator 실행"></a>Local에서 Emulator 실행</h3><p>로컬에서 에뮬레이터를 실행 할 수 있습니다.<br><a href="http://localhost:4000/lambda-test" target="_blank" rel="noopener">http://localhost:4000/lambda-test</a><br>파이어베이스와 다르게 live-reload가 되지않아 조금 불편합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sls run</span><br></pre></td></tr></table></figure>
+<h2 id="배포-명령-실행"><a href="#배포-명령-실행" class="headerlink" title="배포 명령 실행"></a>배포 명령 실행</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sls deploy</span><br></pre></td></tr></table></figure>
+<p>배포 완료 후 아래와 같은 정보가 나오게 되며 endpoints에 있는 주소로 접근하면 됩니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line">endpoints:</span><br><span class="line">  GET - https://7otlb5sfi5.execute-api.ap-northeast-2.amazonaws.com/dev/lambda-test</span><br><span class="line"><span class="built_in">functions</span>:</span><br><span class="line">  hello: lambda-test-dev-hello</span><br></pre></td></tr></table></figure></p>
+<h2 id="삭제"><a href="#삭제" class="headerlink" title="삭제"></a>삭제</h2><p>Serverless로 배포한 모든 리소스를 삭제하기 위해서는 AWS console - CloudFormation에 들어갑니다.<br>Stack Name이 lambda-test-dev를 선택한 후 Action에서 Delete Stack을 클릭하면 관련 리소스들을 삭제합니다. </p>
+<h2 id="참고사항"><a href="#참고사항" class="headerlink" title="참고사항"></a>참고사항</h2><ul>
+<li>S3버킷에는 총 2개의 버킷이 생성됩니다.<br>(severless framework이 쓰는 버킷 1, serverless.yml파일의 resource에서 설정한 버킷 1)</li>
+<li>Serverless를 통해 배포를 하면 Lambda, API Gateway, S3, CloudFormation을 사용하게 됩니다.   </li>
+</ul>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><ul>
+<li><a href="https://www.youtube.com/playlist?list=PLzvRQMJ9HDiT5b4OsmIBiMbsPjfp4kfg3" target="_blank" rel="noopener">https://www.youtube.com/playlist?list=PLzvRQMJ9HDiT5b4OsmIBiMbsPjfp4kfg3</a></li>
+<li><a href="https://github.com/serverless/serverless-client-s3" target="_blank" rel="noopener">https://github.com/serverless/serverless-client-s3</a></li>
+<li><a href="https://blog.outsider.ne.kr/1243" target="_blank" rel="noopener">https://blog.outsider.ne.kr/1243</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/01/05/Architecture/infra-severless-aws/" data-id="cjv23xmda0011prra6r2gu8hh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Architecture/">Architecture</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-ionic/ionic-cache-busting" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/08/js-ionic/ionic-cache-busting/" class="article-date">
+  <time datetime="2017-12-08T09:26:13.000Z" itemprop="datePublished">2017-12-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/08/js-ionic/ionic-cache-busting/">아이오닉 캐시 버스팅 설정</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="html-webpack-plugin-설치"><a href="#html-webpack-plugin-설치" class="headerlink" title="html-webpack-plugin 설치"></a>html-webpack-plugin 설치</h2><p>아이오닉 캐시 버스팅 설정을 위해 html-webpack-plugin 설치를 합니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install html-webpack-plugin --save-dev</span><br></pre></td></tr></table></figure></p>
+<h2 id="웹팩-설정파일-추가"><a href="#웹팩-설정파일-추가" class="headerlink" title="웹팩 설정파일 추가"></a>웹팩 설정파일 추가</h2><p>./package.json 에서 config 설정을 추가합니다.  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"ps3-ionic"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"0.0.1"</span>,</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">"Ionic Framework"</span>,</span><br><span class="line">  <span class="string">"homepage"</span>: <span class="string">"http://ionicframework.com/"</span>,</span><br><span class="line">  <span class="string">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">  </span><br><span class="line">  ...</span><br><span class="line">  </span><br><span class="line">  <span class="string">"config"</span>: &#123;</span><br><span class="line">    <span class="string">"ionic_webpack"</span>: <span class="string">"./config/webpack.config.js"</span> // 추가</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="웹팩-설정"><a href="#웹팩-설정" class="headerlink" title="웹팩 설정"></a>웹팩 설정</h2><p>./config/webpack.config.js<br>HtmlWebpackPlugin template 경로 설정을 합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>); <span class="comment">// 추가</span></span><br><span class="line"></span><br><span class="line">... </span><br><span class="line"></span><br><span class="line">  plugins: [</span><br><span class="line">    ionicWebpackFactory.getIonicEnvironmentPlugin(),</span><br><span class="line">    ionicWebpackFactory.getCommonChunksPlugin(),</span><br><span class="line">    <span class="keyword">new</span> ModuleConcatPlugin(),</span><br><span class="line">    <span class="keyword">new</span> PurifyPlugin(),</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: <span class="string">'Your Title'</span>,</span><br><span class="line">      template: <span class="string">'./src/index_cache_busting.html'</span>, <span class="comment">// 추가</span></span><br><span class="line">      filename: <span class="string">'../index.html'</span>,</span><br><span class="line">      hash:<span class="literal">true</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="index-cash-busting-html-파일-생성"><a href="#index-cash-busting-html-파일-생성" class="headerlink" title="index_cash_busting.html 파일 생성"></a>index_cash_busting.html 파일 생성</h2><p>./src/index_cash_busting.html 파일 생성 후 아래 내용을 추가합니다.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span> <span class="attr">dir</span>=<span class="string">"ltr"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">htmlWebpackPlugin.options.title</span> %&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"msapplication-tap-highlight"</span> <span class="attr">content</span>=<span class="string">"no"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"icon"</span> <span class="attr">type</span>=<span class="string">"image/x-icon"</span> <span class="attr">href</span>=<span class="string">"assets/icon/favicon.ico"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"manifest"</span> <span class="attr">href</span>=<span class="string">"manifest.json"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"theme-color"</span> <span class="attr">content</span>=<span class="string">"#4e8ef7"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-capable"</span> <span class="attr">content</span>=<span class="string">"yes"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span> <span class="attr">content</span>=<span class="string">"black"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"cordova.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"build/main.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ion-app</span>&gt;</span><span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"build/polyfills.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><ul>
+<li><a href="https://github.com/jantimon/html-webpack-plugin" target="_blank" rel="noopener">https://github.com/jantimon/html-webpack-plugin</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/12/08/js-ionic/ionic-cache-busting/" data-id="cjv23xme4002fprra5bxfusip" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ionic/">Ionic</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-ionic/ionic-native-push" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/29/js-ionic/ionic-native-push/" class="article-date">
+  <time datetime="2017-11-29T07:59:51.000Z" itemprop="datePublished">2017-11-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/29/js-ionic/ionic-native-push/">아아오닉, 파이어베이스 네이티브 푸시 개발</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Ionic-Native-플러그인-설치"><a href="#Ionic-Native-플러그인-설치" class="headerlink" title="Ionic Native 플러그인 설치"></a>Ionic Native 플러그인 설치</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ionic cordova plugin add phonegap-plugin-push</span><br><span class="line">$ npm install --save @ionic-native/push</span><br></pre></td></tr></table></figure>
+<h2 id="사용방법"><a href="#사용방법" class="headerlink" title="사용방법"></a>사용방법</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Push, PushObject, PushOptions &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/push'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">constructor</span>(private push: Push) &#123; &#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// to check if we have permission</span></span><br><span class="line"><span class="keyword">this</span>.push.hasPermission()</span><br><span class="line">  .then(<span class="function">(<span class="params">res: any</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (res.isEnabled) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'We have permission to send push notifications'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'We do not have permission to send push notifications'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// to initialize push notifications</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> options: PushOptions = &#123;</span><br><span class="line">   android: &#123;&#125;,</span><br><span class="line">   ios: &#123;</span><br><span class="line">       alert: <span class="string">'true'</span>,</span><br><span class="line">       badge: <span class="literal">true</span>,</span><br><span class="line">       sound: <span class="string">'false'</span></span><br><span class="line">   &#125;,</span><br><span class="line">   windows: &#123;&#125;,</span><br><span class="line">   browser: &#123;</span><br><span class="line">       pushServiceURL: <span class="string">'http://push.api.phonegap.com/v1/push'</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pushObject: PushObject = <span class="keyword">this</span>.push.init(options);</span><br><span class="line"></span><br><span class="line">pushObject.on(<span class="string">'notification'</span>).subscribe(<span class="function">(<span class="params">notification: any</span>) =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'Received a notification'</span>, notification));</span><br><span class="line"></span><br><span class="line">pushObject.on(<span class="string">'registration'</span>).subscribe(<span class="function">(<span class="params">registration: any</span>) =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'Device registered'</span>, registration));</span><br><span class="line"></span><br><span class="line">pushObject.on(<span class="string">'error'</span>).subscribe(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(<span class="string">'Error with Push plugin'</span>, error));</span><br></pre></td></tr></table></figure>
+<h2 id="Ionic-안드로이드-푸시-설정"><a href="#Ionic-안드로이드-푸시-설정" class="headerlink" title="Ionic 안드로이드 푸시 설정"></a>Ionic 안드로이드 푸시 설정</h2><ul>
+<li><p>firebase - 프로젝트 설정 - 안드로이드 앱 추가 - google-services.json 다운로드 후 프로젝트 root에 복사</p>
+</li>
+<li><p>config.xml에서 android에 resource-file 추가</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">platform</span> <span class="attr">name</span>=<span class="string">"android"</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">resource-file</span> <span class="attr">src</span>=<span class="string">"google-services.json"</span> <span class="attr">target</span>=<span class="string">"google-services.json"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">platform</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><ul>
+<li><a href="https://ionicframework.com/docs/native/push/" target="_blank" rel="noopener">https://ionicframework.com/docs/native/push/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/29/js-ionic/ionic-native-push/" data-id="cjv23xme7002lprrawckahuuw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ionic/">Ionic</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-ionic/ionic-deploy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/29/js-ionic/ionic-deploy/" class="article-date">
+  <time datetime="2017-11-29T07:59:07.000Z" itemprop="datePublished">2017-11-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/29/js-ionic/ionic-deploy/">아이오닉 안드로이드 배포 설정</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>아이오닉에서 안드로이드 빌드시 에러가 나면 환경 변수 설정을 확인하시면 됩니다. </p>
+<h2 id="bash-profile-수정"><a href="#bash-profile-수정" class="headerlink" title="bash_profile 수정"></a>bash_profile 수정</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<h2 id="아래-내용-추가"><a href="#아래-내용-추가" class="headerlink" title="아래 내용 추가"></a>아래 내용 추가</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ANDROID_HOME=/Users/&#123;YOUR_USER_NAME&#125;/Library/Android/sdk</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$ANDROID_HOME</span>/tools</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$ANDROID_HOME</span>/platform-tools</span><br></pre></td></tr></table></figure>
+<h2 id="환경변수-적용"><a href="#환경변수-적용" class="headerlink" title="환경변수 적용"></a>환경변수 적용</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><ul>
+<li><a href="https://stackoverflow.com/questions/19986214/setting-android-home-enviromental-variable-on-mac-os-x" target="_blank" rel="noopener">https://stackoverflow.com/questions/19986214/setting-android-home-enviromental-variable-on-mac-os-x</a></li>
+<li><a href="https://forum.ionicframework.com/t/file-google-services-json-is-missing/68504/7" target="_blank" rel="noopener">https://forum.ionicframework.com/t/file-google-services-json-is-missing/68504/7</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/29/js-ionic/ionic-deploy/" data-id="cjv23xme6002jprraizavov74" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ionic/">Ionic</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-ionic/ionic-native" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/29/js-ionic/ionic-native/" class="article-date">
+  <time datetime="2017-11-29T01:03:59.000Z" itemprop="datePublished">2017-11-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/29/js-ionic/ionic-native/">아이오닉 네이티브 API 사용방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Ionic-Native"><a href="#Ionic-Native" class="headerlink" title="Ionic Native"></a>Ionic Native</h2><p>아이오닉에서 Native 콜백이 Angular로 트리거하도록 보장하기 때문에<br>안드로이드, iOS 네이티브 API (Cordova/PhoneGap plugin) 사용을 편하게 사용할 수 있습니다.<br><a href="https://ionicframework.com/docs/native/camera/" target="_blank" rel="noopener">사용방법 예제(Native Camera)</a></p>
+<h2 id="지원범위"><a href="#지원범위" class="headerlink" title="지원범위"></a>지원범위</h2><p>android 4.4 이상, iOS8 이상</p>
+<h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install @ionic-native/core --save</span><br></pre></td></tr></table></figure>
+<h4 id="1-Camera-플러그인-설치"><a href="#1-Camera-플러그인-설치" class="headerlink" title="1. Camera 플러그인 설치"></a>1. Camera 플러그인 설치</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install @ionic-native/camera --save</span><br><span class="line">$ ionic cordova plugin add cordova-plugin-camera</span><br></pre></td></tr></table></figure>
+<h4 id="2-app-module-ts-에-플러그인-추가"><a href="#2-app-module-ts-에-플러그인-추가" class="headerlink" title="2. app.module.ts 에 플러그인 추가"></a>2. app.module.ts 에 플러그인 추가</h4><ul>
+<li>./src/app/app.module.ts 파일에 추<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ErrorHandler, NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; IonicApp, IonicErrorHandler, IonicModule &#125; <span class="keyword">from</span> <span class="string">'ionic-angular'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HttpModule &#125; <span class="keyword">from</span> <span class="string">'@angular/http'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; MyApp &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; StatusBar &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/status-bar'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; SplashScreen &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/splash-screen'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; BrowserAnimationsModule &#125; <span class="keyword">from</span> <span class="string">"@angular/platform-browser/animations"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Camera &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/camera'</span>; <span class="comment">// 추가</span></span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  declarations: [</span><br><span class="line">    MyApp,</span><br><span class="line">  ],</span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    HttpModule,</span><br><span class="line">    IonicModule.forRoot(MyApp),</span><br><span class="line">    BrowserAnimationsModule</span><br><span class="line">  ],</span><br><span class="line">  bootstrap: [IonicApp],</span><br><span class="line">  entryComponents: [</span><br><span class="line">    MyApp,</span><br><span class="line">  ],</span><br><span class="line">  providers: [</span><br><span class="line">    StatusBar,</span><br><span class="line">    SplashScreen,</span><br><span class="line">    &#123;<span class="attr">provide</span>: ErrorHandler, <span class="attr">useClass</span>: IonicErrorHandler&#125;,</span><br><span class="line">    Camera <span class="comment">// 추가</span></span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="3-사용할-페이지-native-ts-에-플러그인-추가"><a href="#3-사용할-페이지-native-ts-에-플러그인-추가" class="headerlink" title="3. 사용할 페이지(native.ts) 에 플러그인 추가"></a>3. 사용할 페이지(native.ts) 에 플러그인 추가</h4><ul>
+<li>./src/pages/native/native.ts<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; IonicPage, NavController, NavParams &#125; <span class="keyword">from</span> <span class="string">'ionic-angular'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Camera, CameraOptions &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/camera'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LocalNotifications &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/local-notifications'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Toast &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/toast'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CallNumber &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/call-number'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Flashlight &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/flashlight'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Generated class for the NativePage page.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * See https://ionicframework.com/docs/components/#navigation for more info on</span></span><br><span class="line"><span class="comment"> * Ionic pages and navigation.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">@IonicPage()</span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: <span class="string">'page-native'</span>,</span><br><span class="line">  templateUrl: <span class="string">'native.html'</span>,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">NativePage</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(public navCtrl: NavController</span><br><span class="line">              , public navParams: NavParams</span><br><span class="line">              , private camera: Camera</span><br><span class="line">              , private localNotifications: LocalNotifications</span><br><span class="line">              , private toast: Toast</span><br><span class="line">              , private callNumber: CallNumber</span><br><span class="line">              , private flashlight: Flashlight) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ionViewDidLoad() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'ionViewDidLoad NativePage'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleCamera()&#123;</span><br><span class="line">      <span class="keyword">const</span> options: CameraOptions = &#123;</span><br><span class="line">          quality: <span class="number">100</span>,</span><br><span class="line">          destinationType: <span class="keyword">this</span>.camera.DestinationType.DATA_URL,</span><br><span class="line">          encodingType: <span class="keyword">this</span>.camera.EncodingType.JPEG,</span><br><span class="line">          mediaType: <span class="keyword">this</span>.camera.MediaType.PICTURE</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">this</span>.camera.getPicture(options).then(<span class="function">(<span class="params">imageData</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="comment">// imageData is either a base64 encoded string or a file URI</span></span><br><span class="line">          <span class="comment">// If it's base64:</span></span><br><span class="line">          <span class="comment">//let base64Image = 'data:image/jpeg;base64,' + imageData;</span></span><br><span class="line">          alert(<span class="string">'ok'</span>);</span><br><span class="line">      &#125;, (err) =&gt; &#123;</span><br><span class="line">          <span class="comment">// Handle error</span></span><br><span class="line">          alert(err);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleNotification()&#123;</span><br><span class="line">      <span class="keyword">this</span>.localNotifications.schedule(&#123;</span><br><span class="line">          text: <span class="string">'노티!노티!노티!다'</span>,</span><br><span class="line">          at: <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()),</span><br><span class="line">          led: <span class="string">'FF0000'</span>,</span><br><span class="line">          sound: <span class="literal">null</span></span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleToast()&#123;</span><br><span class="line">      <span class="keyword">this</span>.toast.show(<span class="string">`하하|호호|히히`</span>, <span class="string">'5000'</span>, <span class="string">'center'</span>).subscribe(</span><br><span class="line">          toast =&gt; &#123;</span><br><span class="line">              <span class="built_in">console</span>.log(toast);</span><br><span class="line">          &#125;</span><br><span class="line">      );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleFlashlight()&#123;</span><br><span class="line">      <span class="keyword">this</span>.flashlight.toggle();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleCallNumber()&#123;</span><br><span class="line">      <span class="keyword">this</span>.callNumber.callNumber(<span class="string">"18001010101"</span>, <span class="literal">true</span>)</span><br><span class="line">          .then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'Launched dialer!'</span>))</span><br><span class="line">          .catch(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'Error launching dialer'</span>));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="실행"><a href="#실행" class="headerlink" title="실행"></a>실행</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ionic cordova <span class="built_in">emulate</span> ios --target iPhone-8</span><br><span class="line">$ ionic cordova run ios --device</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://ionicframework.com/docs/native/" target="_blank" rel="noopener">https://ionicframework.com/docs/native/</a></li>
+<li><a href="https://ionicframework.com/docs/intro/deploying/" target="_blank" rel="noopener">https://ionicframework.com/docs/intro/deploying/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/29/js-ionic/ionic-native/" data-id="cjv23xme9002pprrari1mhpyg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ionic/">Ionic</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ionic/">Ionic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Util/">Util</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Architecture/" style="font-size: 12.86px;">Architecture</a> <a href="/tags/CSS/" style="font-size: 12.86px;">CSS</a> <a href="/tags/CrossBrowsing/" style="font-size: 17.14px;">CrossBrowsing</a> <a href="/tags/DB/" style="font-size: 14.29px;">DB</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/Ionic/" style="font-size: 15.71px;">Ionic</a> <a href="/tags/Javascript/" style="font-size: 12.86px;">Javascript</a> <a href="/tags/JavascriptBasic/" style="font-size: 18.57px;">JavascriptBasic</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Util/" style="font-size: 12.86px;">Util</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/27/js-react/js-react-popup/">리엑트 컴포넌트에서 ajax 호출 방법</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/12/css/css-center/">CSS 셀렉트박스 커스텀</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/14/js-react/js-react-uncontrolled-components/">리엑트 Uncontrolled Components</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/js-basic/js-environment/">자바스크립트 환경</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/30/js-get-string-byte/">자바스크립트 문자열 바이트 계산</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 crontab<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

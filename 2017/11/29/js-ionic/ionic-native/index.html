@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>아이오닉 네이티브 API 사용방법 | crontab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Ionic Native아이오닉에서 Native 콜백이 Angular로 트리거하도록 보장하기 때문에안드로이드, iOS 네이티브 API (Cordova/PhoneGap plugin) 사용을 편하게 사용할 수 있습니다.사용방법 예제(Native Camera) 지원범위android 4.4 이상, iOS8 이상 설치1$ npm install @ionic-native">
+<meta name="keywords" content="Ionic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="아이오닉 네이티브 API 사용방법">
+<meta property="og:url" content="https://cron-tab.github.io/2017/11/29/js-ionic/ionic-native/index.html">
+<meta property="og:site_name" content="crontab">
+<meta property="og:description" content="Ionic Native아이오닉에서 Native 콜백이 Angular로 트리거하도록 보장하기 때문에안드로이드, iOS 네이티브 API (Cordova/PhoneGap plugin) 사용을 편하게 사용할 수 있습니다.사용방법 예제(Native Camera) 지원범위android 4.4 이상, iOS8 이상 설치1$ npm install @ionic-native">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-29T08:02:35.153Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="아이오닉 네이티브 API 사용방법">
+<meta name="twitter:description" content="Ionic Native아이오닉에서 Native 콜백이 Angular로 트리거하도록 보장하기 때문에안드로이드, iOS 네이티브 API (Cordova/PhoneGap plugin) 사용을 편하게 사용할 수 있습니다.사용방법 예제(Native Camera) 지원범위android 4.4 이상, iOS8 이상 설치1$ npm install @ionic-native">
+  
+    <link rel="alternate" href="/atom.xml" title="crontab" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">crontab</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">crontab&#39;s blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cron-tab.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-js-ionic/ionic-native" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/29/js-ionic/ionic-native/" class="article-date">
+  <time datetime="2017-11-29T01:03:59.000Z" itemprop="datePublished">2017-11-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      아이오닉 네이티브 API 사용방법
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Ionic-Native"><a href="#Ionic-Native" class="headerlink" title="Ionic Native"></a>Ionic Native</h2><p>아이오닉에서 Native 콜백이 Angular로 트리거하도록 보장하기 때문에<br>안드로이드, iOS 네이티브 API (Cordova/PhoneGap plugin) 사용을 편하게 사용할 수 있습니다.<br><a href="https://ionicframework.com/docs/native/camera/" target="_blank" rel="noopener">사용방법 예제(Native Camera)</a></p>
+<h2 id="지원범위"><a href="#지원범위" class="headerlink" title="지원범위"></a>지원범위</h2><p>android 4.4 이상, iOS8 이상</p>
+<h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install @ionic-native/core --save</span><br></pre></td></tr></table></figure>
+<h4 id="1-Camera-플러그인-설치"><a href="#1-Camera-플러그인-설치" class="headerlink" title="1. Camera 플러그인 설치"></a>1. Camera 플러그인 설치</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install @ionic-native/camera --save</span><br><span class="line">$ ionic cordova plugin add cordova-plugin-camera</span><br></pre></td></tr></table></figure>
+<h4 id="2-app-module-ts-에-플러그인-추가"><a href="#2-app-module-ts-에-플러그인-추가" class="headerlink" title="2. app.module.ts 에 플러그인 추가"></a>2. app.module.ts 에 플러그인 추가</h4><ul>
+<li>./src/app/app.module.ts 파일에 추<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ErrorHandler, NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; IonicApp, IonicErrorHandler, IonicModule &#125; <span class="keyword">from</span> <span class="string">'ionic-angular'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HttpModule &#125; <span class="keyword">from</span> <span class="string">'@angular/http'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; MyApp &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; StatusBar &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/status-bar'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; SplashScreen &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/splash-screen'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; BrowserAnimationsModule &#125; <span class="keyword">from</span> <span class="string">"@angular/platform-browser/animations"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Camera &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/camera'</span>; <span class="comment">// 추가</span></span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  declarations: [</span><br><span class="line">    MyApp,</span><br><span class="line">  ],</span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    HttpModule,</span><br><span class="line">    IonicModule.forRoot(MyApp),</span><br><span class="line">    BrowserAnimationsModule</span><br><span class="line">  ],</span><br><span class="line">  bootstrap: [IonicApp],</span><br><span class="line">  entryComponents: [</span><br><span class="line">    MyApp,</span><br><span class="line">  ],</span><br><span class="line">  providers: [</span><br><span class="line">    StatusBar,</span><br><span class="line">    SplashScreen,</span><br><span class="line">    &#123;<span class="attr">provide</span>: ErrorHandler, <span class="attr">useClass</span>: IonicErrorHandler&#125;,</span><br><span class="line">    Camera <span class="comment">// 추가</span></span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="3-사용할-페이지-native-ts-에-플러그인-추가"><a href="#3-사용할-페이지-native-ts-에-플러그인-추가" class="headerlink" title="3. 사용할 페이지(native.ts) 에 플러그인 추가"></a>3. 사용할 페이지(native.ts) 에 플러그인 추가</h4><ul>
+<li>./src/pages/native/native.ts<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; IonicPage, NavController, NavParams &#125; <span class="keyword">from</span> <span class="string">'ionic-angular'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Camera, CameraOptions &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/camera'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LocalNotifications &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/local-notifications'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Toast &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/toast'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CallNumber &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/call-number'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Flashlight &#125; <span class="keyword">from</span> <span class="string">'@ionic-native/flashlight'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Generated class for the NativePage page.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * See https://ionicframework.com/docs/components/#navigation for more info on</span></span><br><span class="line"><span class="comment"> * Ionic pages and navigation.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">@IonicPage()</span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: <span class="string">'page-native'</span>,</span><br><span class="line">  templateUrl: <span class="string">'native.html'</span>,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">NativePage</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(public navCtrl: NavController</span><br><span class="line">              , public navParams: NavParams</span><br><span class="line">              , private camera: Camera</span><br><span class="line">              , private localNotifications: LocalNotifications</span><br><span class="line">              , private toast: Toast</span><br><span class="line">              , private callNumber: CallNumber</span><br><span class="line">              , private flashlight: Flashlight) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ionViewDidLoad() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'ionViewDidLoad NativePage'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleCamera()&#123;</span><br><span class="line">      <span class="keyword">const</span> options: CameraOptions = &#123;</span><br><span class="line">          quality: <span class="number">100</span>,</span><br><span class="line">          destinationType: <span class="keyword">this</span>.camera.DestinationType.DATA_URL,</span><br><span class="line">          encodingType: <span class="keyword">this</span>.camera.EncodingType.JPEG,</span><br><span class="line">          mediaType: <span class="keyword">this</span>.camera.MediaType.PICTURE</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">this</span>.camera.getPicture(options).then(<span class="function">(<span class="params">imageData</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="comment">// imageData is either a base64 encoded string or a file URI</span></span><br><span class="line">          <span class="comment">// If it's base64:</span></span><br><span class="line">          <span class="comment">//let base64Image = 'data:image/jpeg;base64,' + imageData;</span></span><br><span class="line">          alert(<span class="string">'ok'</span>);</span><br><span class="line">      &#125;, (err) =&gt; &#123;</span><br><span class="line">          <span class="comment">// Handle error</span></span><br><span class="line">          alert(err);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleNotification()&#123;</span><br><span class="line">      <span class="keyword">this</span>.localNotifications.schedule(&#123;</span><br><span class="line">          text: <span class="string">'노티!노티!노티!다'</span>,</span><br><span class="line">          at: <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()),</span><br><span class="line">          led: <span class="string">'FF0000'</span>,</span><br><span class="line">          sound: <span class="literal">null</span></span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleToast()&#123;</span><br><span class="line">      <span class="keyword">this</span>.toast.show(<span class="string">`하하|호호|히히`</span>, <span class="string">'5000'</span>, <span class="string">'center'</span>).subscribe(</span><br><span class="line">          toast =&gt; &#123;</span><br><span class="line">              <span class="built_in">console</span>.log(toast);</span><br><span class="line">          &#125;</span><br><span class="line">      );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleFlashlight()&#123;</span><br><span class="line">      <span class="keyword">this</span>.flashlight.toggle();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleCallNumber()&#123;</span><br><span class="line">      <span class="keyword">this</span>.callNumber.callNumber(<span class="string">"18001010101"</span>, <span class="literal">true</span>)</span><br><span class="line">          .then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'Launched dialer!'</span>))</span><br><span class="line">          .catch(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'Error launching dialer'</span>));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="실행"><a href="#실행" class="headerlink" title="실행"></a>실행</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ionic cordova <span class="built_in">emulate</span> ios --target iPhone-8</span><br><span class="line">$ ionic cordova run ios --device</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://ionicframework.com/docs/native/" target="_blank" rel="noopener">https://ionicframework.com/docs/native/</a></li>
+<li><a href="https://ionicframework.com/docs/intro/deploying/" target="_blank" rel="noopener">https://ionicframework.com/docs/intro/deploying/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/29/js-ionic/ionic-native/" data-id="cjv23xme9002pprrari1mhpyg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ionic/">Ionic</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/29/js-ionic/ionic-deploy/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          아이오닉 안드로이드 배포 설정
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/28/js-basic/js-event-scroll/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">자바스크립트 스크롤 이벤트</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ionic/">Ionic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Util/">Util</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Architecture/" style="font-size: 12.86px;">Architecture</a> <a href="/tags/CSS/" style="font-size: 12.86px;">CSS</a> <a href="/tags/CrossBrowsing/" style="font-size: 17.14px;">CrossBrowsing</a> <a href="/tags/DB/" style="font-size: 14.29px;">DB</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/Ionic/" style="font-size: 15.71px;">Ionic</a> <a href="/tags/Javascript/" style="font-size: 12.86px;">Javascript</a> <a href="/tags/JavascriptBasic/" style="font-size: 18.57px;">JavascriptBasic</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Util/" style="font-size: 12.86px;">Util</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/27/js-react/js-react-popup/">리엑트 컴포넌트에서 ajax 호출 방법</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/12/css/css-center/">CSS 셀렉트박스 커스텀</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/14/js-react/js-react-uncontrolled-components/">리엑트 Uncontrolled Components</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/js-basic/js-environment/">자바스크립트 환경</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/30/js-get-string-byte/">자바스크립트 문자열 바이트 계산</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 crontab<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

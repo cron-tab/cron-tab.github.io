@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>crontab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="crontab">
+<meta property="og:url" content="https://cron-tab.github.io/page/5/index.html">
+<meta property="og:site_name" content="crontab">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="crontab">
+  
+    <link rel="alternate" href="/atom.xml" title="crontab" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">crontab</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">crontab&#39;s blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cron-tab.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-js-basic/js-event-scroll" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/28/js-basic/js-event-scroll/" class="article-date">
+  <time datetime="2017-11-28T04:54:49.000Z" itemprop="datePublished">2017-11-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/28/js-basic/js-event-scroll/">자바스크립트 스크롤 이벤트</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="스크롤-이벤트"><a href="#스크롤-이벤트" class="headerlink" title="스크롤 이벤트"></a>스크롤 이벤트</h2><ul>
+<li>document view나 element가 스크롤될 때 이벤트가 발생.</li>
+<li>스크롤 이벤트는 빈번히 발생하기 때문에 DOM 수정과 같은 연산이 많은 작업은 하지 않아야 함.</li>
+<li>requestAnimationFrame, setTimeout, customEvent를 사용하여 이벤트 호출 조절을 추천.  </li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Reference: http://www.html5rocks.com/en/tutorials/speed/animations/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> last_known_scroll_position = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> ticking = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">scroll_pos</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// do something with the scroll position</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  last_known_scroll_position = <span class="built_in">window</span>.scrollY;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!ticking) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">window</span>.requestAnimationFrame(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      doSomething(last_known_scroll_position);</span><br><span class="line">      ticking = <span class="literal">false</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">     </span><br><span class="line">    ticking = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/28/js-basic/js-event-scroll/" data-id="cjv23xmdy0023prra70bykwt2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-basic/js" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/17/js-basic/js/" class="article-date">
+  <time datetime="2017-11-17T00:40:49.000Z" itemprop="datePublished">2017-11-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/17/js-basic/js/">자바스크립트</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="이벤트-선임-Event-Delegation"><a href="#이벤트-선임-Event-Delegation" class="headerlink" title="이벤트 선임 Event Delegation"></a>이벤트 선임 Event Delegation</h2><h2 id="Attribute-Property"><a href="#Attribute-Property" class="headerlink" title="Attribute Property"></a>Attribute Property</h2><ul>
+<li>Attribute: HTML 요소. 사용자 인테렉션에 변하지 않음 </li>
+<li>Property: HTML DOM Tree 요소. 사용자 인터렉션에 의해 값이 변함</li>
+</ul>
+<h1 id="document-Road-DOM-Ready"><a href="#document-Road-DOM-Ready" class="headerlink" title="document Road, DOM Ready"></a>document Road, DOM Ready</h1><ul>
+<li>ready: DOM Tree가 완료</li>
+<li>load:  css,js,image,iframe들이 메모리에 올라간다음 실행</li>
+</ul>
+<h2 id="자바스크립트-객체"><a href="#자바스크립트-객체" class="headerlink" title="자바스크립트 객체"></a>자바스크립트 객체</h2><ul>
+<li><p>Built-in Object 자바스크립트 내장 객체<br>Global,Object, String, Number, Boolean, Date, Array, Math, RegExp, Error 등<br>자바스크립트 엔진이 구동되는 시점에 바로 제공</p>
+</li>
+<li><p>Native Objet 브라우저 내장 객체<br>DOM, BOM </p>
+</li>
+<li><p>Host Object 사용자 정의 객체<br>사용자가 생성한 객</p>
+</li>
+</ul>
+<h2 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a>jsonp</h2><ul>
+<li>GET 요청만 가능</li>
+<li>무조건 비동기 처리.  async:false 가 되지 않음리</li>
+<li>JSONP 요청시 Browser UI Thread가 멈춤</li>
+</ul>
+<h1 id="프로토타입-Prototype"><a href="#프로토타입-Prototype" class="headerlink" title="프로토타입 Prototype"></a>프로토타입 Prototype</h1><ul>
+<li>함수 정의시 같이 생성</li>
+<li>해당 참조 타입의 인스턴스가 가져야할 프로퍼티와 메서드를 담고 있는 객체</li>
+</ul>
+<h1 id="얕은-복사-깊은-복사-shallow-copy-deep-copy"><a href="#얕은-복사-깊은-복사-shallow-copy-deep-copy" class="headerlink" title="얕은 복사, 깊은 복사 shallow copy , deep copy"></a>얕은 복사, 깊은 복사 shallow copy , deep copy</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 배열 deep copy</span></span><br><span class="line"><span class="keyword">var</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> shallow = array;</span><br><span class="line"><span class="keyword">var</span> deepArray = <span class="built_in">Array</span>.prototype.slice.call(array);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 함수에서 deep copy</span></span><br><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> deepFunc = func.bind(<span class="keyword">this</span>);    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment">// 객체에서 deep copy</span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clone</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj === <span class="literal">null</span> || <span class="keyword">typeof</span>(obj) !== <span class="string">'object'</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> obj;        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> deepObj = &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> attr <span class="keyword">in</span> obj) &#123;</span><br><span class="line">        <span class="comment">// prototype에 있는 상속된 객체의 속성도 반복 되기 때문에</span></span><br><span class="line">        <span class="comment">// 해당 객체의 속성만 복사</span></span><br><span class="line">        <span class="keyword">if</span> (obj.hasOwnProperty(attr)) &#123;</span><br><span class="line">	    	deepObj[attr] = clone(obj[attr]);                </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> deepObj;</span><br><span class="line">&#125;    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">foo</span>: <span class="string">'boo'</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> deepObj = clone(obj);</span><br></pre></td></tr></table></figure>
+<h1 id="유사배열"><a href="#유사배열" class="headerlink" title="유사배열"></a>유사배열</h1><p>Array.isArray로 배열 여부 판단</p>
+<p>Function arguments, dom select시 []안에 있지만 배열은 아님</p>
+<p>그래서 배열 prototype에 있는 forEach같은 메서드를 바로 사용 불가</p>
+<h2 id="실행-컨텍스트-Execution-Context"><a href="#실행-컨텍스트-Execution-Context" class="headerlink" title="실행 컨텍스트 Execution Context"></a>실행 컨텍스트 Execution Context</h2><h3 id="스코프-Scope"><a href="#스코프-Scope" class="headerlink" title="스코프 Scope"></a>스코프 Scope</h3><h1 id="부동소수점-계산"><a href="#부동소수점-계산" class="headerlink" title="부동소수점 계산"></a>부동소수점 계산</h1><h1 id="호이스팅-Hoisting"><a href="#호이스팅-Hoisting" class="headerlink" title="호이스팅 Hoisting"></a>호이스팅 Hoisting</h1><p>var 변수 선언은 최상위에 선언된 것과 동일함</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="string">'outer scope'</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x); <span class="comment">// undefined</span></span><br><span class="line">  <span class="keyword">var</span> x = <span class="string">'inner scope'</span>;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 위는 아래와 같은 의미를 가진다.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> x = <span class="string">'outer scope'</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x;</span><br><span class="line">  <span class="built_in">console</span>.log(x); <span class="comment">// undefined</span></span><br><span class="line">  x = <span class="string">'inner scope'</span>;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">foo = <span class="string">'bar'</span>;</span><br><span class="line"><span class="keyword">var</span> foo;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 위는 아래와 같은 의미를 가진다.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo;</span><br><span class="line">foo = <span class="string">'bar'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// const, let은 </span></span><br><span class="line"><span class="built_in">console</span>.log(x); <span class="comment">// throws a ReferenceError</span></span><br><span class="line"><span class="keyword">const</span> x = <span class="string">'hey'</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="TDZ-Temporal-Dead-Zone"><a href="#TDZ-Temporal-Dead-Zone" class="headerlink" title="TDZ (Temporal Dead Zone)"></a>TDZ (Temporal Dead Zone)</h1><h1 id="함수-Function"><a href="#함수-Function" class="headerlink" title="함수 Function"></a>함수 Function</h1><h2 id="함수-끌어-올림-Function-Hoisting"><a href="#함수-끌어-올림-Function-Hoisting" class="headerlink" title="함수 끌어 올림 Function Hoisting"></a>함수 끌어 올림 Function Hoisting</h2><ul>
+<li>함수 선언부를 함수 호출보다 먼저 읽고 실행</li>
+<li>함수 표현식은 해당하지 않음</li>
+</ul>
+<h2 id="함수-call-apply-bind"><a href="#함수-call-apply-bind" class="headerlink" title="함수 call, apply, bind"></a>함수 call, apply, bind</h2><ul>
+<li>call(this, 1,2,3) 함수 호출</li>
+<li>apply(this, [1,2,3]) 함수 호출</li>
+<li>bind(this): 호출은 하지 않고 컨텍스트 변환된 함수 반환</li>
+</ul>
+<h1 id="클로저-Closure"><a href="#클로저-Closure" class="headerlink" title="클로저 Closure"></a>클로저 Closure</h1><ul>
+<li>내부함수에서 외부함수의 인자를 접근할 수 있는 것</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/17/js-basic/js/" data-id="cjv23xme5002hprrajolgx9g4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-basic/js-context" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/16/js-basic/js-context/" class="article-date">
+  <time datetime="2017-11-16T04:39:39.000Z" itemprop="datePublished">2017-11-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/16/js-basic/js-context/">자바스크립트 컨텍스트</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="원시값-참조값"><a href="#원시값-참조값" class="headerlink" title="원시값, 참조값"></a>원시값, 참조값</h2><ul>
+<li>변수는 원시 값과 참조 값 두 가지 타입을 저장</li>
+<li>원시 값: Undefined, Null, Boolean, Number, String, 스택 영역에 저장</li>
+<li>참조 값: 메모리에 저장된 객체, 자바스크립트는 메모리에 직접 접근 불가, 힙 영역에 저장</li>
+</ul>
+<h2 id="동적-프로퍼티"><a href="#동적-프로퍼티" class="headerlink" title="동적 프로퍼티"></a>동적 프로퍼티</h2><ul>
+<li>참조 값을 다룰 때는 언제든지 프로퍼티와 메서드를 조작할 수 있다</li>
+</ul>
+<h2 id="값-복사"><a href="#값-복사" class="headerlink" title="값 복사"></a>값 복사</h2><ul>
+<li>원시 값을 다른 변수로 복사할 때는 현재 저장된 값을 새로 생성한 다음 새로운 변수에 복사</li>
+<li>참조 값을 다른 변수로 복사하면 원래 변수에 들어있던 힙에 저장된 객체를 가리키는 포인터가 복사</li>
+</ul>
+<p>힙: 어플리케이션이 운영체제로 부터 미리 할당받는 메모리 (브라우저가 쓰는 메모리)</p>
+<h2 id="실행-컨텍스트-execution-context-와-스코프-scope"><a href="#실행-컨텍스트-execution-context-와-스코프-scope" class="headerlink" title="실행 컨텍스트(execution context)와 스코프(scope)"></a>실행 컨텍스트(execution context)와 스코프(scope)</h2><h3 id="변수-객체-variable-object"><a href="#변수-객체-variable-object" class="headerlink" title="변수 객체 (variable object)"></a>변수 객체 (variable object)</h3><ul>
+<li>실행 컨텍스트에는 변수 객체(variable object)가 연결되어 있으며 해당 컨텍스트에서 정의된 모든 변수와 함수는 이 객체에 존재</li>
+<li>코드에서 접근할 수 없지만 이면에서 데이터를 다룰 때 사용</li>
+</ul>
+<h3 id="전역-컨텍스트-Global-Context"><a href="#전역-컨텍스트-Global-Context" class="headerlink" title="전역 컨텍스트(Global Context)"></a>전역 컨텍스트(Global Context)</h3><ul>
+<li>전역변수와 전역함수는 전역 컨텍스트(window)의 프로퍼티 및 메서드로 생성</li>
+<li>웹브라우저가 종료될 때까지 유지<h3 id="실행-컨텍스트-Execution-Context"><a href="#실행-컨텍스트-Execution-Context" class="headerlink" title="실행 컨텍스트(Execution Context)"></a>실행 컨텍스트(Execution Context)</h3></li>
+<li>실행 컨텍스트가 포함된 코드가 모두 실행될 때 파괴 , 해당 컨텍스트 내부에서 정의된 변수와 함수도 파괴</li>
+<li>변수에 할당된 메모리를 언제 해제할 수 있는지 판단하는데 도움</li>
+</ul>
+<h3 id="스코프-체인-Scope-Chain"><a href="#스코프-체인-Scope-Chain" class="headerlink" title="스코프 체인(Scope Chain)"></a>스코프 체인(Scope Chain)</h3><ul>
+<li>컨텍스트에서 코드를 실행하면 변수 객체에 생성</li>
+<li>실행 컨텍스트가 접근할 수 있는 모든 변수와 함수에 순서를 정의</li>
+<li>스코프 체인의 앞쪽은 항상 코드가 실행되는 컨텍스트의 변수 객체</li>
+<li>컨텍스트가 함수라면 활성화 객체(Activation Object)를 변수 객체로 사용</li>
+<li>활성화 객체는 argument 변수 단 하나로 시작 (전역 컨텍스트에서는 존재하지 않음)</li>
+<li>변수 객체의 다음 순서는 부모 컨텍스트 그 다음은 부모의 부모 컨텍스트 최종 전역 컨텍스트</li>
+<li>전역 컨텍스트의 변수 객체는 항상 스코프 체인의 마지막에 존재</li>
+<li>각 컨텍스트는 스코프 체인을 따라 상위 컨텍스트에서 변수나 함수를 검색 반대로는 안됨</li>
+</ul>
+<h3 id="블록-레벨-스코프가-없다"><a href="#블록-레벨-스코프가-없다" class="headerlink" title="블록 레벨 스코프가 없다"></a>블록 레벨 스코프가 없다</h3><ul>
+<li>var를 사용해 선언한 변수는 자동으로 가장 가까운 컨텍스트에 추가<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">	doSomething(i);</span><br><span class="line">&#125;</span><br><span class="line">alert(i); <span class="comment">//10</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/16/js-basic/js-context/" data-id="cjv23xmdw001zprrabzx0nlci" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-basic/js-prototype" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/15/js-basic/js-prototype/" class="article-date">
+  <time datetime="2017-11-15T06:27:17.000Z" itemprop="datePublished">2017-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/15/js-basic/js-prototype/">자바스크립트 프로토타입</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="프로토타입"><a href="#프로토타입" class="headerlink" title="프로토타입"></a>프로토타입</h2><ul>
+<li>모든 함수는 prototype 프로퍼티를 가짐</li>
+<li>prototype은 해당 참조 타입의 인스턴스가 가져야할 프로퍼티와 메서드를 담고 있는 객체</li>
+<li><p>prototype의 프로퍼티와 메서드는 객체 인스턴스 전체에서 공유</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.name = <span class="string">"Nicholas"</span>;</span><br><span class="line">Person.prototype.age = <span class="number">29</span>;</span><br><span class="line">Person.prototype.job = <span class="string">"Software Engineer"</span>;</span><br><span class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line">person1.sayName(); <span class="comment">// Nicholas</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br><span class="line">person2.sayName(); <span class="comment">// Nicholas</span></span><br><span class="line"></span><br><span class="line">alert(person1.sayName == person2.sayName); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>constructor 프로퍼티는 프로토타입에만 존재</p>
+</li>
+<li>객체 인스턴스에서 프로토타입의 값은 읽을 수 있지만 수정 불가</li>
+<li>프로토타입의 프로퍼티와 같은 이름의 프로퍼티를 인스턴스에 추가하면 해당 프로퍼티는 프로토타입까지 가지 않음</li>
+</ul>
+<h2 id="프로토타입2"><a href="#프로토타입2" class="headerlink" title="프로토타입2"></a>프로토타입2</h2><ul>
+<li>모든 객체의 조상은 함수</li>
+<li>함수 정의시 prototype object도 같이 생성</li>
+<li>prototype object는 constructor와 prototype link(<strong>proto</strong>)를 가지고 있음</li>
+</ul>
+<p>-<a href="https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67" target="_blank" rel="noopener">https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/15/js-basic/js-prototype/" data-id="cjv23xme3002dprrayu9vnm3b" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-basic/js-function" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/15/js-basic/js-function/" class="article-date">
+  <time datetime="2017-11-15T06:20:37.000Z" itemprop="datePublished">2017-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/15/js-basic/js-function/">자바스크립트 함수</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Parameter와-Argument"><a href="#Parameter와-Argument" class="headerlink" title="Parameter와 Argument"></a>Parameter와 Argument</h2><ul>
+<li>parameter는 함수를 정의할 대 사용.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">param1, param2</span>) </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Argument 는 함수를 호출할 때 사용.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo(<span class="number">3</span>, <span class="number">7</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="함수-정의-방법-2가지"><a href="#함수-정의-방법-2가지" class="headerlink" title="함수 정의 방법 2가지"></a>함수 정의 방법 2가지</h2><ul>
+<li><p>함수 선언 (Function Declarations)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">functionName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>함수 표현식 (Function Expression)<br>함수 표현식에서의 함수는 익명함수로 간주됨 ( 람다 함수라고 부르기도 함 )<br>반드시 호출 하기전에 할당해야 함<br>​<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> functionName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h2 id="함수-호이스팅-hoisting"><a href="#함수-호이스팅-hoisting" class="headerlink" title="함수 호이스팅(hoisting)"></a>함수 호이스팅(hoisting)</h2><ul>
+<li><p>함수 선언부를 함수 호출보다 먼저 읽고 실행<br>​<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sayHi();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">'Hi'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>함수 표현식에서는 에러 발생</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sayHi(); <span class="comment">// 에러 발생</span></span><br><span class="line"><span class="keyword">var</span> sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="string">'Hi'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>절대 해서는 안되는 방식<br>함수 선언은 호이스팅이 되기 때문에 브라우저마다 처리되는 방식이 다름  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(condition)&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Hi'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Yo'</span>);  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>함수 표현식을 할당을 통한 방식은 안전함</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// condition에 따라 함수 표현식 할당</span></span><br><span class="line"><span class="keyword">var</span> sayHi;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(condition)&#123;</span><br><span class="line">  sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Hi'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Yo'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="재귀"><a href="#재귀" class="headerlink" title="재귀"></a>재귀</h2><p>arguments.callee는 현재 실행중인 함수를 가리키는 포인터<br>재귀함수를 사용할 때 항상 자신을 호출하는 이름대신 arguments.callee를 써야 안전함<br>실행 중 호출하는 함수가 지워지거나 변경 되었을 때를 예방</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> num * <span class="built_in">arguments</span>.callee(num<span class="number">-1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 스트릭 모드에서는 arguments.callee 값에 접근할 수 없어 에러가 발생</span></span><br><span class="line"><span class="comment">// 함수 표현식으로 사용해야 함</span></span><br><span class="line"><span class="keyword">var</span> factorialExpression = (<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> num * <span class="built_in">arguments</span>.callee(num<span class="number">-1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="클로저"><a href="#클로저" class="headerlink" title="클로저"></a>클로저</h2><ul>
+<li>다른 함수의 스코프에 있는 변수에 접근 가능한 함수</li>
+<li>함수 호출시 실행 컨텍스트와 스코프 체인이 생성</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/15/js-basic/js-function/" data-id="cjv23xme10029prraozf819i9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-scroll-disable" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/15/js-scroll-disable/" class="article-date">
+  <time datetime="2017-11-15T05:58:05.000Z" itemprop="datePublished">2017-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/15/js-scroll-disable/">자바스크립트로 스크롤 비활성화 시키기</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">preventDefault</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">disableScroll</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.body.addEventListener(<span class="string">'touchmove'</span>, preventDefault, &#123; <span class="attr">passive</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">enableScroll</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.body.removeEventListener(<span class="string">'touchmove'</span>, preventDefault, &#123; <span class="attr">passive</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/15/js-scroll-disable/" data-id="cjv23xmcf000hprraadoezf8s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-basic/js-property" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/15/js-basic/js-property/" class="article-date">
+  <time datetime="2017-11-15T01:47:54.000Z" itemprop="datePublished">2017-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/15/js-basic/js-property/">자바스크립트 프로퍼티</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="6-객체-지향-프로그래밍"><a href="#6-객체-지향-프로그래밍" class="headerlink" title="6. 객체 지향 프로그래밍"></a>6. 객체 지향 프로그래밍</h2><ul>
+<li>ECMAScript에는 클래스라는 개념이 없으며 ECMAScript의 객체는 다른 클래스 기반 언어와 다름</li>
+<li>ECMA-262는 객체를 “프로퍼티의 순서 없는 컬렉션이며 각 프로퍼티는 원시 값이나 객체 함수를 포함한다”라고 정의</li>
+<li>객체가 특별한 순서가 없는 값의 배열</li>
+<li>각 프로퍼티와 메서드는 이름으로 구별, 값에 대응 </li>
+<li>해시테이블 , 이름-값 쌍의 그룹이며 각 값은 데이터나 함수가 될 수 있음</li>
+<li>모든 객체는 참조 타입을 바탕으로 생성</li>
+</ul>
+<h3 id="프로퍼티-타임"><a href="#프로퍼티-타임" class="headerlink" title="프로퍼티 타임"></a>프로퍼티 타임</h3><h4 id="1-데이터-프로퍼티"><a href="#1-데이터-프로퍼티" class="headerlink" title="1. 데이터 프로퍼티"></a>1. 데이터 프로퍼티</h4><h5 id="Configurable"><a href="#Configurable" class="headerlink" title="[[Configurable]]"></a>[[Configurable]]</h5><ul>
+<li>default: true</li>
+<li>delete를 통해 삭제, 프로퍼티 속성 변경, 접근자 프로퍼티로 변환 여부</li>
+<li>false로 설정하면 다시는 수정할 수 없음 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperties(person, <span class="string">"name"</span>, &#123;</span><br><span class="line">	configurable: <span class="literal">false</span>,</span><br><span class="line">	value: <span class="string">"Nicholas"</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert(person.name); <span class="comment">// Nicholas</span></span><br><span class="line"><span class="keyword">delete</span> person.name; </span><br><span class="line">alert(person.name); <span class="comment">// Nicholas</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperties(person, <span class="string">"name"</span>, &#123;</span><br><span class="line">	configurable: <span class="literal">true</span>,</span><br><span class="line">	value: <span class="string">"Nicholas"</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 에러 발생</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="Enumerable"><a href="#Enumerable" class="headerlink" title="[[Enumerable]]"></a>[[Enumerable]]</h5><ul>
+<li>default: true</li>
+<li>for-in 루프에서 해당 프로퍼티를 반환 여부 </li>
+</ul>
+<h5 id="Writable"><a href="#Writable" class="headerlink" title="[[Writable]]"></a>[[Writable]]</h5><ul>
+<li>default: true</li>
+<li>프로퍼티의 값을 바꿀 수 있음<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperties(person, <span class="string">"name"</span>, &#123;</span><br><span class="line">	writable: <span class="literal">false</span>,</span><br><span class="line">	value: <span class="string">"Nicholas"</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert(person.name); <span class="comment">// Nicholas</span></span><br><span class="line">person.name = <span class="string">"Greg"</span>; </span><br><span class="line">alert(person.name); <span class="comment">// Nicholas</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="Value"><a href="#Value" class="headerlink" title="[[Value]]"></a>[[Value]]</h5><ul>
+<li>default: undefined</li>
+<li>프로퍼티의 실제 데이터 값을 포함</li>
+</ul>
+<h4 id="접근자-프로퍼티"><a href="#접근자-프로퍼티" class="headerlink" title="접근자 프로퍼티"></a>접근자 프로퍼티</h4><ul>
+<li>데이터 값이 들어 있지 않고 getter, setter 함수로 구성</li>
+<li>접근자 프로퍼티를 명시적으로 정의할 수는 없음</li>
+<li>반드시 Object.definedProperty()를 사용, 지원하지 않는 경우 [[Configurable]] [[Enumerable]]을 수정할 수 없음 </li>
+<li>이전 버전 –defineGetter. __defineSetter<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">	_year: <span class="number">2004</span>,</span><br><span class="line">	edition: <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(book, <span class="string">"year"</span>, &#123;</span><br><span class="line">	get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>._year;</span><br><span class="line">	&#125;,</span><br><span class="line">	set: <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</span><br><span class="line">	  <span class="keyword">if</span>(newValue &gt; <span class="number">2004</span>)&#123;</span><br><span class="line">	  	<span class="keyword">this</span>._year = newValue;</span><br><span class="line">	  	<span class="keyword">this</span>.edition += newValue - <span class="number">2004</span>;</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">book.year = <span class="number">2005</span>;</span><br><span class="line">alert(book.edition);  <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="프로토타입-패턴"><a href="#프로토타입-패턴" class="headerlink" title="프로토타입 패턴"></a>프로토타입 패턴</h2><ul>
+<li>모든 함수는 prototype 프로퍼티를 가짐</li>
+<li>프로토타입의 프로퍼티와 메서드는 객체 인스턴스 전체에서 공유됨</li>
+</ul>
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><ul>
+<li>프론트엔드 개발자를 위한 자바스크립트 프로그래밍</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/15/js-basic/js-property/" data-id="cjv23xme2002bprra1tz5tioo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-front-v8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/14/front-v8/" class="article-date">
+  <time datetime="2017-11-14T06:51:45.000Z" itemprop="datePublished">2017-11-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/14/front-v8/">front-v8</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="V8-엔진"><a href="#V8-엔진" class="headerlink" title="V8 엔진"></a>V8 엔진</h1><h2 id="JIT-just-in-time"><a href="#JIT-just-in-time" class="headerlink" title="JIT(just-in-time)"></a>JIT(just-in-time)</h2><p>자바스크립트 엔진은 자바스크립트 코드를 실행하는 인터프리터 입니다.<br>자바스크립트 엔진은 표준 인터프리터로 구현될 수 있으며, 혹은 바이트코드로 컴파일 하는 just-in-time 컴파일러입니다.</p>
+<p>다음은 인기있는 자바스크립트 엔진 목록입니다.</p>
+<ul>
+<li>V8 — open source, developed by Google, written in C++</li>
+<li>Rhino — managed by the Mozilla Foundation, open source, developed entirely in Java</li>
+<li>SpiderMonkey — the first JavaScript engine, which back in the days powered Netscape Navigator, and today powers Firefox</li>
+<li>JavaScriptCore — open source, marketed as Nitro and developed by Apple for Safari</li>
+<li>KJS — KDE’s engine originally developed by Harri Porten for the KDE project’s Konqueror web browser</li>
+<li>Chakra (JScript9) — Internet Explorer</li>
+<li>Chakra (JavaScript) — Microsoft Edge</li>
+<li>Nashorn, open source as part of OpenJDK, written by Oracle Java Languages and Tool Group</li>
+<li>JerryScript — is a lightweight engine for the Internet of Things</li>
+</ul>
+<h2 id="V8-엔진이-만들어진-이유는-무엇일까요"><a href="#V8-엔진이-만들어진-이유는-무엇일까요" class="headerlink" title="V8 엔진이 만들어진 이유는 무엇일까요?"></a>V8 엔진이 만들어진 이유는 무엇일까요?</h2><p>구글이 만든 V8엔진은 오픈소스이며 C++로 작성되었습니다.<br>이 엔진은 구글 크롬 브라우저에서 사용됩니다. 나머지 엔진들과 달리 노드 JS 런타입으로도 사용됩니다.<br>최초 v8 엔진은 웹 브라우저안에서 자바스크립트 실행 속도를 향상 시키기 위해 만들어 졌습니다.<br>속도를 얻기 위해서 V8 엔진은 인터프리터를 쓰는 대신 자바스크립트 코드를 보다 효율적인 기계어로 변환합니다.<br>SpiderMonkey 나 Rhino (모질라)와 같은 많은 최신 자바 스크립트 엔진처럼 JIT (Just-In-Time) 컴파일러를 구현하여 실행시 JavaScript 코드를 기계 코드로 컴파일합니다.<br>주된 차이점은 V8이 바이트 코드 또는 중간 코드를 생성하지 않는다는 것입니다.</p>
+<h2 id="Hidden-class"><a href="#Hidden-class" class="headerlink" title="Hidden class"></a>Hidden class</h2><p>V8은 런타임에 객체를 처리하기 위해 내부적으로 hidden class를 만들어서 가지고 있고,<br>같은 hidden class를 가지고 있는 객체는 다음 번에도 동일한 최적화된 코드를 사용할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.x = x;</span><br><span class="line">  <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Point(<span class="number">11</span>, <span class="number">22</span>);</span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Point(<span class="number">33</span>, <span class="number">44</span>);</span><br><span class="line"><span class="comment">// 여기에서 p1과 p2는 hidden class를 공유합니다.</span></span><br><span class="line">p2.z = <span class="number">55</span>;</span><br><span class="line"><span class="comment">// 경고! p1과 p2는 이제 다른 hidden class를 갖습니다.</span></span><br></pre></td></tr></table></figure>
+<p>객체 인스턴스 p2에 멤버 “.z”를 추가하기 전까지, p1과 p2는 내부적으로 같은 hidden class를 갖습니다. 이로써 V8은 p1이나 p2를 다루는 JavaScript 코드에 대한 단일 버전의 최적화된 어셈블리어를 만들 수 있습니다. 같은 JavaSript 코드의 hidden class가 서로 달라지는 원인을 찾아서 막을 수 있다면, 더 좋은 성능을 얻을 수 있습니다.</p>
+<p>모든 객체 멤버를 생성자 함수 안에서 초기화하세요(그래야 나중에 인스턴스가 멤버의 데이터 타입을 변경하지 않습니다).<br>항상 같은 순서로 객체 멤버를 초기화합니다.</p>
+<h2 id="Numbers"><a href="#Numbers" class="headerlink" title="Numbers"></a>Numbers</h2><p>일반적으로 적합하다면, 31비트 부호있는 정수를 사용하는 것이 최적입니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">42</span>;  <span class="comment">// 31비트 부호있는 정수입니다.</span></span><br><span class="line"><span class="keyword">var</span> j = <span class="number">4.2</span>;  <span class="comment">// 이 값은 double 타입의 부동 소수점 숫자 데이터입니다.</span></span><br></pre></td></tr></table></figure>
+<h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><p>large 과 sparse 배열 처리를 위한 두 가지 유형의 배열 저장소가 내부에 있습니다.</p>
+<ul>
+<li>Fast Elements: linear storage for compact key sets</li>
+<li>Dictionary Elements: hash table storage otherwise</li>
+</ul>
+<p>배열 저장소가 한 유형에서 다른 유형으로 변경되지 않게 하는 것이 가장 좋습니다.</p>
+<p>배열의 경우 0부터 시작하는 연속 키 사용<br>대규모 배열 (예 :&gt; 64K 요소)을 최대 크기로 사전 할당<br>배열 삭제<br>초기화된지 않거나 삭제된 요소를 로드 </p>
+<h2 id="Rreference"><a href="#Rreference" class="headerlink" title="Rreference"></a>Rreference</h2><ul>
+<li><a href="https://blog.sessionstack.com/how-javascript-works-inside-the-v8-engine-5-tips-on-how-to-write-optimized-code-ac089e62b12e" target="_blank" rel="noopener">https://blog.sessionstack.com/how-javascript-works-inside-the-v8-engine-5-tips-on-how-to-write-optimized-code-ac089e62b12e</a></li>
+<li><a href="http://meetup.toast.com/posts/77" target="_blank" rel="noopener">http://meetup.toast.com/posts/77</a></li>
+<li><a href="https://www.youtube.com/watch?v=UJPdhx5zTaw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=UJPdhx5zTaw</a></li>
+<li><a href="https://www.html5rocks.com/ko/tutorials/speed/v8/" target="_blank" rel="noopener">https://www.html5rocks.com/ko/tutorials/speed/v8/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/14/front-v8/" data-id="cjv23xmbu0000prra5vk89muk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-tech-blog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/14/tech-blog/" class="article-date">
+  <time datetime="2017-11-14T02:15:09.000Z" itemprop="datePublished">2017-11-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/14/tech-blog/">tech-blog</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="http://tech.kakao.com" target="_blank" rel="noopener">http://tech.kakao.com</a></li>
+<li><a href="http://d2.naver.com" target="_blank" rel="noopener">http://d2.naver.com</a></li>
+<li><a href="http://meetup.toast.com" target="_blank" rel="noopener">http://meetup.toast.com</a></li>
+<li><a href="https://blog.mozilla.org" target="_blank" rel="noopener">https://blog.mozilla.org</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/14/tech-blog/" data-id="cjv23xmcj000pprraj25yrfbg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-basic/js-event" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/14/js-basic/js-event/" class="article-date">
+  <time datetime="2017-11-14T01:01:36.000Z" itemprop="datePublished">2017-11-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/14/js-basic/js-event/">자바스크립트 이벤트</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="이벤트"><a href="#이벤트" class="headerlink" title="이벤트"></a>이벤트</h2><ul>
+<li>자바스크립트와 HTML의 상호작용은 이벤트에 의해 처리된다.</li>
+<li>이벤트는 리스너(핸들러)로 추적하며 이벤트가 일어날 때만 실행되는 옵저버 패턴이다.</li>
+<li>이벤트를 처음 도입한 브라우저는 익스플러러 3, 넷스케이프 2</li>
+<li>익스플러러4와 넷스케이프4가 출시 되면서 다른 이벤트 API를 도입</li>
+<li>주요 브라우저 중에서 전용 이벤트 시스템만 사용한 브라우저는 인터넷 익스플로러 8이 마지막</li>
+<li>DOM레벨3로 확장과 DOM과 BOM이벤트 사이의 관계를 정의한 문서가 없어 계속 복잡함.</li>
+<li>익스플로러는 이벤트 버블링, 넷스케이프는 이벤트 캡처링 지원</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/14/js-basic/js-event/" data-id="cjv23xmdz0025prran4lfxngq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ionic/">Ionic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Util/">Util</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Architecture/" style="font-size: 12.86px;">Architecture</a> <a href="/tags/CSS/" style="font-size: 12.86px;">CSS</a> <a href="/tags/CrossBrowsing/" style="font-size: 17.14px;">CrossBrowsing</a> <a href="/tags/DB/" style="font-size: 14.29px;">DB</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/Ionic/" style="font-size: 15.71px;">Ionic</a> <a href="/tags/Javascript/" style="font-size: 12.86px;">Javascript</a> <a href="/tags/JavascriptBasic/" style="font-size: 18.57px;">JavascriptBasic</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Util/" style="font-size: 12.86px;">Util</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/27/js-react/js-react-popup/">리엑트 컴포넌트에서 ajax 호출 방법</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/12/css/css-center/">CSS 셀렉트박스 커스텀</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/14/js-react/js-react-uncontrolled-components/">리엑트 Uncontrolled Components</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/js-basic/js-environment/">자바스크립트 환경</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/30/js-get-string-byte/">자바스크립트 문자열 바이트 계산</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 crontab<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

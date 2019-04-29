@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>삼성 sbrowser 버그 정리 | crontab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="삼성 핸드폰에서만 글자간격이 맞지 않는 이유삼성은 자체 브라우저인 sbrower를 사용한다. 그래서 크롬에서 개발한 웹페이지가 삼성 단말에서 깨져 보이는 경우가 있는데 그건 line-height를 각 요소마다 지정해주면 막을 수 있다. 엘지는 크롬에서 개발한 것과 동일하게 보여준다. 엘지는 자체 브라우저가 아닌 크롬을 사용하기 때문인거 같다. 갤럭시 노트4">
+<meta name="keywords" content="CrossBrowsing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="삼성 sbrowser 버그 정리">
+<meta property="og:url" content="https://cron-tab.github.io/2017/11/09/crossbrowsing/mobile-sbrowser-bug/index.html">
+<meta property="og:site_name" content="crontab">
+<meta property="og:description" content="삼성 핸드폰에서만 글자간격이 맞지 않는 이유삼성은 자체 브라우저인 sbrower를 사용한다. 그래서 크롬에서 개발한 웹페이지가 삼성 단말에서 깨져 보이는 경우가 있는데 그건 line-height를 각 요소마다 지정해주면 막을 수 있다. 엘지는 크롬에서 개발한 것과 동일하게 보여준다. 엘지는 자체 브라우저가 아닌 크롬을 사용하기 때문인거 같다. 갤럭시 노트4">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://cron-tab.github.io/img/sbrowserbug.png">
+<meta property="og:updated_time" content="2019-04-29T08:02:35.146Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="삼성 sbrowser 버그 정리">
+<meta name="twitter:description" content="삼성 핸드폰에서만 글자간격이 맞지 않는 이유삼성은 자체 브라우저인 sbrower를 사용한다. 그래서 크롬에서 개발한 웹페이지가 삼성 단말에서 깨져 보이는 경우가 있는데 그건 line-height를 각 요소마다 지정해주면 막을 수 있다. 엘지는 크롬에서 개발한 것과 동일하게 보여준다. 엘지는 자체 브라우저가 아닌 크롬을 사용하기 때문인거 같다. 갤럭시 노트4">
+<meta name="twitter:image" content="https://cron-tab.github.io/img/sbrowserbug.png">
+  
+    <link rel="alternate" href="/atom.xml" title="crontab" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">crontab</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">crontab&#39;s blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cron-tab.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-crossbrowsing/mobile-sbrowser-bug" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/09/crossbrowsing/mobile-sbrowser-bug/" class="article-date">
+  <time datetime="2017-11-09T08:21:39.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      삼성 sbrowser 버그 정리
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="삼성-핸드폰에서만-글자간격이-맞지-않는-이유"><a href="#삼성-핸드폰에서만-글자간격이-맞지-않는-이유" class="headerlink" title="삼성 핸드폰에서만 글자간격이 맞지 않는 이유"></a>삼성 핸드폰에서만 글자간격이 맞지 않는 이유</h2><p>삼성은 자체 브라우저인 sbrower를 사용한다.</p>
+<p>그래서 크롬에서 개발한 웹페이지가 삼성 단말에서 깨져 보이는 경우가 있는데</p>
+<p>그건 line-height를 각 요소마다 지정해주면 막을 수 있다.</p>
+<p>엘지는 크롬에서 개발한 것과 동일하게 보여준다.</p>
+<p>엘지는 자체 브라우저가 아닌 크롬을 사용하기 때문인거 같다.</p>
+<h2 id="갤럭시-노트4-셀렉트박스-버그"><a href="#갤럭시-노트4-셀렉트박스-버그" class="headerlink" title="갤럭시 노트4 셀렉트박스 버그"></a>갤럭시 노트4 셀렉트박스 버그</h2><p>노트4 sbrower 네이티브 셀렉트 박스 UI는 아래와 같다.<br>유독 노트4 sbrowser에서 셀렉트박스가 정상 작동하지 않는다.<br>사용자가 셀렉트박스 항목을 선택하면 셀렉트 박스가 사라져야하는데 사라지지 않는다.</p>
+<p>크롬 디버그로 잡아서 강제로 reload, history.back(), focus, click등의 이벤트를 줘도 사라지지 않았다.<br>네이버도 에러 처리를 따로 하지 않은듯 하다.</p>
+<p>노트4 유저가 많다면 셀렉트박스 UI를 사용하지 않던지, DIV로 만들어서 사용해야 한다.</p>
+<p><img src="/img/sbrowserbug.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2017/11/09/crossbrowsing/mobile-sbrowser-bug/" data-id="cjv23xmdi001aprrav7rofai9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/09/crossbrowsing/mobile-android/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          안드로이드 브라우저와 웹뷰는 같은가?
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/07/js-basic/js-event-binding/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">자바스크립트 이벤트 바인딩</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ionic/">Ionic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Util/">Util</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Architecture/" style="font-size: 12.86px;">Architecture</a> <a href="/tags/CSS/" style="font-size: 12.86px;">CSS</a> <a href="/tags/CrossBrowsing/" style="font-size: 17.14px;">CrossBrowsing</a> <a href="/tags/DB/" style="font-size: 14.29px;">DB</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/Ionic/" style="font-size: 15.71px;">Ionic</a> <a href="/tags/Javascript/" style="font-size: 12.86px;">Javascript</a> <a href="/tags/JavascriptBasic/" style="font-size: 18.57px;">JavascriptBasic</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Util/" style="font-size: 12.86px;">Util</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/27/js-react/js-react-popup/">리엑트 컴포넌트에서 ajax 호출 방법</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/12/css/css-center/">CSS 셀렉트박스 커스텀</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/14/js-react/js-react-uncontrolled-components/">리엑트 Uncontrolled Components</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/js-basic/js-environment/">자바스크립트 환경</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/30/js-get-string-byte/">자바스크립트 문자열 바이트 계산</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 crontab<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

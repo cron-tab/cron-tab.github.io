@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>crontab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="crontab">
+<meta property="og:url" content="https://cron-tab.github.io/page/3/index.html">
+<meta property="og:site_name" content="crontab">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="crontab">
+  
+    <link rel="alternate" href="/atom.xml" title="crontab" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">crontab</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">crontab&#39;s blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cron-tab.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="posts-js-react/js-react-postcss" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/29/js-react/js-react-postcss/" class="article-date">
+  <time datetime="2018-05-29T02:35:01.000Z" itemprop="datePublished">2018-05-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/29/js-react/js-react-postcss/">리엑트 postcss에서 sass 문법 설정 방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>react에서 sass 설정을 살펴 보던 중 postcss가 기본설정이 되어 있어<br>굳이 sass loader를 사용하기 보다 postcss에서 sass문법을 지원하는<br>플러그인 설치를 하는 방향이 더 좋을거 같습니다. </p>
+<p>postcss에서 sass문법을 지원하는 플러그인은 <a href="https://www.postcss.parts/?searchTerm=sass" target="_blank" rel="noopener">postcss</a>에서 검색을 하면 찾아 볼 수 있습니다.<br>우선 자주 쓰는 변수 선언, 중첩 css 작성할 수 있게 해주는 <a href="https://github.com/jonathantneal/precss" target="_blank" rel="noopener">precss</a>, <a href="https://github.com/postcss/postcss-nested" target="_blank" rel="noopener">postcss-nested</a>을 설치해 보도록 하겠습니다.</p>
+<h2 id="config-파일-생성"><a href="#config-파일-생성" class="headerlink" title="config 파일 생성"></a>config 파일 생성</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn eject</span><br></pre></td></tr></table></figure>
+<h2 id="precss-postcss-nested-설치"><a href="#precss-postcss-nested-설치" class="headerlink" title="precss, postcss-nested 설치"></a>precss, postcss-nested 설치</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add -D precss postcss-nested</span><br></pre></td></tr></table></figure>
+<h2 id="webpack-설정"><a href="#webpack-설정" class="headerlink" title="webpack 설정"></a>webpack 설정</h2><p>config/webpack.config.dev<br>config/webpack.config.prod<br>파일에서 아래 부분을 찾은다음 추가해 주면 됩니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">    <span class="built_in">require</span>.resolve(<span class="string">'style-loader'</span>),</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="built_in">require</span>.resolve(<span class="string">'css-loader'</span>),</span><br><span class="line">      options: &#123;</span><br><span class="line">        importLoaders: <span class="number">1</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="built_in">require</span>.resolve(<span class="string">'postcss-loader'</span>),</span><br><span class="line">      options: &#123;</span><br><span class="line">        <span class="comment">// Necessary for external CSS imports to work</span></span><br><span class="line">        <span class="comment">// https://github.com/facebookincubator/create-react-app/issues/2677</span></span><br><span class="line">        ident: <span class="string">'postcss'</span>,</span><br><span class="line">        plugins: <span class="function"><span class="params">()</span> =&gt;</span> [</span><br><span class="line">          <span class="built_in">require</span>(<span class="string">'precss'</span>), <span class="comment">// 추가</span></span><br><span class="line">          <span class="built_in">require</span>(<span class="string">'postcss-nested'</span>), <span class="comment">//추가</span></span><br><span class="line">          <span class="built_in">require</span>(<span class="string">'postcss-flexbugs-fixes'</span>),</span><br><span class="line">          autoprefixer(&#123;</span><br><span class="line">            browsers: [</span><br><span class="line">              <span class="string">'&gt;1%'</span>,</span><br><span class="line">              <span class="string">'last 4 versions'</span>,</span><br><span class="line">              <span class="string">'Firefox ESR'</span>,</span><br><span class="line">              <span class="string">'not ie &lt; 9'</span>, <span class="comment">// React doesn't support IE8 anyway</span></span><br><span class="line">            ],</span><br><span class="line">            flexbox: <span class="string">'no-2009'</span>,</span><br><span class="line">          &#125;),</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="App-js-App-css-수정-후-확인"><a href="#App-js-App-css-수정-후-확인" class="headerlink" title="App.js , App.css 수정 후 확인"></a>App.js , App.css 수정 후 확인</h2><p>아래와 같이 파일을 수정한 후 잘 동작하는지 확인하면 됩니다.</p>
+<p>src/App.css</p>
+<p>/src/App.js<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from 'react';</span><br><span class="line">import logo from './logo.svg';</span><br><span class="line">import './App.css';</span><br><span class="line"></span><br><span class="line">class App extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"App"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">header</span> <span class="attr">className</span>=<span class="string">"App-header"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;logo&#125;</span> <span class="attr">className</span>=<span class="string">"App-logo"</span> <span class="attr">alt</span>=<span class="string">"logo"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h1</span> <span class="attr">className</span>=<span class="string">"App-title"</span>&gt;</span>Welcome to React<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">className</span>=<span class="string">"App-intro"</span>&gt;</span></span><br><span class="line">          To get started, edit <span class="tag">&lt;<span class="name">code</span>&gt;</span>src/App.js<span class="tag">&lt;/<span class="name">code</span>&gt;</span> and save to reload.</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;</span>`<span class="attr">test</span>`&#125;&gt;</span>test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">$blue: #056ef0;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.App</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  .test &#123;</span><br><span class="line">    color: $blue;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.App-logo</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: App-logo-spin infinite <span class="number">20s</span> linear;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">80px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.App-header</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#222</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.App-title</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1.5em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.App-intro</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: large;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">keyframes</span> App-logo-spin &#123;</span><br><span class="line">  <span class="selector-tag">from</span> &#123; <span class="attribute">transform</span>: <span class="built_in">rotate</span>(0deg); &#125;</span><br><span class="line">  <span class="selector-tag">to</span> &#123; <span class="attribute">transform</span>: <span class="built_in">rotate</span>(360deg); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/05/29/js-react/js-react-postcss/" data-id="cjv23xmeh0033prrakavtgetb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-terms-stateful-stateless" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/21/terms-stateful-stateless/" class="article-date">
+  <time datetime="2018-05-21T06:05:50.000Z" itemprop="datePublished">2018-05-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/21/terms-stateful-stateless/">terms-stateful-stateless</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Service statelessness</p>
+<p>When people talk about stateless applications, they in fact mean no state in the web tier. But state can be stored in several layers:</p>
+<p>Stateless Protocol</p>
+<p>Restful: Stateless</p>
+<p>HTTP: Stateless</p>
+<p>TCP: Stateful<br>UDP: connectionless session , Stateless connection</p>
+<p>IP(Internet Protocol): stateless </p>
+<p>FTP: Stateful</p>
+<h2 id="resource"><a href="#resource" class="headerlink" title="resource"></a>resource</h2><ul>
+<li><a href="https://stackoverflow.com/questions/19899236/is-tcp-protocol-stateless-or-not" target="_blank" rel="noopener">https://stackoverflow.com/questions/19899236/is-tcp-protocol-stateless-or-not</a></li>
+<li><a href="https://nordicapis.com/defining-stateful-vs-stateless-web-services/" target="_blank" rel="noopener">https://nordicapis.com/defining-stateful-vs-stateless-web-services/</a></li>
+<li><p><a href="http://egloos.zum.com/outspace/v/3124886" target="_blank" rel="noopener">http://egloos.zum.com/outspace/v/3124886</a></p>
+</li>
+<li><p><a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf" target="_blank" rel="noopener">https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf</a></p>
+</li>
+<li><p><a href="http://codemonkeyism.com/stateless-applications-illusion/" target="_blank" rel="noopener">http://codemonkeyism.com/stateless-applications-illusion/</a></p>
+</li>
+<li><p><a href="https://nordicapis.com/designing-a-true-rest-state-machine/" target="_blank" rel="noopener">https://nordicapis.com/designing-a-true-rest-state-machine/</a></p>
+</li>
+<li><p><a href="https://nordicapis.com/defining-stateful-vs-stateless-web-services/" target="_blank" rel="noopener">https://nordicapis.com/defining-stateful-vs-stateless-web-services/</a></p>
+</li>
+<li><p><a href="https://en.wikipedia.org/wiki/Stateless_protocol" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Stateless_protocol</a></p>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Service_statelessness_principle" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Service_statelessness_principle</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/05/21/terms-stateful-stateless/" data-id="cjv23xmck000rprral191m9gk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-js-react/js-react-component-state" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/15/js-react/js-react-component-state/" class="article-date">
+  <time datetime="2018-05-15T05:53:27.000Z" itemprop="datePublished">2018-05-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/15/js-react/js-react-component-state/">리엑트 컴포넌트 상태(state, props)에 대한 설명</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="state와-props의-차이점"><a href="#state와-props의-차이점" class="headerlink" title="state와 props의 차이점"></a>state와 props의 차이점</h2><p>state와 props(properties의 축약형)는 둘다 자바스크립트 객체입니다.<br>둘다 렌더링 결과에 영향을 주는 정보들을 가지고 있지만 한가지 중요한 점이 다릅니다.<br>props는 함수의 파라미터와 같이 컴포넌트를 통과합니다.<br>반면에 state는 함수 안에 선언된 변수와 같이 컴포넌트 안에서만 상태를 관리합니다.</p>
+<h2 id="setState"><a href="#setState" class="headerlink" title="setState()"></a>setState()</h2><p>setState()는 컴포넌트의 state 객체를 업데이트 하는 함수 입니다.<br>state가 변경되면 render()가 호출되어 컴포넌트에 상태가 반영됩니다. </p>
+<p>setState()는 비동기로 호출 되지만 이벤트 핸들러 안에서 동기적으로 실행됩니다.<br>예를 들어, 클릭 이벤트 핸들러 함수 안에서 부모와 자식이 setState를 호출하면 자식은 두번 렌더링 하지 않습니다.<br>리엑트는 브라우저 이벤트가 끝날 때 state 업데이트를 반영합니다.<br>그 결과로 눈에 띄는 성능 향상이 됩니다. </p>
+<p>리엑트는 다시 렌더링 되기 전에 모든 컴포넌트가 컴포넌트 이벤트 핸들러 안에서 setState()를 호출할 때까지 대기합니다.<br>이것은 불필요한 렌더링을 피함으로서 성능 향상이 됩니다.  </p>
+<h2 id="setState가-잘못된-값을-주는-이유"><a href="#setState가-잘못된-값을-주는-이유" class="headerlink" title="setState가 잘못된 값을 주는 이유"></a>setState가 잘못된 값을 주는 이유</h2><p>리엑트에서는 this.props와 this.state는 현재 화면에 표시된 렌더링된 값을 표현합니다.</p>
+<p>예상대로 작동하지 않는 코드 예<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">incrementCount() &#123;</span><br><span class="line">	<span class="comment">// 아래 코드는 의도한 대로 동작하지 않습니다.</span></span><br><span class="line">  <span class="keyword">this</span>.setState(&#123;<span class="attr">count</span>: <span class="keyword">this</span>.state.count + <span class="number">1</span>&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">handleSomething() &#123;</span><br><span class="line">  <span class="comment">// `this.state.count`는 0부터 시작합니다.</span></span><br><span class="line">  <span class="keyword">this</span>.incrementCount();</span><br><span class="line">  <span class="keyword">this</span>.incrementCount();</span><br><span class="line">  <span class="keyword">this</span>.incrementCount();</span><br><span class="line">  <span class="comment">// 리엑트가 컴포넌트를 다시 렌더링할때 this.state.count는 1이고 3이 아닙니다.</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// incrementCount()함수는 this.state.count의 값을 사용하지만 </span></span><br><span class="line">  <span class="comment">// 리엑트가 다시 렌더링 되기 전까지 this.state.count값을 업데이트 하지 않습니다.</span></span><br><span class="line">  <span class="comment">// 그래서 incrementCount()는 this.state.count를 매번 0으로 읽고 1로 할당합니다.</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>수정된 코드<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">incrementCount() &#123;</span><br><span class="line">  <span class="keyword">this</span>.setState(<span class="function">(<span class="params">prevState</span>) =&gt;</span> &#123;</span><br><span class="line">  	<span class="comment">// 업데이트를 할 때 this.state대신 prevState 값을 읽어야 합니다.</span></span><br><span class="line">   </span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">count</span>: prevState.count + <span class="number">1</span>&#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">handleSomething() &#123;</span><br><span class="line">  <span class="comment">// `this.state.count`는 0부터 시작합니다.</span></span><br><span class="line">  <span class="keyword">this</span>.incrementCount();</span><br><span class="line">  <span class="keyword">this</span>.incrementCount();</span><br><span class="line">  <span class="keyword">this</span>.incrementCount();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 현재 `this.state.count` 값은 0이고 리엑트가 컴포넌트를 다시 렌더링하면 3이 됩니다.</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="resource"><a href="#resource" class="headerlink" title="resource"></a>resource</h2><ul>
+<li><a href="https://reactjs.org/docs/faq-state.html" target="_blank" rel="noopener">https://reactjs.org/docs/faq-state.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/05/15/js-react/js-react-component-state/" data-id="cjv23xmeb002tprra08wljfgf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-js-react/js-react-ajax" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/15/js-react/js-react-ajax/" class="article-date">
+  <time datetime="2018-05-15T05:46:00.000Z" itemprop="datePublished">2018-05-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/15/js-react/js-react-ajax/">리엑트 컴포넌트에서 ajax 호출 방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Ajax-호출은-componentDidMount-에서-해야한다"><a href="#Ajax-호출은-componentDidMount-에서-해야한다" class="headerlink" title="Ajax 호출은 componentDidMount() 에서 해야한다."></a>Ajax 호출은 componentDidMount() 에서 해야한다.</h2><p>리엑트 문서에서 Ajax호출은 componentDidMout()에서 해라고 권고한다.<br>Ajax호출 후 setState를 통해 상태를 변경 하면 render()가 호출 되어 컴포넌트에 반영된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      error: <span class="literal">null</span>,</span><br><span class="line">      isLoaded: <span class="literal">false</span>,</span><br><span class="line">      items: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    fetch(<span class="string">"https://api.example.com/items"</span>)</span><br><span class="line">      .then(<span class="function"><span class="params">res</span> =&gt;</span> res.json())</span><br><span class="line">      .then(</span><br><span class="line">        (result) =&gt; &#123;</span><br><span class="line">          <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">            isLoaded: <span class="literal">true</span>,</span><br><span class="line">            items: result.items</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// Note: it's important to handle errors here</span></span><br><span class="line">        <span class="comment">// instead of a catch() block so that we don't swallow</span></span><br><span class="line">        <span class="comment">// exceptions from actual bugs in components.</span></span><br><span class="line">        (error) =&gt; &#123;</span><br><span class="line">          <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">            isLoaded: <span class="literal">true</span>,</span><br><span class="line">            error</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; error, isLoaded, items &#125; = <span class="keyword">this</span>.state;</span><br><span class="line">    <span class="keyword">if</span> (error) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Error: &#123;error.message&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!isLoaded) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Loading...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &#123;items.map(<span class="function"><span class="params">item</span> =&gt;</span> (</span><br><span class="line">            &lt;li key=&#123;item.name&#125;&gt;</span><br><span class="line">              &#123;item.name&#125; &#123;item.price&#125;</span><br><span class="line">            &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">          ))&#125;</span></span><br><span class="line"><span class="regexp">        &lt;/u</span>l&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="resource"><a href="#resource" class="headerlink" title="resource"></a>resource</h2><ul>
+<li><a href="https://reactjs.org/docs/faq-ajax.html" target="_blank" rel="noopener">https://reactjs.org/docs/faq-ajax.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/05/15/js-react/js-react-ajax/" data-id="cjv23xmea002rprrawff30ku8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-react-native" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/06/react-native/" class="article-date">
+  <time datetime="2018-04-06T05:35:21.000Z" itemprop="datePublished">2018-04-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/06/react-native/">리엑트 네이티브 개발환경 설정하기</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="리엑트-네이티브"><a href="#리엑트-네이티브" class="headerlink" title="리엑트 네이티브"></a>리엑트 네이티브</h2><p>리엑트 네이티브는 자바스크립트로 iOS/Android 네이트브앱을 개발할 수 있게 도와주는 도구입니다.</p>
+<h3 id="Watchman-Flow-설치"><a href="#Watchman-Flow-설치" class="headerlink" title="Watchman, Flow 설치"></a>Watchman, Flow 설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install watchman</span><br><span class="line">brew install flow</span><br></pre></td></tr></table></figure>
+<h3 id="리엑트-네이티브-CLI-설치"><a href="#리엑트-네이티브-CLI-설치" class="headerlink" title="리엑트 네이티브 CLI 설치"></a>리엑트 네이티브 CLI 설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g react-native-cli</span><br></pre></td></tr></table></figure>
+<h3 id="리액트-네이티브-앱-만들기"><a href="#리액트-네이티브-앱-만들기" class="headerlink" title="리액트 네이티브 앱 만들기"></a>리액트 네이티브 앱 만들기</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">react-native init HelloWorld</span><br><span class="line"><span class="built_in">cd</span> HelloWorld</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<h4 id="실행"><a href="#실행" class="headerlink" title="실행"></a>실행</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native run-ios</span><br></pre></td></tr></table></figure>
+<h4 id="수정"><a href="#수정" class="headerlink" title="수정"></a>수정</h4><p>App.js 를 열고 파일을 수정할 수 있습니다. </p>
+<p>그 후 에뮬레이터에서 cmd + R 을 누르면 수정된 부분이 반영됩니다.</p>
+<h4 id="크롬-디버거"><a href="#크롬-디버거" class="headerlink" title="크롬 디버거"></a>크롬 디버거</h4><p>iOS simulator 에서 크롬 디버거를 통해 콘솔로그 등 작업을 할 수 있습니다. </p>
+<ol>
+<li>iOS simulator에서 Command + D를 누름</li>
+<li>Dedub JS Remotely 선택</li>
+</ol>
+<h2 id><a href="#" class="headerlink" title=" "></a> </h2><h2 id="Expo-설치"><a href="#Expo-설치" class="headerlink" title="Expo 설치"></a>Expo 설치</h2><p>리엑트 네이티브를 사용하기 위해서는 Expo라는 개발도구가 필요합니다.<br>Expo다운로드 링크: <a href="https://xde-updates.exponentjs.com/download/mac" target="_blank" rel="noopener">https://xde-updates.exponentjs.com/download/mac</a><br>Expo를 다운받아 실행 후 로그인까지 하면 위에서 설치한  AwesomeProject를 보실 수 있습니다.<br><img src="/img/react-native/react-native-1.png"> </p>
+<h2 id="에뮬레이터-설치"><a href="#에뮬레이터-설치" class="headerlink" title="에뮬레이터 설치"></a>에뮬레이터 설치</h2><p>리엑트 네이티브로 개발시 웹에서처럼 live-reload기능이 제공됩니다.<br>데스크탑에서 개발하기 위해서 <a href="https://itunes.apple.com/app/xcode/id497799835" target="_blank" rel="noopener">iOS simulator</a> / <a href="https://www.genymotion.com/fun-zone/" target="_blank" rel="noopener">Genymotion</a> 설치합니다.<br>핸드폰에서도 Expo Client(<a href="https://itunes.apple.com/app/apple-store/id982107779" target="_blank" rel="noopener">iOS</a>/<a href="https://play.google.com/store/apps/details?id=host.exp.exponent&amp;referrer=www" target="_blank" rel="noopener">Android</a>)앱을 설치하면 개발하면서 바로 확인이 가능합니다.</p>
+<h2 id="에뮬레이터-실행"><a href="#에뮬레이터-실행" class="headerlink" title="에뮬레이터 실행"></a>에뮬레이터 실행</h2><p>AwesomeProject를 클릭 후 제일 오른쪽에 있는 Device를 클릭합니다.<br>Open on iOS Simulator / Open on Android를 클릭하면 위에서 설치한 Simulator에서<br>iOS/Android용 AwesomeProject 앱이 실행됩니다.<br><img src="/img/react-native/react-native-2.png"><br><img src="/img/react-native/react-native-3.png"></p>
+<h2 id="App-js-수정"><a href="#App-js-수정" class="headerlink" title="App.js 수정"></a>App.js 수정</h2><p>/AwesomeProject/App.js 파일을 열고 <text>React Native Test</text> 코드를 추가해 줍니다.<br>그러면 자동으로 에뮬레이터에 반영되는 모습을 볼 수 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; StyleSheet, Text, View &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Open up App.js to start working on your app!&lt;/Text&gt;</span><br><span class="line">        &lt;Text&gt;Changes you make will automatically reload.&lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">        &lt;Text&gt;Shake your phone to open the developer menu.&lt;/</span>Text&gt;</span><br><span class="line">        &lt;Text&gt;React Native Test&lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = StyleSheet.create(&#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: <span class="number">1</span>,</span><br><span class="line">    backgroundColor: <span class="string">'#fff'</span>,</span><br><span class="line">    alignItems: <span class="string">'center'</span>,</span><br><span class="line">    justifyContent: <span class="string">'center'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="네이티브-코드로-프로젝트-빌드"><a href="#네이티브-코드로-프로젝트-빌드" class="headerlink" title="네이티브 코드로 프로젝트 빌드"></a>네이티브 코드로 프로젝트 빌드</h2><h3 id="의존성-설치"><a href="#의존성-설치" class="headerlink" title="의존성 설치"></a>의존성 설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br><span class="line">brew install watchman</span><br><span class="line">npm install -g react-native-cli</span><br></pre></td></tr></table></figure>
+<h3 id="React-Native-Application-생성"><a href="#React-Native-Application-생성" class="headerlink" title="React Native Application 생성"></a>React Native Application 생성</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native init AwesomeProject</span><br></pre></td></tr></table></figure>
+<h3 id="React-Native-Application-실행"><a href="#React-Native-Application-실행" class="headerlink" title="React Native Application 실행"></a>React Native Application 실행</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> AwesomeProject</span><br><span class="line">react-native run-ios</span><br></pre></td></tr></table></figure>
+<h2 id="resource"><a href="#resource" class="headerlink" title="resource"></a>resource</h2><ul>
+<li><a href="https://facebook.github.io/react-native/docs/getting-started.html" target="_blank" rel="noopener">https://facebook.github.io/react-native/docs/getting-started.html</a></li>
+<li><a href="https://docs.expo.io/versions/v26.0.0/introduction/" target="_blank" rel="noopener">https://docs.expo.io/versions/v26.0.0/introduction/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/04/06/react-native/" data-id="cjv23xmci000nprrad07cqg6o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ReactNative/">ReactNative</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-js-react/js-react-redux" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/04/js-react/js-react-redux/" class="article-date">
+  <time datetime="2018-04-04T07:16:38.000Z" itemprop="datePublished">2018-04-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/04/js-react/js-react-redux/">리엑트 리덕스</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="React-Redux-란"><a href="#React-Redux-란" class="headerlink" title="React Redux 란"></a>React Redux 란</h2><ul>
+<li><p>React에 Redux를 공식적으로 바인딩한 라이브러리 입니다. </p>
+</li>
+<li><p>리엑트 컴포넌트가 Redux store에서 데이터를 읽고 데이터를 업데이트하기 위해 store에게 actions를 발송할 수 있습니다.</p>
+</li>
+</ul>
+<h2 id="React-Redux-설치"><a href="#React-Redux-설치" class="headerlink" title="React Redux 설치"></a>React Redux 설치</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save react-redux</span><br></pre></td></tr></table></figure>
+<h2 id="lt-Provider-gt"><a href="#lt-Provider-gt" class="headerlink" title="&lt;Provider /&gt;"></a><code>&lt;Provider /&gt;</code></h2><p> <code>&lt;Provider /&gt;</code> 를 통해  Redux store를 app에서 사용할 수 있습니다.</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./store'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> rootElement = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">    &lt;App /&gt;</span><br><span class="line">  &lt;<span class="regexp">/Provider&gt;,</span></span><br><span class="line"><span class="regexp">  rootElement</span></span><br><span class="line"><span class="regexp">)</span></span><br></pre></td></tr></table></figure>
+<h2 id="connect"><a href="#connect" class="headerlink" title="connect()"></a>connect()</h2><p>connect() 는 컴포넌트와 store를 연결해 줍니다. </p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span></span><br><span class="line"><span class="keyword">import</span> &#123; increment, decrement, reset &#125; <span class="keyword">from</span> <span class="string">'./actionCreators'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// const Counter = ...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mapStateToProps = <span class="function">(<span class="params">state <span class="regexp">/*, ownProps*/</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    counter: state.counter</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mapDispatchToProps = &#123; increment, decrement, reset &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(</span><br><span class="line">  mapStateToProps,</span><br><span class="line">  mapDispatchToProps</span><br><span class="line">)(Counter)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> toggleTodo = <span class="function"><span class="params">id</span> =&gt;</span> (&#123;</span><br><span class="line">	type: <span class="string">'TOGGLE_TODO'</span>,</span><br><span class="line">	id</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> VisibilityFilters = &#123;</span><br><span class="line">	SHOW_ALL: <span class="string">'SHOW_ALL'</span>,</span><br><span class="line">	SHOW_COMPLETED: <span class="string">'SHOW_COMPLETED'</span>,</span><br><span class="line">	SHOW_ACTIVE: <span class="string">'SHOWD_ACTIVE'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://github.com/reduxjs/react-redux" target="_blank" rel="noopener">https://github.com/reduxjs/react-redux</a></li>
+<li><a href="https://react-redux.js.org/" target="_blank" rel="noopener">https://react-redux.js.org/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/04/04/js-react/js-react-redux/" data-id="cjv23xmei0034prrayqktbcx8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-http-set-cookie" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/02/http-set-cookie/" class="article-date">
+  <time datetime="2018-04-02T06:38:53.000Z" itemprop="datePublished">2018-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/02/http-set-cookie/">크로스 도메인에서 쿠키 사용방법과 Set-Cookie 정리</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="크로스-도메인-Ajax요청-시-쿠키-사용방법"><a href="#크로스-도메인-Ajax요청-시-쿠키-사용방법" class="headerlink" title="크로스 도메인 Ajax요청 시 쿠키 사용방법"></a>크로스 도메인 Ajax요청 시 쿠키 사용방법</h2><p>브라우저는 크로스 도메인 Ajax(XMLHttpRequest)요청시 응답에서 Set-Cookie항목은 무시합니다.<br>그래서 <a href="http://www.service.com에서" target="_blank" rel="noopener">http://www.service.com에서</a> <a href="http://api.service.com" target="_blank" rel="noopener">http://api.service.com</a> 요청시 쿠기 생성이 되지 않습니다.<br>쿠키를 사용 하려면 withCredentials=true 옵션을 설정하면 되고 Javascript로 쿠키에 접근은 되지 않습니다.<br>1개의 도메인만 사용할 경우 withCredentials 옵션은 아무런 영향이 없습니다</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">'GET'</span>, <span class="string">'http://example.com/'</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.withCredentials = <span class="literal">true</span>;</span><br><span class="line">xhr.send(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="Set-Cookie-헤더-작성방법"><a href="#Set-Cookie-헤더-작성방법" class="headerlink" title="Set-Cookie 헤더 작성방법"></a>Set-Cookie 헤더 작성방법</h2><p>쿠키를 생성 하려면 HTTP Response Header에서 Set-Cookie 설정을 해주면 됩니다.<br>가장 기본적인 Set-Cookie 설정은 아래와 같으며 각 요소를 ; 으로 구분합니다. </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: sessionid=38afes7a8; HttpOnly; Path=/</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Domain = domain-value<br>생략시 현재 도메인으로 지정되며 해당 도멘인 이외의 요청에서는 쿠키가 서버로 전송되지 않습니다. </p>
+</li>
+<li><p>Path = path-value<br>URL 경로를 지정하며 하위 디렉토리까지 쿠키를 서보로 전송합니다.</p>
+</li>
+<li><p>HttpOnly<br>위의 요소를 적용하면 Javascript(Document.cookie)로 쿠키에 접근할 수 없습니다.    </p>
+</li>
+<li><p>Secure<br>SSL 요청시에만 쿠키가 서버로 전송 됩니다. </p>
+</li>
+</ul>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/04/02/http-set-cookie/" data-id="cjv23xmc70006prrankr1e7i3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-js-react/js-react-custom-environment" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/22/js-react/js-react-custom-environment/" class="article-date">
+  <time datetime="2018-03-22T02:01:59.000Z" itemprop="datePublished">2018-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/22/js-react/js-react-custom-environment/">리엑트 빌드시 개발환경에 따라 API 주소 설정 (Custom Environment)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>웹프로젝트 개발시 개발,QA,상용 서버로 개발환경을 나누게 됩니다.<br>그럴 경우 각 환경에 따라 API 주소가 <a href="https://dev.service.com" target="_blank" rel="noopener">https://dev.service.com</a>, <a href="https://qa.service.com" target="_blank" rel="noopener">https://qa.service.com</a> 등으로 다르게 되는데<br>리엑트에서 빌드시 환경에 따른 API주소를 설정하는 방법을 알아보려고 합니다.</p>
+<p>빌드시 각 환경은 아래와 같은 명령으로 구분하겠습니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn build &lt;dev | qa | prd&gt;</span><br></pre></td></tr></table></figure></p>
+<p>우선 create-react-app으로 프로젝트 생성을 합니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ create-react-app &lt;project-directory&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="BuildConfig-js-생성"><a href="#BuildConfig-js-생성" class="headerlink" title="BuildConfig.js 생성"></a>BuildConfig.js 생성</h2><p>기존 설정파일 수정을 최소한으로 하는 방향으로 구성했습니다.<br>리엑트에서 커스텀 환경변수를 사용하기 위해서는 REACT<em>APP</em> 로 시작하는 환경변수를 사용해야 합니다.<br>리엑트에서 기본으로 PUBLIC_URL 변수가 있지만 REACT_APP_SERVICE_URL 로 따로 지정해서 사용하겠습니다.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">process.env.REACT_APP_SERVICE_URL = serviceUrl</span><br></pre></td></tr></table></figure></p>
+<p>아래 파일을 생성 후 코드를 작성합니다.<br>/tasks/BuildConfig.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuildConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">constructor</span> () &#123;</span><br><span class="line">		<span class="keyword">let</span> processEnv, serviceUrl</span><br><span class="line"></span><br><span class="line">		<span class="keyword">const</span> processArgv = process.argv</span><br><span class="line">		<span class="keyword">this</span>.currentEnv  = processArgv[<span class="number">2</span>] <span class="comment">// dev | qa | prd Argument 담는 변수 </span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">switch</span> (<span class="keyword">this</span>.currentEnv) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'dev'</span>:</span><br><span class="line">				processEnv = <span class="string">'development'</span></span><br><span class="line">				serviceUrl = <span class="string">'https://dev.service.com'</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			<span class="keyword">case</span> <span class="string">'qa'</span>:</span><br><span class="line">				processEnv = <span class="string">'production'</span></span><br><span class="line">				serviceUrl = <span class="string">'https://qa.service.com'</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				processEnv = <span class="string">'production'</span></span><br><span class="line">				serviceUrl = <span class="string">'https://www.service.com'</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		process.env.REACT_APP_SERVICE_URL = serviceUrl</span><br><span class="line">		process.env.BABEL_ENV   = processEnv</span><br><span class="line">		process.env.NODE_ENV    = processEnv</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	getConfigData () &#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">const</span> data = &#123;</span><br><span class="line">			config: <span class="keyword">this</span>.getConfig()</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	getConfig () &#123;</span><br><span class="line">		<span class="keyword">let</span> config</span><br><span class="line"></span><br><span class="line">		<span class="keyword">switch</span> (<span class="keyword">this</span>.currentEnv) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'dev'</span>:</span><br><span class="line">				config     = <span class="built_in">require</span>(<span class="string">'../configs/webpack.config.dev'</span>)</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			<span class="keyword">case</span> <span class="string">'qa'</span>:</span><br><span class="line">				config     = <span class="built_in">require</span>(<span class="string">'../configs/webpack.config.prod'</span>)</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				config     = <span class="built_in">require</span>(<span class="string">'../configs/webpack.config.prod'</span>)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> config</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> buildConfig = <span class="keyword">new</span> BuildConfig()</span><br><span class="line"><span class="keyword">const</span> data   = buildConfig.getConfigData()</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = data</span><br></pre></td></tr></table></figure></p>
+<h2 id="빌드-코드-수정"><a href="#빌드-코드-수정" class="headerlink" title="빌드 코드 수정"></a>빌드 코드 수정</h2><p>/tasks/build.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; config, timestamp &#125; = <span class="built_in">require</span>(<span class="string">'./buildConfig'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Do this as the first thing so that any code reading it knows the right env.</span></span><br><span class="line"><span class="comment">//process.env.BABEL_ENV = 'production'; // 주석처리</span></span><br><span class="line"><span class="comment">//process.env.NODE_ENV = 'production';  // 주석처리</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Makes the script crash on unhandled rejections instead of silently</span></span><br><span class="line"><span class="comment">// ignoring them. In the future, promise rejections that are not handled will</span></span><br><span class="line"><span class="comment">// terminate the Node.js process with a non-zero exit code.</span></span><br><span class="line">process.on(<span class="string">'unhandledRejection'</span>, err =&gt; &#123;</span><br><span class="line">  <span class="keyword">throw</span> err;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Ensure environment variables are read.</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'../configs/env'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs-extra'</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="comment">//const config = require('../configs/webpack.config.prod'); // 주석처리</span></span><br><span class="line"><span class="keyword">const</span> paths = <span class="built_in">require</span>(<span class="string">'../configs/paths'</span>);</span><br><span class="line"><span class="keyword">const</span> checkRequiredFiles = <span class="built_in">require</span>(<span class="string">'react-dev-utils/checkRequiredFiles'</span>);</span><br><span class="line"><span class="keyword">const</span> formatWebpackMessages = <span class="built_in">require</span>(<span class="string">'react-dev-utils/formatWebpackMessages'</span>);</span><br><span class="line"><span class="keyword">const</span> printHostingInstructions = <span class="built_in">require</span>(<span class="string">'react-dev-utils/printHostingInstructions'</span>);</span><br><span class="line"><span class="keyword">const</span> FileSizeReporter = <span class="built_in">require</span>(<span class="string">'react-dev-utils/FileSizeReporter'</span>);</span><br><span class="line"><span class="keyword">const</span> printBuildError = <span class="built_in">require</span>(<span class="string">'react-dev-utils/printBuildError'</span>);</span><br><span class="line"></span><br><span class="line">  ...</span><br></pre></td></tr></table></figure></p>
+<p>여기까지 작성하면 빌드 설정관련 작업은 끝납니다.<br>이제 위에서 할당한 환경변수 사용방법을 알아 보겠습니다.</p>
+<h2 id="REACT-APP-SERVICE-URL-변수-사용방법"><a href="#REACT-APP-SERVICE-URL-변수-사용방법" class="headerlink" title="REACT_APP_SERVICE_URL 변수 사용방법"></a>REACT_APP_SERVICE_URL 변수 사용방법</h2><p>axios의 baseURL에 할당하면 다른 컴포넌트에서 편하게 사용할 수 있습니다.</p>
+<p>/src/axios.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"></span><br><span class="line">axios.defaults.baseURL = process.env.REACT_APP_SERVICE_URL</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> axios</span><br></pre></td></tr></table></figure></p>
+<h2 id="빌드"><a href="#빌드" class="headerlink" title="빌드"></a>빌드</h2><p>위 작업을 다 마치고 빌드를 하게되면 개발환경에 맞는 API주소로 통신을 하게 됩니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn build &lt;dev | qa | prd&gt;</span><br></pre></td></tr></table></figure>
+<p>위 코드를 조금 더 수정하면 빌드시 원하는 작업을 쉽게 추가할 수 있습니다.</p>
+<p>필요하신 분들은 활용하시면 좋을거 같습니다.</p>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><ul>
+<li><a href="https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-custom-environment-variables" target="_blank" rel="noopener">https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-custom-environment-variables</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/03/22/js-react/js-react-custom-environment/" data-id="cjv23xmec002vprralq44uwp9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-js-vue/js-vue-components" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/19/js-vue/js-vue-components/" class="article-date">
+  <time datetime="2018-03-19T06:19:53.000Z" itemprop="datePublished">2018-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/19/js-vue/js-vue-components/">Vue 컴포넌트 활용방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Global-Component-Local-Component-사용방법"><a href="#Global-Component-Local-Component-사용방법" class="headerlink" title="Global Component, Local Component 사용방법"></a>Global Component, Local Component 사용방법</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;global-component&gt;&lt;/global-component&gt;</span><br><span class="line">    &lt;local-component&gt;&lt;/local-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&apos;globalComponent&apos;, &#123;</span><br><span class="line">        template: &apos;&lt;div&gt;globalComponent&lt;/div&gt;&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    new Vue(&#123;</span><br><span class="line">        el: &apos;#app&apos;,</span><br><span class="line">        components: &#123;</span><br><span class="line">            &apos;localComponent&apos;: &#123;</span><br><span class="line">                template: &apos;&lt;div&gt;localComponent&lt;/div&gt;&apos;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;) </span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="자식-컨포넌트-Input-Value-변경시-부모-컨포넌트의-Data-변경하는-방법"><a href="#자식-컨포넌트-Input-Value-변경시-부모-컨포넌트의-Data-변경하는-방법" class="headerlink" title="자식 컨포넌트 Input Value 변경시 부모 컨포넌트의 Data 변경하는 방법"></a>자식 컨포넌트 Input Value 변경시 부모 컨포넌트의 Data 변경하는 방법</h1><p>/src/components/Main.vue<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Toolbar :q.sync=&quot;q&quot;&gt;&lt;/Toolbar&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">£</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import Toolbar from &apos;@/components/Toolbar&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    Toolbar</span><br><span class="line">  &#125;,</span><br><span class="line">  name: &apos;Main&apos;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      q: &apos;&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>/src/compnents/Toolbar.vue<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot;</span><br><span class="line">           :value=&quot;q&quot;</span><br><span class="line">           @input=&quot;$emit(&apos;update:q&apos;, $event.target.value)&quot;/&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="자식-컴포넌트-Input-이벤트-발생-시-부모-컴포넌트-methods-실행-방법"><a href="#자식-컴포넌트-Input-이벤트-발생-시-부모-컴포넌트-methods-실행-방법" class="headerlink" title="자식 컴포넌트 Input 이벤트 발생 시 부모 컴포넌트 methods 실행 방법"></a>자식 컴포넌트 Input 이벤트 발생 시 부모 컴포넌트 methods 실행 방법</h1><p>/src/components/Main.vue<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Toolbar @search=&quot;search&quot;&gt;&lt;/Toolbar&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import Toolbar from &apos;@/components/Toolbar&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    Toolbar</span><br><span class="line">  &#125;,</span><br><span class="line">  name: &apos;Main&apos;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    search () &#123;</span><br><span class="line">      console.log(&apos;search method&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>/src/compnents/Toolbar.vue<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot;</span><br><span class="line">           @keyup.enter=&quot;$emit(&apos;search&apos;)&quot;/&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><ul>
+<li><a href="https://vuejs.org/v2/guide/components.html" target="_blank" rel="noopener">https://vuejs.org/v2/guide/components.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/03/19/js-vue/js-vue-components/" data-id="cjv23xmeo003fprra4pbn7g7i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="posts-js-vue/js-vue-filters" class="article article-type-posts" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/19/js-vue/js-vue-filters/" class="article-date">
+  <time datetime="2018-03-19T01:37:07.000Z" itemprop="datePublished">2018-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/19/js-vue/js-vue-filters/">Vue에서 Filters 사용방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>개인적으로 React에서 아쉬운 부분이 Angular,Vue에서의 Template기능입니다.<br>Template에서 Filters를 사용하면 Render과정에서 원본 데이터의 변화없이 출력할 수 있어 간단하게 화면을 조작할 수 있습니다.</p>
+<h1 id="Global-Filters"><a href="#Global-Filters" class="headerlink" title="Global Filters"></a>Global Filters</h1><p>Global Filters는 전체 components에서 사용가능합니다.<br>Global Filters 등록은 반드시 메인 Vue Instance 위에 작성을 해야합니다.</p>
+<p>/src/main.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">Vue.filter(<span class="string">'addText'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;value&#125;</span> Add Text Global Filters`</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* eslint-disable no-new */</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>/src/components/Hello.vue<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;hello&quot;&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123; msg | addText&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;hello&apos;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      msg: &apos;Welcome to Your Vue.js App&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Local-Filters"><a href="#Local-Filters" class="headerlink" title="Local Filters"></a>Local Filters</h1><p>Local Filters는 해당 component에서만 사용할 수 있습니다.<br>사용방법은 해당 component에 filters를 등록 후 사용하면 됩니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;hello&quot;&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123; msg | addLocalText&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;hello&apos;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      msg: &apos;Welcome to Your Vue.js App&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  filters: &#123;</span><br><span class="line">    addLocalText() &#123;</span><br><span class="line">      return `$&#123;value&#125; Add Text Local Filters`;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="여러-Filters를-Pipe-를-통해-같이-사용-가능"><a href="#여러-Filters를-Pipe-를-통해-같이-사용-가능" class="headerlink" title="여러 Filters를 Pipe( | )를 통해 같이 사용 가능"></a>여러 Filters를 Pipe( | )를 통해 같이 사용 가능</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;hello&quot;&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123; msg | addLocalText | addText&#125;&#125;&lt;/h1&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="Filters에-다중-파라미터-작성-가능"><a href="#Filters에-다중-파라미터-작성-가능" class="headerlink" title="Filters에 다중 파라미터 작성 가능"></a>Filters에 다중 파라미터 작성 가능</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.filter(<span class="string">'addText'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">value, second, third</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;value&#125;</span> Add Text Global Filters <span class="subst">$&#123;second&#125;</span> <span class="subst">$&#123;third&#125;</span>`</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><ul>
+<li><a href="https://scotch.io/tutorials/how-to-create-filters-in-vuejs-with-examples" target="_blank" rel="noopener">https://scotch.io/tutorials/how-to-create-filters-in-vuejs-with-examples</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cron-tab.github.io/2018/03/19/js-vue/js-vue-filters/" data-id="cjv23xmep003gprra7hxtjpul" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CrossBrowsing/">CrossBrowsing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ionic/">Ionic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavascriptBasic/">JavascriptBasic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Util/">Util</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Architecture/" style="font-size: 12.86px;">Architecture</a> <a href="/tags/CSS/" style="font-size: 12.86px;">CSS</a> <a href="/tags/CrossBrowsing/" style="font-size: 17.14px;">CrossBrowsing</a> <a href="/tags/DB/" style="font-size: 14.29px;">DB</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/Ionic/" style="font-size: 15.71px;">Ionic</a> <a href="/tags/Javascript/" style="font-size: 12.86px;">Javascript</a> <a href="/tags/JavascriptBasic/" style="font-size: 18.57px;">JavascriptBasic</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Util/" style="font-size: 12.86px;">Util</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/27/js-react/js-react-popup/">리엑트 컴포넌트에서 ajax 호출 방법</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/12/css/css-center/">CSS 셀렉트박스 커스텀</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/14/js-react/js-react-uncontrolled-components/">리엑트 Uncontrolled Components</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/js-basic/js-environment/">자바스크립트 환경</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/30/js-get-string-byte/">자바스크립트 문자열 바이트 계산</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 crontab<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
